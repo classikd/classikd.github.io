@@ -1,0 +1,5 @@
+# Exclude media compliled file
+media/Textures.xbt
+
+# Exclude file created by addon
+script-skinshortcuts-includes.xml
