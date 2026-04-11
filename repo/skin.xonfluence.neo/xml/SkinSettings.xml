@@ -1205,6 +1205,17 @@
                                 <onclick condition="Skin.String(MediaPanelTrans,70)">Skin.SetString(MediaPanelTrans,85)</onclick>
                                 <onclick condition="Skin.String(MediaPanelTrans,85)">Skin.Reset(MediaPanelTrans)</onclick>
                             </control>
+                            <control type="radiobutton" id="1599">
+                                <width>1125</width>
+                                <height>60</height>
+                                <font>font13</font>
+                                <label>31785</label>
+                                <textcolor>white</textcolor>
+                                <focusedcolor>black</focusedcolor>
+                                <include>MenuButton</include>
+                                <onclick>Skin.ToggleSetting(ShowUnwatchedIcon)</onclick>
+                                <selected>!Skin.HasSetting(ShowUnwatchedIcon)</selected>
+                            </control>
                             <control type="radiobutton" id="160">
                                 <width>1125</width>
                                 <height>60</height>
@@ -1343,6 +1354,18 @@
                             <height>720</height>
                             <itemgap>-1</itemgap>
                             <pagecontrol>2064</pagecontrol>
+                            <control type="radiobutton" id="17889">
+                                <description>OSD simple UI</description>
+                                <width>1125</width>
+                                <height>60</height>
+                                <font>font13</font>
+                                <textcolor>white</textcolor>
+                                <focusedcolor>black</focusedcolor>
+                                <label>$LOCALIZE[31778]</label>
+                                <include>MenuButton</include>
+                                <onclick>Skin.ToggleSetting(SimpleModOSDMusic)</onclick>
+                                <selected>Skin.HasSetting(SimpleModOSDMusic)</selected>
+                            </control>
                             <control type="radiobutton" id="171">
                                 <description>Auto Music Viz</description>
                                 <width>1125</width>
