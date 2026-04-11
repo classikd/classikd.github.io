@@ -239,7 +239,7 @@
                             <font>font13</font>
                             <textcolor>white</textcolor>
                             <focusedcolor>black</focusedcolor>
-                            <label>$LOCALIZE[32049]</label>
+                            <label>$LOCALIZE[31762]</label>
                             <onclick>RunScript(script.skinshortcuts,type=manage&amp;group=mainmenu)</onclick>
                             <include>MenuButton</include>
                         </control>
@@ -250,7 +250,7 @@
                             <font>font13</font>
                             <textcolor>white</textcolor>
                             <focusedcolor>black</focusedcolor>
-                            <label>$LOCALIZE[32050]</label>
+                            <label>$LOCALIZE[31763]</label>
                             <onclick>RunScript(script.skinshortcuts,type=manage&amp;group=powermenu)</onclick>
                             <include>MenuButton</include>
                         </control>
@@ -261,7 +261,7 @@
                             <font>font13</font>
                             <textcolor>white</textcolor>
                             <focusedcolor>black</focusedcolor>
-                            <label>$LOCALIZE[32051]</label>
+                            <label>$LOCALIZE[31764]</label>
                             <include>MenuButton</include>
                             <onclick>Skin.ToggleSetting(Enable.DefaultMenu)</onclick>
                             <selected>Skin.HasSetting(Enable.DefaultMenu)</selected>
@@ -400,7 +400,7 @@
                                 <font>font13</font>
                                 <textcolor>white</textcolor>
                                 <focusedcolor>black</focusedcolor>
-                                <label>$LOCALIZE[32047]</label>
+                                <label>$LOCALIZE[31761]</label>
                                 <include>MenuButton</include>
                                 <onclick>Skin.ToggleSetting(Use.SkinShortcuts)</onclick>
                                 <selected>Skin.HasSetting(Use.SkinShortcuts)</selected>
@@ -462,7 +462,7 @@
                                 <font>font13</font>
                                 <textcolor>white</textcolor>
                                 <focusedcolor>black</focusedcolor>
-                                <label>$LOCALIZE[32011]</label>
+                                <label>$LOCALIZE[31725]</label>
                                 <include>MenuButton</include>
                                 <onclick>Skin.ToggleSetting(HideCPUTemp)</onclick>
                                 <selected>!Skin.HasSetting(HideCPUTemp)</selected>
@@ -474,7 +474,7 @@
                                 <font>font13</font>
                                 <textcolor>white</textcolor>
                                 <focusedcolor>black</focusedcolor>
-                                <label>$LOCALIZE[32015]</label>
+                                <label>$LOCALIZE[31729]</label>
                                 <include>MenuButton</include>
                                 <onclick>Skin.ToggleSetting(ShowWidgetsOnFocus)</onclick>
                                 <selected>Skin.HasSetting(ShowWidgetsOnFocus)</selected>
@@ -494,24 +494,32 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31283]</label>
+                                <label> - $LOCALIZE[31283]</label>
                                 <textcolor>white</textcolor>
                                 <focusedcolor>black</focusedcolor>
                                 <include>MenuButton</include>
                                 <onclick>Skin.ToggleSetting(HidePVRNowPlaying)</onclick>
                                 <selected>!Skin.HasSetting(HidePVRNowPlaying)</selected>
+                                <enable>!Skin.HasSetting(HideHomeNowPlaying)</enable>
                             </control>
-                            <control type="radiobutton" id="1077">
+                           
+                            <control type="button" id="1311">
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[50020]</label>
+                                <label> - $LOCALIZE[31783]</label>
+                                <shadowcolor>black</shadowcolor>
+                                <label2>[COLOR=white]$VAR[PiPValue][/COLOR]</label2>
                                 <textcolor>white</textcolor>
                                 <focusedcolor>black</focusedcolor>
                                 <include>MenuButton</include>
-                                <onclick>Skin.ToggleSetting(EnablePiP)</onclick>
-                                <selected>Skin.HasSetting(EnablePiP)</selected>
+                                <onclick condition="String.IsEmpty(Skin.String(PiP))">Skin.SetString(PiP,Small)</onclick>
+                                <onclick condition="Skin.String(PiP,Small)">Skin.SetString(PiP,Large)</onclick>
+                                <onclick condition="Skin.String(PiP,Large)">Skin.Reset(PiP)</onclick>
+                                <enable>!Skin.HasSetting(HideHomeNowPlaying)</enable>
                             </control>
+
+
                             <control type="radiobutton" id="108">
                                 <description>Fanart Animation</description>
                                 <width>1125</width>
@@ -519,9 +527,10 @@
                                 <font>font13</font>
                                 <textcolor>white</textcolor>
                                 <focusedcolor>black</focusedcolor>
-                                <label>$LOCALIZE[31068]</label>
+                                <label> - $LOCALIZE[31068]</label>
                                 <onclick>Skin.ToggleSetting(NoAnimateVizFanart)</onclick>
                                 <selected>!Skin.HasSetting(NoAnimateVizFanart)</selected>
+                                <enable>!Skin.HasSetting(HideHomeNowPlaying)</enable>
                                 <include>MenuButton</include>
                             </control>
                             <control type="radiobutton" id="109">
@@ -571,21 +580,6 @@
                                 <onclick>Skin.ToggleSetting(HideBusyAnimation)</onclick>
                                 <selected>!Skin.HasSetting(HideBusyAnimation)</selected>
                             </control>
-                            <control type="button" id="113">
-                                <description>hide home floor</description>
-                                <width>1125</width>
-                                <height>60</height>
-                                <font>font13</font>
-                                <textcolor>white</textcolor>
-                                <focusedcolor>black</focusedcolor>
-                                <include>MenuButton</include>
-                                <label>$LOCALIZE[31069]</label>
-                                <shadowcolor>black</shadowcolor>
-                                <label2>[COLOR=white]$VAR[HomeFloorValue][/COLOR]</label2>
-                                <onclick condition="String.IsEmpty(Skin.String(HomeFloor))">Skin.SetString(HomeFloor,Transparent)</onclick>
-                                <onclick condition="Skin.String(HomeFloor,Transparent)">Skin.SetString(HomeFloor,Enabled)</onclick>
-                                <onclick condition="Skin.String(HomeFloor,Enabled)">Skin.Reset(HomeFloor)</onclick>
-                            </control>
                             <control type="radiobutton" id="114">
                                 <description>Orig Popup Seektime Window</description>
                                 <width>1125</width>
@@ -606,7 +600,7 @@
                                 <font>font13</font>
                                 <textcolor>white</textcolor>
                                 <focusedcolor>black</focusedcolor>
-                                <label>$LOCALIZE[32008]</label>
+                                <label>$LOCALIZE[31722]</label>
                                 <include>MenuButton</include>
                                 <onclick condition="!Skin.HasSetting(StandardSeekBar) + !Skin.HasSetting(HidePopupSeekBar)">Skin.SetBool(HidePopupSeekBar)</onclick>
 								<onclick>Skin.ToggleSetting(StandardSeekBar)</onclick>
@@ -776,7 +770,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[32006]</label>
+                                <label>$LOCALIZE[31720]</label>
                                 <textcolor>white</textcolor>
                                 <focusedcolor>black</focusedcolor>
                                 <include>MenuButton</include>
@@ -789,7 +783,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[32042]</label>
+                                <label>$LOCALIZE[31756]</label>
                                 <textcolor>white</textcolor>
                                 <focusedcolor>black</focusedcolor>
                                 <include>MenuButton</include>
@@ -879,6 +873,21 @@
                                 <onclick>Skin.ToggleSetting(LowerMainMenuBar)</onclick>
                                 <selected>Skin.HasSetting(LowerMainMenuBar)</selected>
                             </control>
+                            <control type="button" id="113">
+                                <description>hide home floor</description>
+                                <width>1125</width>
+                                <height>60</height>
+                                <font>font13</font>
+                                <textcolor>white</textcolor>
+                                <focusedcolor>black</focusedcolor>
+                                <include>MenuButton</include>
+                                <label>$LOCALIZE[31069]</label>
+                                <shadowcolor>black</shadowcolor>
+                                <label2>[COLOR=white]$VAR[HomeFloorValue][/COLOR]</label2>
+                                <onclick condition="String.IsEmpty(Skin.String(HomeFloor))">Skin.SetString(HomeFloor,Transparent)</onclick>
+                                <onclick condition="Skin.String(HomeFloor,Transparent)">Skin.SetString(HomeFloor,Enabled)</onclick>
+                                <onclick condition="Skin.String(HomeFloor,Enabled)">Skin.Reset(HomeFloor)</onclick>
+                            </control>
                             <control type="radiobutton" id="138">
                                 <description>enable wrap around menu</description>
                                 <width>1125</width>
@@ -924,7 +933,7 @@
                                 <font>font13</font>
                                 <textcolor>white</textcolor>
                                 <focusedcolor>black</focusedcolor>
-                                <label>$LOCALIZE[32003]</label>
+                                <label>$LOCALIZE[31717]</label>
                                 <onclick>Skin.ToggleSetting(MainMenuAllCaps)</onclick>
                                 <selected>Skin.HasSetting(MainMenuAllCaps)</selected>
                                 <include>MenuButton</include>
@@ -1071,7 +1080,7 @@
                                 <font>font13</font>
                                 <textcolor>white</textcolor>
                                 <focusedcolor>black</focusedcolor>
-                                <label>$LOCALIZE[32036]</label>
+                                <label>$LOCALIZE[31750]</label>
                                 <onclick>Skin.ToggleSetting(ShowWidgetFanart)</onclick>
                                 <selected>Skin.HasSetting(ShowWidgetFanart)</selected>
                                 <include>MenuButton</include>
@@ -1211,7 +1220,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>20189</label>
+                                <label>31713</label>
                                 <textcolor>white</textcolor>
                                 <focusedcolor>black</focusedcolor>
                                 <include>MenuButton</include>
@@ -1222,7 +1231,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label> - $LOCALIZE[32034]</label>
+                                <label> - $LOCALIZE[31748]</label>
                                 <textcolor>white</textcolor>
                                 <focusedcolor>black</focusedcolor>
                                 <include>MenuButton</include>
@@ -1444,7 +1453,7 @@
                                 <font>font13</font>
                                 <textcolor>white</textcolor>
                                 <focusedcolor>black</focusedcolor>
-                                <label>$LOCALIZE[50013]</label>
+                                <label>$LOCALIZE[31778]</label>
                                 <include>MenuButton</include>
                                 <onclick>Skin.ToggleSetting(SimpleModOSD)</onclick>
                                 <selected>Skin.HasSetting(SimpleModOSD)</selected>
@@ -1466,7 +1475,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>  - $LOCALIZE[32032]</label>
+                                <label>  - $LOCALIZE[31746]</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[IntroOSDTimeoutLabel][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -1482,10 +1491,11 @@
                                 <font>font13</font>
                                 <textcolor>white</textcolor>
                                 <focusedcolor>black</focusedcolor>
-                                <label>  - $LOCALIZE[32009]</label>
+                                <label>  - $LOCALIZE[31723]</label>
                                 <include>MenuButton</include>
                                 <onclick>Skin.ToggleSetting(ShowSeekBarIntro)</onclick>
                                 <selected>Skin.HasSetting(ShowSeekBarIntro)</selected>
+                                <enable>!Skin.HasSetting(HideInfoStartOSD)</enable>
                             </control>
                             <control type="radiobutton" id="179">
                                 <description>OSD Plot on Media Pause</description>
@@ -1530,7 +1540,7 @@
                                 <font>font13</font>
                                 <textcolor>white</textcolor>
                                 <focusedcolor>black</focusedcolor>
-                                <label> - $LOCALIZE[32010]</label>
+                                <label> - $LOCALIZE[31724]</label>
                                 <include>MenuButton</include>
                                 <onclick>Skin.ToggleSetting(HideShadowSeekBar)</onclick>
                                 <selected>Skin.HasSetting(HideShadowSeekBar)</selected>
@@ -1543,7 +1553,7 @@
                                 <font>font13</font>
                                 <textcolor>white</textcolor>
                                 <focusedcolor>black</focusedcolor>
-                                <label>$LOCALIZE[32012]</label>
+                                <label>$LOCALIZE[31726]</label>
                                 <include>MenuButton</include>
                                 <onclick>Skin.ToggleSetting(ShowCutlist)</onclick>
                                 <selected>Skin.HasSetting(ShowCutlist)</selected>
@@ -1555,7 +1565,7 @@
                                 <font>font13</font>
                                 <textcolor>white</textcolor>
                                 <focusedcolor>black</focusedcolor>
-                                <label>$LOCALIZE[32013]</label>
+                                <label>$LOCALIZE[31727]</label>
                                 <include>MenuButton</include>
                                 <onclick>Skin.ToggleSetting(ShowEndTimeOSD)</onclick>
                                 <selected>Skin.HasSetting(ShowEndTimeOSD)</selected>
@@ -1673,9 +1683,10 @@
                                 <font>font13</font>
                                 <textcolor>white</textcolor>
                                 <focusedcolor>black</focusedcolor>
-                                <label>$LOCALIZE[50004]</label>
+                                <label> - $LOCALIZE[31769]</label>
                                 <onclick>Skin.ToggleSetting(EnableFloorSettingsButtons)</onclick>
                                 <selected>Skin.HasSetting(EnableFloorSettingsButtons)</selected>
+                                <enable>Skin.HasSetting(EnableFloorReturnButtons)</enable>
                                 <include>MenuButton</include>
                             </control>
                             <control type="radiobutton" id="1882">
@@ -1685,9 +1696,10 @@
                                 <font>font13</font>
                                 <textcolor>white</textcolor>
                                 <focusedcolor>black</focusedcolor>
-                                <label>$LOCALIZE[50015]</label>
+                                <label> - $LOCALIZE[31780]</label>
                                 <onclick>Skin.ToggleSetting(HideFloorHomeButtons)</onclick>
                                 <selected>Skin.HasSetting(HideFloorHomeButtons)</selected>
+                                <enable>Skin.HasSetting(EnableFloorReturnButtons)</enable>
                                 <include>MenuButton</include>
                             </control>
                             <control type="radiobutton" id="1883">
@@ -1697,9 +1709,10 @@
                                 <font>font13</font>
                                 <textcolor>white</textcolor>
                                 <focusedcolor>black</focusedcolor>
-                                <label>$LOCALIZE[50016]</label>
+                                <label> - $LOCALIZE[31781]</label>
                                 <onclick>Skin.ToggleSetting(HideFloorVolumeButtons)</onclick>
                                 <selected>Skin.HasSetting(HideFloorVolumeButtons)</selected>
+                                <enable>Skin.HasSetting(EnableFloorReturnButtons)</enable>
                                 <include>MenuButton</include>
                             </control>
                             <control type="radiobutton" id="1885">
@@ -1709,9 +1722,10 @@
                                 <font>font13</font>
                                 <textcolor>white</textcolor>
                                 <focusedcolor>black</focusedcolor>
-                                <label>$LOCALIZE[50018]</label>
+                                <label> - $LOCALIZE[31782]</label>
                                 <onclick>Skin.ToggleSetting(HideFloorBackButtonOnFavourites)</onclick>
                                 <selected>Skin.HasSetting(HideFloorBackButtonOnFavourites)</selected>
+                                <enable>Skin.HasSetting(EnableFloorReturnButtons)</enable>
                                 <include>MenuButton</include>
                             </control>
                             <control type="radiobutton" id="189">
@@ -1780,7 +1794,7 @@
                                 <font>font13</font>
                                 <textcolor>white</textcolor>
                                 <focusedcolor>black</focusedcolor>
-                                <label>$LOCALIZE[50005]</label>
+                                <label>$LOCALIZE[31770]</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[PowerIconValue][/COLOR]</label2>
                                 <onclick condition="String.IsEmpty(Skin.String(PowerIcon))">Skin.SetString(PowerIcon,Restart)</onclick>
@@ -1810,7 +1824,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[50000]</label>
+                                <label>$LOCALIZE[31765]</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[FavoritesIconValue][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -1918,49 +1932,49 @@
                         </include>
                         <content>
                             <item id="1">
-                                <label>$LOCALIZE[31290] - 1</label>
+                                <label>$LOCALIZE[31290] 1</label>
                             </item>
                             <item id="2">
-                                <label>$LOCALIZE[31290] - 2</label>
+                                <label>$LOCALIZE[31290] 2</label>
                             </item>
                             <item id="3">
-                                <label>$LOCALIZE[31290] - 3</label>
+                                <label>$LOCALIZE[31290] 3</label>
                             </item>
                             <item id="4">
-                                <label>$LOCALIZE[31290] - 4</label>
+                                <label>$LOCALIZE[31290] 4</label>
                             </item>
                             <item id="5">
-                                <label>$LOCALIZE[31290] - 5</label>
+                                <label>$LOCALIZE[31290] 5</label>
                             </item>
                             <item id="6">
-                                <label>$LOCALIZE[31290] - 6</label>
+                                <label>$LOCALIZE[31290] 6</label>
                             </item>
                             <item id="7">
-                                <label>$LOCALIZE[31290] - 7</label>
+                                <label>$LOCALIZE[31290] 7</label>
                             </item>
                             <item id="8">
-                                <label>$LOCALIZE[31290] - 8</label>
+                                <label>$LOCALIZE[31290] 8</label>
                             </item>
                             <item id="9">
-                                <label>$LOCALIZE[31290] - 9</label>
+                                <label>$LOCALIZE[31290] 9</label>
                             </item>
                             <item id="10">
-                                <label>$LOCALIZE[31290] - 10</label>
+                                <label>$LOCALIZE[31290] 10</label>
                             </item>
                             <item id="11">
-                                <label>$LOCALIZE[31290] - 11</label>
+                                <label>$LOCALIZE[31290] 11</label>
                             </item>
                             <item id="12">
-                                <label>$LOCALIZE[31290] - 12</label>
+                                <label>$LOCALIZE[31290] 12</label>
                             </item>
                             <item id="13">
-                                <label>$LOCALIZE[31290] - 13</label>
+                                <label>$LOCALIZE[31290] 13</label>
                             </item>
                             <item id="14">
-                                <label>$LOCALIZE[31290] - 14</label>
+                                <label>$LOCALIZE[31290] 14</label>
                             </item>
                             <item id="15">
-                                <label>$LOCALIZE[31290] - 15</label>
+                                <label>$LOCALIZE[31290] 15</label>
                             </item>
                         </content>
                     </control>
@@ -1987,7 +2001,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>[B]$LOCALIZE[31290] - 1[/B]</label>
+                                <label>[B]$LOCALIZE[31290] 1[/B]</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(HomeItem.1.Label)][/COLOR]</label2>
                                 <textcolor>$VAR[MainColorOne]</textcolor>
@@ -2072,7 +2086,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label> - $LOCALIZE[32024]</label>
+                                <label> - $LOCALIZE[31738]</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[UsrDefItemOneWidgetLayout][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -2180,7 +2194,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>[B]$LOCALIZE[31290] - 2[/B]</label>
+                                <label>[B]$LOCALIZE[31290] 2[/B]</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(HomeItem.2.Label)][/COLOR]</label2>
                                 <textcolor>$VAR[MainColorOne]</textcolor>
@@ -2265,7 +2279,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label> - $LOCALIZE[32024]</label>
+                                <label> - $LOCALIZE[31738]</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[UsrDefItemTwoWidgetLayout][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -2373,7 +2387,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>[B]$LOCALIZE[31290] - 3[/B]</label>
+                                <label>[B]$LOCALIZE[31290] 3[/B]</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(HomeItem.3.Label)][/COLOR]</label2>
                                 <textcolor>$VAR[MainColorOne]</textcolor>
@@ -2458,7 +2472,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label> - $LOCALIZE[32024]</label>
+                                <label> - $LOCALIZE[31738]</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[UsrDefItemThreeWidgetLayout][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -2566,7 +2580,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>[B]$LOCALIZE[31290] - 4[/B]</label>
+                                <label>[B]$LOCALIZE[31290] 4[/B]</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(HomeItem.4.Label)][/COLOR]</label2>
                                 <textcolor>$VAR[MainColorOne]</textcolor>
@@ -2651,7 +2665,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label> - $LOCALIZE[32024]</label>
+                                <label> - $LOCALIZE[31738]</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[UsrDefItemFourWidgetLayout][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -2759,7 +2773,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>[B]$LOCALIZE[31290] - 5[/B]</label>
+                                <label>[B]$LOCALIZE[31290] 5[/B]</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(HomeItem.5.Label)][/COLOR]</label2>
                                 <textcolor>$VAR[MainColorOne]</textcolor>
@@ -2844,7 +2858,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label> - $LOCALIZE[32024]</label>
+                                <label> - $LOCALIZE[31738]</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[UsrDefItemFiveWidgetLayout][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -2952,7 +2966,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>[B]$LOCALIZE[31290] - 6[/B]</label>
+                                <label>[B]$LOCALIZE[31290] 6[/B]</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(HomeItem.6.Label)][/COLOR]</label2>
                                 <textcolor>$VAR[MainColorOne]</textcolor>
@@ -3037,7 +3051,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label> - $LOCALIZE[32024]</label>
+                                <label> - $LOCALIZE[31738]</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[UsrDefItemSixWidgetLayout][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -3145,7 +3159,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>[B]$LOCALIZE[31290] - 7[/B]</label>
+                                <label>[B]$LOCALIZE[31290] 7[/B]</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(HomeItem.7.Label)][/COLOR]</label2>
                                 <textcolor>$VAR[MainColorOne]</textcolor>
@@ -3230,7 +3244,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label> - $LOCALIZE[32024]</label>
+                                <label> - $LOCALIZE[31738]</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[UsrDefItemSevenWidgetLayout][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -3338,7 +3352,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>[B]$LOCALIZE[31290] - 8[/B]</label>
+                                <label>[B]$LOCALIZE[31290] 8[/B]</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(HomeItem.8.Label)][/COLOR]</label2>
                                 <textcolor>$VAR[MainColorOne]</textcolor>
@@ -3423,7 +3437,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label> - $LOCALIZE[32024]</label>
+                                <label> - $LOCALIZE[31738]</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[UsrDefItemEightWidgetLayout][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -3531,7 +3545,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>[B]$LOCALIZE[31290] - 9[/B]</label>
+                                <label>[B]$LOCALIZE[31290] 9[/B]</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(HomeItem.9.Label)][/COLOR]</label2>
                                 <textcolor>$VAR[MainColorOne]</textcolor>
@@ -3616,7 +3630,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label> - $LOCALIZE[32024]</label>
+                                <label> - $LOCALIZE[31738]</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[UsrDefItemNineWidgetLayout][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -3724,7 +3738,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>[B]$LOCALIZE[31290] - 10[/B]</label>
+                                <label>[B]$LOCALIZE[31290] 10[/B]</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(HomeItem.10.Label)][/COLOR]</label2>
                                 <textcolor>$VAR[MainColorOne]</textcolor>
@@ -3809,7 +3823,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label> - $LOCALIZE[32024]</label>
+                                <label> - $LOCALIZE[31738]</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[UsrDefItemTenWidgetLayout][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -3917,7 +3931,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>[B]$LOCALIZE[31290] - 11[/B]</label>
+                                <label>[B]$LOCALIZE[31290] 11[/B]</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(HomeItem.11.Label)][/COLOR]</label2>
                                 <textcolor>$VAR[MainColorOne]</textcolor>
@@ -4002,7 +4016,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label> - $LOCALIZE[32024]</label>
+                                <label> - $LOCALIZE[31738]</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[UsrDefItemElevenWidgetLayout][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -4110,7 +4124,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>[B]$LOCALIZE[31290] - 12[/B]</label>
+                                <label>[B]$LOCALIZE[31290] 12[/B]</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(HomeItem.12.Label)][/COLOR]</label2>
                                 <textcolor>$VAR[MainColorOne]</textcolor>
@@ -4195,7 +4209,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label> - $LOCALIZE[32024]</label>
+                                <label> - $LOCALIZE[31738]</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[UsrDefItemTwelveWidgetLayout][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -4303,7 +4317,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>[B]$LOCALIZE[31290] - 13[/B]</label>
+                                <label>[B]$LOCALIZE[31290] 13[/B]</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(HomeItem.13.Label)][/COLOR]</label2>
                                 <textcolor>$VAR[MainColorOne]</textcolor>
@@ -4388,7 +4402,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label> - $LOCALIZE[32024]</label>
+                                <label> - $LOCALIZE[31738]</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[UsrDefItemThirteenWidgetLayout][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -4496,7 +4510,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>[B]$LOCALIZE[31290] - 14[/B]</label>
+                                <label>[B]$LOCALIZE[31290] 14[/B]</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(HomeItem.14.Label)][/COLOR]</label2>
                                 <textcolor>$VAR[MainColorOne]</textcolor>
@@ -4581,7 +4595,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label> - $LOCALIZE[32024]</label>
+                                <label> - $LOCALIZE[31738]</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[UsrDefItemFourteenWidgetLayout][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -4689,7 +4703,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>[B]$LOCALIZE[31290] - 15[/B]</label>
+                                <label>[B]$LOCALIZE[31290] 15[/B]</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(HomeItem.15.Label)][/COLOR]</label2>
                                 <textcolor>$VAR[MainColorOne]</textcolor>
@@ -4774,7 +4788,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label> - $LOCALIZE[32024]</label>
+                                <label> - $LOCALIZE[31738]</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[UsrDefItemFifteenWidgetLayout][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -4884,49 +4898,49 @@
                         </include>
                         <content>
                             <item id="1">
-                                <label>$VAR[UsersSubVideosName] $LOCALIZE[31291]</label>
+                                <label>$VAR[UsersSubVideosName] - $LOCALIZE[31291]</label>
                             </item>
                             <item id="2">
-                                <label>$VAR[UsersSubMoviesName] $LOCALIZE[31291]</label>
+                                <label>$VAR[UsersSubMoviesName] - $LOCALIZE[31291]</label>
                             </item>
                             <item id="3">
-                                <label>$VAR[UsersSubTVShowsName] $LOCALIZE[31291]</label>
+                                <label>$VAR[UsersSubTVShowsName] - $LOCALIZE[31291]</label>
                             </item>
                             <item id="4">
-                                <label>$VAR[UsersSubConcertsName] $LOCALIZE[31291]</label>
+                                <label>$VAR[UsersSubConcertsName] - $LOCALIZE[31291]</label>
                             </item>
                             <item id="5">
-                                <label>$VAR[UsersSubMusicName] $LOCALIZE[31291]</label>
+                                <label>$VAR[UsersSubMusicName] - $LOCALIZE[31291]</label>
                             </item>
                             <item id="6">
-                                <label>$VAR[UsersSubProgsName] $LOCALIZE[31291]</label>
+                                <label>$VAR[UsersSubProgsName] - $LOCALIZE[31291]</label>
                             </item>
                             <item id="7">
-                                <label>$VAR[UsersSubPicturesName] $LOCALIZE[31291]</label>
+                                <label>$VAR[UsersSubPicturesName] - $LOCALIZE[31291]</label>
                             </item>
                             <item id="8">
-                                <label>$VAR[UsersSubLiveTVName] $LOCALIZE[31291]</label>
+                                <label>$VAR[UsersSubLiveTVName] - $LOCALIZE[31291]</label>
                             </item>
                             <item id="9">
-                                <label>$VAR[UsersSubRadioName] $LOCALIZE[31291]</label>
+                                <label>$VAR[UsersSubRadioName] - $LOCALIZE[31291]</label>
                             </item>
                             <item id="10">
-                                <label>$VAR[UsersSubSettingsName] $LOCALIZE[31291]</label>
+                                <label>$VAR[UsersSubSettingsName] - $LOCALIZE[31291]</label>
                             </item>
                             <item id="11">
-                                <label>$VAR[UsersSubSelectOneName] $LOCALIZE[31291]</label>
+                                <label>$VAR[UsersSubSelectOneName] - $LOCALIZE[31291]</label>
                             </item>
                             <item id="12">
-                                <label>$VAR[UsersSubSelectTwoName] $LOCALIZE[31291]</label>
+                                <label>$VAR[UsersSubSelectTwoName] - $LOCALIZE[31291]</label>
                             </item>
                             <item id="13">
-                                <label>$VAR[UsersSubSelectThreeName] $LOCALIZE[31291]</label>
+                                <label>$VAR[UsersSubSelectThreeName] - $LOCALIZE[31291]</label>
                             </item>
                             <item id="14">
-                                <label>$VAR[UsersSubSelectFourName] $LOCALIZE[31291]</label>
+                                <label>$VAR[UsersSubSelectFourName] - $LOCALIZE[31291]</label>
                             </item>
                             <item id="15">
-                                <label>$VAR[UsersSubSelectFiveName] $LOCALIZE[31291]</label>
+                                <label>$VAR[UsersSubSelectFiveName] - $LOCALIZE[31291]</label>
                             </item>
                         </content>
                     </control>
@@ -4965,7 +4979,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 1</label>
+                                <label>$LOCALIZE[31315] 1</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[SubMenuVideosOne][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -4978,7 +4992,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 2</label>
+                                <label>$LOCALIZE[31315] 2</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[SubMenuVideosTwo][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -4991,7 +5005,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 3</label>
+                                <label>$LOCALIZE[31315] 3</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[SubMenuVideosThree][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5004,7 +5018,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 4</label>
+                                <label>$LOCALIZE[31315] 4</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[SubMenuVideosFour][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5017,7 +5031,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 5</label>
+                                <label>$LOCALIZE[31315] 5</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[SubMenuVideosFive][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5030,7 +5044,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 6</label>
+                                <label>$LOCALIZE[31315] 6</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[SubMenuVideosSix][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5043,7 +5057,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 7</label>
+                                <label>$LOCALIZE[31315] 7</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubVideos.7.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5056,7 +5070,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 8</label>
+                                <label>$LOCALIZE[31315] 8</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubVideos.8.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5069,7 +5083,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 9</label>
+                                <label>$LOCALIZE[31315] 9</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubVideos.9.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5082,7 +5096,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 10</label>
+                                <label>$LOCALIZE[31315] 10</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubVideos.10.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5134,7 +5148,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 1</label>
+                                <label>$LOCALIZE[31315] 1</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[SubMenuMoviesOne][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5147,7 +5161,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 2</label>
+                                <label>$LOCALIZE[31315] 2</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[SubMenuMoviesTwo][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5160,7 +5174,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 3</label>
+                                <label>$LOCALIZE[31315] 3</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[SubMenuMoviesThree][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5173,7 +5187,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 4</label>
+                                <label>$LOCALIZE[31315] 4</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[SubMenuMoviesFour][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5186,7 +5200,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 5</label>
+                                <label>$LOCALIZE[31315] 5</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[SubMenuMoviesFive][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5199,7 +5213,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 6</label>
+                                <label>$LOCALIZE[31315] 6</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[SubMenuMoviesSix][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5212,7 +5226,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 7</label>
+                                <label>$LOCALIZE[31315] 7</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubMovies.7.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5225,7 +5239,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 8</label>
+                                <label>$LOCALIZE[31315] 8</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubMovies.8.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5238,7 +5252,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 9</label>
+                                <label>$LOCALIZE[31315] 9</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubMovies.9.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5251,7 +5265,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 10</label>
+                                <label>$LOCALIZE[31315] 10</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubMovies.10.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5303,7 +5317,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 1</label>
+                                <label>$LOCALIZE[31315] 1</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[SubMenuTVShowsOne][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5316,7 +5330,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 2</label>
+                                <label>$LOCALIZE[31315] 2</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[SubMenuTVShowsTwo][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5329,7 +5343,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 3</label>
+                                <label>$LOCALIZE[31315] 3</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[SubMenuTVShowsThree][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5342,7 +5356,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 4</label>
+                                <label>$LOCALIZE[31315] 4</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[SubMenuTVShowsFour][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5355,7 +5369,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 5</label>
+                                <label>$LOCALIZE[31315] 5</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[SubMenuTVShowsFive][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5368,7 +5382,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 6</label>
+                                <label>$LOCALIZE[31315] 6</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubTVShows.6.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5381,7 +5395,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 7</label>
+                                <label>$LOCALIZE[31315] 7</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubTVShows.7.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5394,7 +5408,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 8</label>
+                                <label>$LOCALIZE[31315] 8</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubTVShows.8.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5407,7 +5421,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 9</label>
+                                <label>$LOCALIZE[31315] 9</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubTVShows.9.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5420,7 +5434,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 10</label>
+                                <label>$LOCALIZE[31315] 10</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubTVShows.10.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5472,7 +5486,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 1</label>
+                                <label>$LOCALIZE[31315] 1</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[SubMenuConcertsOne][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5485,7 +5499,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 2</label>
+                                <label>$LOCALIZE[31315] 2</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[SubMenuConcertsTwo][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5498,7 +5512,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 3</label>
+                                <label>$LOCALIZE[31315] 3</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[SubMenuConcertsThree][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5511,7 +5525,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 4</label>
+                                <label>$LOCALIZE[31315] 4</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[SubMenuConcertsFour][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5524,7 +5538,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 5</label>
+                                <label>$LOCALIZE[31315] 5</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[SubMenuConcertsFive][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5537,7 +5551,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 6</label>
+                                <label>$LOCALIZE[31315] 6</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubConcerts.6.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5550,7 +5564,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 7</label>
+                                <label>$LOCALIZE[31315] 7</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubConcerts.7.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5563,7 +5577,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 8</label>
+                                <label>$LOCALIZE[31315] 8</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubConcerts.8.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5576,7 +5590,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 9</label>
+                                <label>$LOCALIZE[31315] 9</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubConcerts.9.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5589,7 +5603,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 10</label>
+                                <label>$LOCALIZE[31315] 10</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubConcerts.10.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5641,7 +5655,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 1</label>
+                                <label>$LOCALIZE[31315] 1</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[SubMenuMusicOne][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5654,7 +5668,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 2</label>
+                                <label>$LOCALIZE[31315] 2</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[SubMenuMusicTwo][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5667,7 +5681,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 3</label>
+                                <label>$LOCALIZE[31315] 3</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[SubMenuMusicThree][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5680,7 +5694,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 4</label>
+                                <label>$LOCALIZE[31315] 4</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[SubMenuMusicFour][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5693,7 +5707,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 5</label>
+                                <label>$LOCALIZE[31315] 5</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[SubMenuMusicFive][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5706,7 +5720,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 6</label>
+                                <label>$LOCALIZE[31315] 6</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[SubMenuMusicSix][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5719,7 +5733,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 7</label>
+                                <label>$LOCALIZE[31315] 7</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubMusic.7.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5732,7 +5746,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 8</label>
+                                <label>$LOCALIZE[31315] 8</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubMusic.8.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5745,7 +5759,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 9</label>
+                                <label>$LOCALIZE[31315] 9</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubMusic.9.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5758,7 +5772,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 10</label>
+                                <label>$LOCALIZE[31315] 10</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubMusic.10.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5810,7 +5824,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 1</label>
+                                <label>$LOCALIZE[31315] 1</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubProg.1.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5823,7 +5837,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 2</label>
+                                <label>$LOCALIZE[31315] 2</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubProg.2.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5836,7 +5850,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 3</label>
+                                <label>$LOCALIZE[31315] 3</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubProg.3.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5849,7 +5863,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 4</label>
+                                <label>$LOCALIZE[31315] 4</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubProg.4.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5862,7 +5876,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 5</label>
+                                <label>$LOCALIZE[31315] 5</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubProg.5.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5875,7 +5889,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 6</label>
+                                <label>$LOCALIZE[31315] 6</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubProg.6.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5888,7 +5902,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 7</label>
+                                <label>$LOCALIZE[31315] 7</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubProg.7.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5901,7 +5915,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 8</label>
+                                <label>$LOCALIZE[31315] 8</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubProg.8.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5914,7 +5928,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 9</label>
+                                <label>$LOCALIZE[31315] 9</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubProg.9.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5927,7 +5941,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 10</label>
+                                <label>$LOCALIZE[31315] 10</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubProg.10.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5979,7 +5993,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 1</label>
+                                <label>$LOCALIZE[31315] 1</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[SubMenuPicturesOne][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -5992,7 +6006,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 2</label>
+                                <label>$LOCALIZE[31315] 2</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubPictures.2.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6005,7 +6019,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 3</label>
+                                <label>$LOCALIZE[31315] 3</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubPictures.3.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6018,7 +6032,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 4</label>
+                                <label>$LOCALIZE[31315] 4</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubPictures.4.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6031,7 +6045,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 5</label>
+                                <label>$LOCALIZE[31315] 5</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubPictures.5.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6044,7 +6058,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 6</label>
+                                <label>$LOCALIZE[31315] 6</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubPictures.6.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6057,7 +6071,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 7</label>
+                                <label>$LOCALIZE[31315] 7</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubPictures.7.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6070,7 +6084,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 8</label>
+                                <label>$LOCALIZE[31315] 8</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubPictures.8.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6083,7 +6097,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 9</label>
+                                <label>$LOCALIZE[31315] 9</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubPictures.9.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6096,7 +6110,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 10</label>
+                                <label>$LOCALIZE[31315] 10</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubPictures.10.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6148,7 +6162,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 1</label>
+                                <label>$LOCALIZE[31315] 1</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[SubMenuLiveTVOne][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6161,7 +6175,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 2</label>
+                                <label>$LOCALIZE[31315] 2</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[SubMenuLiveTVTwo][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6174,7 +6188,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 3</label>
+                                <label>$LOCALIZE[31315] 3</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[SubMenuLiveTVThree][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6187,7 +6201,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 4</label>
+                                <label>$LOCALIZE[31315] 4</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[SubMenuLiveTVFour][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6200,7 +6214,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 5</label>
+                                <label>$LOCALIZE[31315] 5</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[SubMenuLiveTVFive][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6213,7 +6227,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 6</label>
+                                <label>$LOCALIZE[31315] 6</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubLiveTV.6.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6226,7 +6240,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 7</label>
+                                <label>$LOCALIZE[31315] 7</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubLiveTV.7.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6239,7 +6253,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 8</label>
+                                <label>$LOCALIZE[31315] 8</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubLiveTV.8.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6252,7 +6266,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 9</label>
+                                <label>$LOCALIZE[31315] 9</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubLiveTV.9.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6265,7 +6279,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 10</label>
+                                <label>$LOCALIZE[31315] 10</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubLiveTV.10.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6317,7 +6331,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 1</label>
+                                <label>$LOCALIZE[31315] 1</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[SubMenuRadioOne][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6330,7 +6344,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 2</label>
+                                <label>$LOCALIZE[31315] 2</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[SubMenuRadioTwo][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6343,7 +6357,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 3</label>
+                                <label>$LOCALIZE[31315] 3</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[SubMenuRadioThree][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6356,7 +6370,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 4</label>
+                                <label>$LOCALIZE[31315] 4</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[SubMenuRadioFour][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6369,7 +6383,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 5</label>
+                                <label>$LOCALIZE[31315] 5</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[SubMenuRadioFive][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6382,7 +6396,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 6</label>
+                                <label>$LOCALIZE[31315] 6</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubRadio.6.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6395,7 +6409,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 7</label>
+                                <label>$LOCALIZE[31315] 7</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubRadio.7.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6408,7 +6422,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 8</label>
+                                <label>$LOCALIZE[31315] 8</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubRadio.8.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6421,7 +6435,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 9</label>
+                                <label>$LOCALIZE[31315] 9</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubRadio.9.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6434,7 +6448,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 10</label>
+                                <label>$LOCALIZE[31315] 10</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubRadio.10.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6486,7 +6500,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 1</label>
+                                <label>$LOCALIZE[31315] 1</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[SubMenuSystemOne][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6499,7 +6513,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 2</label>
+                                <label>$LOCALIZE[31315] 2</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[SubMenuSystemTwo][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6512,7 +6526,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 3</label>
+                                <label>$LOCALIZE[31315] 3</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[SubMenuSystemThree][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6525,7 +6539,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 4</label>
+                                <label>$LOCALIZE[31315] 4</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[SubMenuSystemFour][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6538,7 +6552,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 5</label>
+                                <label>$LOCALIZE[31315] 5</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[SubMenuSystemFive][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6551,7 +6565,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 6</label>
+                                <label>$LOCALIZE[31315] 6</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[SubMenuSystemSix][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6564,7 +6578,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 7</label>
+                                <label>$LOCALIZE[31315] 7</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[SubMenuSystemSeven][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6577,7 +6591,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 8</label>
+                                <label>$LOCALIZE[31315] 8</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubSettings.8.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6590,7 +6604,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 9</label>
+                                <label>$LOCALIZE[31315] 9</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubSettings.9.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6603,7 +6617,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 10</label>
+                                <label>$LOCALIZE[31315] 10</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(SubSettings.10.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6655,7 +6669,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 1</label>
+                                <label>$LOCALIZE[31315] 1</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubOne.1.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6668,7 +6682,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 2</label>
+                                <label>$LOCALIZE[31315] 2</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubOne.2.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6681,7 +6695,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 3</label>
+                                <label>$LOCALIZE[31315] 3</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubOne.3.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6694,7 +6708,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 4</label>
+                                <label>$LOCALIZE[31315] 4</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubOne.4.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6707,7 +6721,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 5</label>
+                                <label>$LOCALIZE[31315] 5</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubOne.5.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6720,7 +6734,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 6</label>
+                                <label>$LOCALIZE[31315] 6</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubOne.6.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6733,7 +6747,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 7</label>
+                                <label>$LOCALIZE[31315] 7</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubOne.7.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6746,7 +6760,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 8</label>
+                                <label>$LOCALIZE[31315] 8</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubOne.8.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6759,7 +6773,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 9</label>
+                                <label>$LOCALIZE[31315] 9</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubOne.9.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6772,7 +6786,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 10</label>
+                                <label>$LOCALIZE[31315] 10</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubOne.10.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6824,7 +6838,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 1</label>
+                                <label>$LOCALIZE[31315] 1</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubTwo.1.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6837,7 +6851,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 2</label>
+                                <label>$LOCALIZE[31315] 2</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubTwo.2.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6850,7 +6864,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 3</label>
+                                <label>$LOCALIZE[31315] 3</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubTwo.3.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6863,7 +6877,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 4</label>
+                                <label>$LOCALIZE[31315] 4</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubTwo.4.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6876,7 +6890,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 5</label>
+                                <label>$LOCALIZE[31315] 5</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubTwo.5.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6889,7 +6903,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 6</label>
+                                <label>$LOCALIZE[31315] 6</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubTwo.6.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6902,7 +6916,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 7</label>
+                                <label>$LOCALIZE[31315] 7</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubTwo.7.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6915,7 +6929,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 8</label>
+                                <label>$LOCALIZE[31315] 8</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubTwo.8.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6928,7 +6942,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 9</label>
+                                <label>$LOCALIZE[31315] 9</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubTwo.9.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6941,7 +6955,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 10</label>
+                                <label>$LOCALIZE[31315] 10</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubTwo.10.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -6993,7 +7007,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 1</label>
+                                <label>$LOCALIZE[31315] 1</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubThree.1.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -7006,7 +7020,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 2</label>
+                                <label>$LOCALIZE[31315] 2</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubThree.2.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -7019,7 +7033,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 3</label>
+                                <label>$LOCALIZE[31315] 3</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubThree.3.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -7032,7 +7046,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 4</label>
+                                <label>$LOCALIZE[31315] 4</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubThree.4.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -7045,7 +7059,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 5</label>
+                                <label>$LOCALIZE[31315] 5</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubThree.5.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -7058,7 +7072,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 6</label>
+                                <label>$LOCALIZE[31315] 6</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubThree.6.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -7071,7 +7085,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 7</label>
+                                <label>$LOCALIZE[31315] 7</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubThree.7.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -7084,7 +7098,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 8</label>
+                                <label>$LOCALIZE[31315] 8</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubThree.8.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -7097,7 +7111,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 9</label>
+                                <label>$LOCALIZE[31315] 9</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubThree.9.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -7110,7 +7124,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 10</label>
+                                <label>$LOCALIZE[31315] 10</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubThree.10.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -7162,7 +7176,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 1</label>
+                                <label>$LOCALIZE[31315] 1</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubFour.1.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -7175,7 +7189,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 2</label>
+                                <label>$LOCALIZE[31315] 2</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubFour.2.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -7188,7 +7202,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 3</label>
+                                <label>$LOCALIZE[31315] 3</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubFour.3.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -7201,7 +7215,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 4</label>
+                                <label>$LOCALIZE[31315] 4</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubFour.4.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -7214,7 +7228,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 5</label>
+                                <label>$LOCALIZE[31315] 5</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubFour.5.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -7227,7 +7241,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 6</label>
+                                <label>$LOCALIZE[31315] 6</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubFour.6.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -7240,7 +7254,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 7</label>
+                                <label>$LOCALIZE[31315] 7</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubFour.7.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -7253,7 +7267,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 8</label>
+                                <label>$LOCALIZE[31315] 8</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubFour.8.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -7266,7 +7280,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 9</label>
+                                <label>$LOCALIZE[31315] 9</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubFour.9.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -7279,7 +7293,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 10</label>
+                                <label>$LOCALIZE[31315] 10</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubFour.10.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -7331,7 +7345,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 1</label>
+                                <label>$LOCALIZE[31315] 1</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubFive.1.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -7344,7 +7358,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 2</label>
+                                <label>$LOCALIZE[31315] 2</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubFive.2.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -7357,7 +7371,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 3</label>
+                                <label>$LOCALIZE[31315] 3</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubFive.3.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -7370,7 +7384,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 4</label>
+                                <label>$LOCALIZE[31315] 4</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubFive.4.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -7383,7 +7397,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 5</label>
+                                <label>$LOCALIZE[31315] 5</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubFive.5.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -7396,7 +7410,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 6</label>
+                                <label>$LOCALIZE[31315] 6</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubFive.6.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -7409,7 +7423,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 7</label>
+                                <label>$LOCALIZE[31315] 7</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubFive.7.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -7422,7 +7436,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 8</label>
+                                <label>$LOCALIZE[31315] 8</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubFive.8.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -7435,7 +7449,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 9</label>
+                                <label>$LOCALIZE[31315] 9</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubFive.9.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -7448,7 +7462,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31315] - 10</label>
+                                <label>$LOCALIZE[31315] 10</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(UserSubFive.10.Label)][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -7490,49 +7504,49 @@
                         </include>
                         <content>
                             <item id="1">
-                                <label>$LOCALIZE[31230] $LOCALIZE[31292]</label>
+                                <label>$LOCALIZE[31230] - $LOCALIZE[31292]</label>
                             </item>
                             <item id="2">
-                                <label>$LOCALIZE[31231] $LOCALIZE[31292]</label>
+                                <label>$LOCALIZE[31231] - $LOCALIZE[31292]</label>
                             </item>
                             <item id="3">
-                                <label>$LOCALIZE[31232] $LOCALIZE[31292]</label>
+                                <label>$LOCALIZE[31232] - $LOCALIZE[31292]</label>
                             </item>
                             <item id="4">
-                                <label>$LOCALIZE[31233] $LOCALIZE[31292]</label>
+                                <label>$LOCALIZE[31233] - $LOCALIZE[31292]</label>
                             </item>
                             <item id="5">
-                                <label>$LOCALIZE[31234] $LOCALIZE[31292]</label>
+                                <label>$LOCALIZE[31234] - $LOCALIZE[31292]</label>
                             </item>
                             <item id="6">
-                                <label>$LOCALIZE[31235] $LOCALIZE[31292]</label>
+                                <label>$LOCALIZE[31235] - $LOCALIZE[31292]</label>
                             </item>
                             <item id="7">
-                                <label>$LOCALIZE[31236] $LOCALIZE[31292]</label>
+                                <label>$LOCALIZE[31236] - $LOCALIZE[31292]</label>
                             </item>
                             <item id="8">
-                                <label>$LOCALIZE[31237] $LOCALIZE[31292]</label>
+                                <label>$LOCALIZE[31237] - $LOCALIZE[31292]</label>
                             </item>
                             <item id="9">
-                                <label>$LOCALIZE[31238] $LOCALIZE[31292]</label>
+                                <label>$LOCALIZE[31238] - $LOCALIZE[31292]</label>
                             </item>
                             <item id="10">
-                                <label>$LOCALIZE[31239] $LOCALIZE[31292]</label>
+                                <label>$LOCALIZE[31239] - $LOCALIZE[31292]</label>
                             </item>
                             <item id="11">
-                                <label>$LOCALIZE[31241] $LOCALIZE[31292]</label>
+                                <label>$LOCALIZE[31241] - $LOCALIZE[31292]</label>
                             </item>
                             <item id="12">
-                                <label>$LOCALIZE[31242] $LOCALIZE[31292]</label>
+                                <label>$LOCALIZE[31242] - $LOCALIZE[31292]</label>
                             </item>
 							<item id="13">
-                                <label>$LOCALIZE[32017] $LOCALIZE[31292]</label>
+                                <label>$LOCALIZE[31731] - $LOCALIZE[31292]</label>
                             </item>
 							<item id="14">
-                                <label>$LOCALIZE[32018] $LOCALIZE[31292]</label>
+                                <label>$LOCALIZE[31732] - $LOCALIZE[31292]</label>
                             </item>
 							<item id="15">
-                                <label>$LOCALIZE[32019] $LOCALIZE[31292]</label>
+                                <label>$LOCALIZE[31733] - $LOCALIZE[31292]</label>
                             </item>
                         </content>
                     </control>
@@ -11108,7 +11122,7 @@
                             </control>
                             <control type="button" id="602">
                                 <description>WOL PC</description>
-                                <label>31093</label>
+                                <label> - $LOCALIZE[31093]</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[PingMacDesc][/COLOR]</label2>
                                 <width>1125</width>
@@ -11122,7 +11136,7 @@
                             </control>
                             <control type="button" id="603">
                                 <description>WOL Ping Timer</description>
-                                <label>31095</label>
+                                <label> - $LOCALIZE[31095]</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(WOLPingTimer)][/COLOR] $LOCALIZE[12391]</label2>
                                 <width>1125</width>
@@ -11178,7 +11192,7 @@
                             </control>
                             <control type="button" id="607">
                                 <description>UPnP Library Path</description>
-                                <label>15311</label>
+                                <label> - $LOCALIZE[15311]</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[UPnPPathDesc][/COLOR]</label2>
                                 <width>1125</width>
@@ -11194,7 +11208,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[31149]</label>
+                                <label> - $LOCALIZE[31149]</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[UPnPServerType][/COLOR]</label2>
                                 <textcolor>white</textcolor>
@@ -11499,7 +11513,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[32035]</label>
+                                <label>$LOCALIZE[31749]</label>
                                 <textcolor>white</textcolor>
                                 <focusedcolor>black</focusedcolor>
                                 <include>MenuButton</include>
@@ -11510,7 +11524,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label> - $LOCALIZE[32037]</label>
+                                <label> - $LOCALIZE[31751]</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(ExtraFanartCycleRate)][/COLOR] $LOCALIZE[31940]</label2>
                                 <textcolor>white</textcolor>
@@ -11566,7 +11580,7 @@
                                 <font>font13</font>
                                 <textcolor>white</textcolor>
                                 <focusedcolor>black</focusedcolor>
-                                <label>31981</label>
+                                <label> - $LOCALIZE[31981]</label>
                                 <label2>$INFO[Skin.String(KodiIntroVideo)]</label2>
                                 <onclick>Skin.SetFile(KodiIntroVideo,,special://)</onclick>
                                 <include>MenuButton</include>
@@ -11590,7 +11604,7 @@
                                 <font>font13</font>
                                 <textcolor>white</textcolor>
                                 <focusedcolor>black</focusedcolor>
-                                <label>15311</label>
+                                <label> - $LOCALIZE[31981]</label>
                                 <label2>$INFO[Skin.String(StartUpPlaylistPath)]</label2>
                                 <onclick>Skin.SetFile(StartUpPlaylistPath,,special://MusicPlaylists/)</onclick>
                                 <include>MenuButton</include>
@@ -11639,7 +11653,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>- $LOCALIZE[24020]</label>
+                                <label> - $LOCALIZE[24020]</label>
                                 <textcolor>white</textcolor>
                                 <focusedcolor>black</focusedcolor>
                                 <include>MenuButton</include>
@@ -11650,7 +11664,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[32004]</label>
+                                <label>$LOCALIZE[31718]</label>
                                 <textcolor>white</textcolor>
                                 <focusedcolor>black</focusedcolor>
                                 <include>MenuButton</include>
@@ -11662,7 +11676,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>$LOCALIZE[32005]</label>
+                                <label>$LOCALIZE[31719]</label>
                                 <textcolor>white</textcolor>
                                 <focusedcolor>black</focusedcolor>
                                 <include>MenuButton</include>
@@ -11674,7 +11688,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label> - $LOCALIZE[32007]</label>
+                                <label> - $LOCALIZE[31721]</label>
                                 <textcolor>white</textcolor>
                                 <focusedcolor>black</focusedcolor>
                                 <include>MenuButton</include>
@@ -11842,7 +11856,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label>32043</label>
+                                <label>31757</label>
                                 <textcolor>white</textcolor>
                                 <focusedcolor>black</focusedcolor>
                                 <include>MenuButton</include>
@@ -11854,7 +11868,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label> - $LOCALIZE[32044]</label>
+                                <label> - $LOCALIZE[31758]</label>
                                 <textcolor>white</textcolor>
                                 <focusedcolor>black</focusedcolor>
                                 <include>MenuButton</include>
@@ -11866,7 +11880,7 @@
                                 <width>1125</width>
                                 <height>60</height>
                                 <font>font13</font>
-                                <label> - $LOCALIZE[32045]</label>
+                                <label> - $LOCALIZE[31759]</label>
                                 <textcolor>white</textcolor>
                                 <focusedcolor>black</focusedcolor>
                                 <include>MenuButton</include>
@@ -11887,7 +11901,7 @@
                             </control>
                             <control type="button" id="651">
                                 <description>CustomVideoInfoScript</description>
-                                <label>$LOCALIZE[31967]</label>
+                                <label> - $LOCALIZE[31967]</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$INFO[Skin.String(CustomVideoInfoScript)][/COLOR]</label2>
                                 <width>1125</width>
@@ -11977,7 +11991,7 @@
                             </control>
                             <control type="button" id="672">
                                 <description>CustomSDScript</description>
-                                <label>$LOCALIZE[31457]</label>
+                                <label> - $LOCALIZE[31457]</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[CustomShutdown][/COLOR]</label2>
                                 <width>1125</width>
@@ -11991,7 +12005,7 @@
                             </control>
                             <control type="button" id="673">
                                 <description>CustomSDArg</description>
-                                <label>$LOCALIZE[31458]</label>
+                                <label> - $LOCALIZE[31458]</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[CustomShutdownArg][/COLOR]</label2>
                                 <width>1125</width>
@@ -12016,7 +12030,7 @@
                             </control>
                             <control type="button" id="675">
                                 <description>CustomTimerScript</description>
-                                <label>$LOCALIZE[31460]</label>
+                                <label> - $LOCALIZE[31460]</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[CustomTimer][/COLOR]</label2>
                                 <width>1125</width>
@@ -12030,7 +12044,7 @@
                             </control>
                             <control type="button" id="676">
                                 <description>CustomTimerArg</description>
-                                <label>$LOCALIZE[31461]</label>
+                                <label> - $LOCALIZE[31461]</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[CustomTimerArg][/COLOR]</label2>
                                 <width>1125</width>
@@ -12055,7 +12069,7 @@
                             </control>
                             <control type="button" id="678">
                                 <description>CustomHibernateScript</description>
-                                <label>$LOCALIZE[31463]</label>
+                                <label> - $LOCALIZE[31463]</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[CustomHibernate][/COLOR]</label2>
                                 <width>1125</width>
@@ -12069,7 +12083,7 @@
                             </control>
                             <control type="button" id="679">
                                 <description>CustomHibernateArg</description>
-                                <label>$LOCALIZE[31464]</label>
+                                <label> - $LOCALIZE[31464]</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[CustomHibernateArg][/COLOR]</label2>
                                 <width>1125</width>
@@ -12094,7 +12108,7 @@
                             </control>
                             <control type="button" id="681">
                                 <description>CustomSuspendScript</description>
-                                <label>$LOCALIZE[31466]</label>
+                                <label> - $LOCALIZE[31466]</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[CustomSuspend][/COLOR]</label2>
                                 <width>1125</width>
@@ -12108,7 +12122,7 @@
                             </control>
                             <control type="button" id="682">
                                 <description>CustomSuspendArg</description>
-                                <label>$LOCALIZE[31467]</label>
+                                <label> - $LOCALIZE[31467]</label>
                                 <shadowcolor>black</shadowcolor>
                                 <label2>[COLOR=white]$VAR[CustomSuspendArg][/COLOR]</label2>
                                 <width>1125</width>
