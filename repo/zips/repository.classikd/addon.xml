@@ -2,9 +2,9 @@
 <addon id="repository.classikd" name="classikd Skins" version="1" provider-name="classikd">
     <extension point="xbmc.addon.repository" name="classikd Skins">
         <dir>
-            <info compressed="false">https://raw.githubusercontent.com/classikd/classikd.github.io/master/repo/repository.classikd/addons.xml</info>
-            <checksum>https://raw.githubusercontent.com/classikd/classikd.github.io/master/repo/repository.classikd/addons.xml.md5</checksum>
-            <datadir zip="true">https://raw.githubusercontent.com/classikd/classikd.github.io/master/repo/repository.classikd/</datadir>
+            <info compressed="false">https://raw.githubusercontent.com/classikd/classikd.github.io/refs/heads/master/repo/zips/addons.xml</info>
+            <checksum>https://raw.githubusercontent.com/classikd/classikd.github.io/refs/heads/master/repo/zips/addons.xml.md5</checksum>
+            <datadir zip="true">https://raw.githubusercontent.com/classikd/classikd.github.io/refs/heads/master/repo/zips/</datadir>
         </dir>
     </extension>
     <extension point="xbmc.addon.metadata">
