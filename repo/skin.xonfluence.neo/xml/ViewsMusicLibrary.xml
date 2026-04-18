@@ -168,10 +168,22 @@
                     <top>30</top>
                     <width>425</width>
                     <height>465</height>
-                    <texture background="true">DefaultAlbumCover.png</texture>
+                    <texture background="true" colordiffuse="$VAR[MainColorOne]">DefaultAlbumCover.png</texture>
                     <aspectratio>scale</aspectratio>
                     <visible>String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
+                    <visible>!Player.HasAudio</visible>
                 </control>
+
+                <control type="image">
+                    <left>20</left>
+                    <top>30</top>
+                    <width>425</width>
+                    <height>465</height>
+                    <aspectratio aligny="bottom">scale</aspectratio>
+                    <fadetime>IconCrossfadeTime</fadetime>
+                    <texture fallback="DefaultAlbumCover.png" background="true">$VAR[MusicInfoListViewThumb]</texture>
+                    <visible>String.Contains(ListItem.Icon,DefaultFolder.png) + Player.HasAudio</visible>
+               </control>
                 <control type="image">
                     <left>20</left>
                     <top>30</top>
@@ -716,9 +728,9 @@
                     <top>0</top>
                     <width>435</width>
                     <height>325</height>
-                    <aspectratio>center</aspectratio>
+                    <aspectratio>scale</aspectratio>
                     <fadetime>IconCrossfadeTime</fadetime>
-                    <texture background="true">$INFO[ListItem.Icon]</texture>
+                    <texture background="true" colordiffuse="$VAR[DiffuseIfNoIcon]">$INFO[ListItem.Icon]</texture>
                 </control>
                 <control type="grouplist">
                     <description>Media Codec Flagging Images</description>
