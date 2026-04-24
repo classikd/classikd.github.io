@@ -125,7 +125,16 @@
                         <top>11</top>
                         <width>40</width>
                         <height>40</height>
-                        <texture colordiffuse="$VAR[MainColorOne]">overlay_play.png</texture>
+                        <texture colordiffuse="$VAR[MainColorOne]">white.png</texture>
+                        <visible>Window.IsVisible(Videos) + ListItem.IsPlaying</visible>
+                        <visible>Player.Playing</visible>
+                    </control>
+                    <control type="image">
+                        <left>985</left>
+                        <top>13</top>
+                        <width>34</width>
+                        <height>34</height>
+                        <texture colordiffuse="black">equaliser.gif</texture>
                         <visible>Window.IsVisible(Videos) + ListItem.IsPlaying</visible>
                         <visible>Player.Playing</visible>
                     </control>
@@ -315,7 +324,16 @@
                         <top>11</top>
                         <width>40</width>
                         <height>40</height>
-                        <texture colordiffuse="$VAR[MainColorOne]">overlay_play.png</texture>
+                        <texture colordiffuse="$VAR[MainColorOne]">white.png</texture>
+                        <visible>Window.IsVisible(Videos) + ListItem.IsPlaying</visible>
+                        <visible>Player.Playing</visible>
+                    </control>
+                    <control type="image">
+                        <left>985</left>
+                        <top>13</top>
+                        <width>34</width>
+                        <height>34</height>
+                        <texture colordiffuse="black">equaliser.gif</texture>
                         <visible>Window.IsVisible(Videos) + ListItem.IsPlaying</visible>
                         <visible>Player.Playing</visible>
                     </control>
@@ -482,6 +500,7 @@
                         <visible>Window.IsActive(music)</visible>
                         <visible>!String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
                         <visible>ListItem.IsParentFolder</visible>
+                        <visible>!Container.Content(genres) + !Container.Content(studios) + !Container.Content(countries)</visible>
                     </control>
                     <control type="image">
                         <left>1</left>
@@ -494,6 +513,7 @@
                         <visible>Window.IsActive(music)</visible>
                         <visible>String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
                         <visible>!ListItem.IsParentFolder</visible>
+                        <visible>!Container.Content(genres) + !Container.Content(studios) + !Container.Content(countries)</visible>
                     </control>
                     <control type="image">
                         <left>1</left>
@@ -506,6 +526,7 @@
                         <visible>Window.IsActive(music)</visible>
                         <visible>!String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
                         <visible>!ListItem.IsParentFolder</visible>
+                        <visible>!Container.Content(genres) + !Container.Content(studios) + !Container.Content(countries)</visible>
                     </control>
 
                     <!-- No image://video but extension in label (=> regular video) -->
@@ -586,13 +607,13 @@
                     <!--
                     <control type="label">
                         <left>50</left>
-                        <top>300</top>
+                        <top>0</top>
                         <width>800</width>
                         <height>40</height>
                         <font>font13</font>
                         <textcolor>FFFFFFFF</textcolor>
-                        <label>$VAR[FavoritesIconTexture]</label>
-                    </control>-->
+                        <label>$INFO[ListItem.Icon]</label>
+                    </control> -->
 
                     <control type="image">
                         <left>1</left>
@@ -659,11 +680,22 @@
                         <top>5</top>
                         <width>35</width>
                         <height>35</height>
-                        <texture colordiffuse="$VAR[MainColorOne]">overlay_play.png</texture>
+                        <texture colordiffuse="$VAR[MainColorOne]">white.png</texture>
                         <visible>ListItem.IsPlaying</visible>
                         <visible>Player.Playing</visible>
                         <visible>String.Contains(ListItem.Icon,image://video) | String.IsEqual(ListItem.DBTYPE,episode)</visible>
                     </control>
+                    <control type="image">
+                        <left>8</left>
+                        <top>7</top>
+                        <width>28</width>
+                        <height>28</height>
+                        <texture colordiffuse="black">equaliser.gif</texture>
+                        <visible>ListItem.IsPlaying</visible>
+                        <visible>Player.Playing</visible>
+                        <visible>String.Contains(ListItem.Icon,image://video) | String.IsEqual(ListItem.DBTYPE,episode)</visible>
+                    </control>
+
                     <control type="image">
                         <left>5</left>
                         <top>5</top>
@@ -727,6 +759,7 @@
                         <visible>Window.IsActive(music)</visible>
                         <visible>!String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
                         <visible>ListItem.IsParentFolder</visible>
+                        <visible>!Container.Content(genres) + !Container.Content(studios) + !Container.Content(countries)</visible>
                     </control>
                     <control type="image">
                         <left>1</left>
@@ -740,6 +773,7 @@
                         <visible>Window.IsActive(music)</visible>
                         <visible>String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
                         <visible>!ListItem.IsParentFolder</visible>
+                        <visible>!Container.Content(genres) + !Container.Content(studios) + !Container.Content(countries)</visible>
                     </control>
                     <control type="image">
                         <left>1</left>
@@ -753,6 +787,7 @@
                         <visible>Window.IsActive(music)</visible>
                         <visible>!String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
                         <visible>!ListItem.IsParentFolder</visible>
+                        <visible>!Container.Content(genres) + !Container.Content(studios) + !Container.Content(countries)</visible>
                     </control>
 
                     <!-- No image://video but extension in label (=> regular video) -->
@@ -898,7 +933,17 @@
                         <top>5</top>
                         <width>35</width>
                         <height>35</height>
-                        <texture colordiffuse="$VAR[MainColorOne]">overlay_play.png</texture>
+                        <texture colordiffuse="$VAR[MainColorOne]">white.png</texture>
+                        <visible>ListItem.IsPlaying</visible>
+                        <visible>Player.Playing</visible>
+                        <visible>String.Contains(ListItem.Icon,image://video) | String.IsEqual(ListItem.DBTYPE,episode)</visible>
+                    </control>
+                    <control type="image">
+                        <left>8</left>
+                        <top>7</top>
+                        <width>28</width>
+                        <height>28</height>
+                        <texture colordiffuse="black">equaliser.gif</texture>
                         <visible>ListItem.IsPlaying</visible>
                         <visible>Player.Playing</visible>
                         <visible>String.Contains(ListItem.Icon,image://video) | String.IsEqual(ListItem.DBTYPE,episode)</visible>
@@ -982,7 +1027,16 @@
                         <top>5</top>
                         <width>35</width>
                         <height>35</height>
-                        <texture colordiffuse="$VAR[MainColorOne]">overlay_play.png</texture>
+                        <texture colordiffuse="$VAR[MainColorOne]">white.png</texture>
+                        <visible>ListItem.IsPlaying</visible>
+                        <visible>Player.Playing</visible>
+                    </control>
+                    <control type="image">
+                        <left>18</left>
+                        <top>7</top>
+                        <width>28</width>
+                        <height>28</height>
+                        <texture colordiffuse="black">equaliser.gif</texture>
                         <visible>ListItem.IsPlaying</visible>
                         <visible>Player.Playing</visible>
                     </control>
@@ -1061,7 +1115,16 @@
                         <top>5</top>
                         <width>35</width>
                         <height>35</height>
-                        <texture colordiffuse="$VAR[MainColorOne]">overlay_play.png</texture>
+                        <texture colordiffuse="$VAR[MainColorOne]">white.png</texture>
+                        <visible>ListItem.IsPlaying</visible>
+                        <visible>Player.Playing</visible>
+                    </control>
+                    <control type="image">
+                        <left>18</left>
+                        <top>7</top>
+                        <width>28</width>
+                        <height>28</height>
+                        <texture colordiffuse="black">equaliser.gif</texture>
                         <visible>ListItem.IsPlaying</visible>
                         <visible>Player.Playing</visible>
                     </control>
@@ -1349,7 +1412,17 @@
                         <top>5</top>
                         <width>35</width>
                         <height>35</height>
-                        <texture colordiffuse="$VAR[MainColorOne]">overlay_play.png</texture>
+                        <texture colordiffuse="$VAR[MainColorOne]">white.png</texture>
+                        <visible>ListItem.IsPlaying</visible>
+                        <visible>Player.Playing</visible>
+                        <visible>String.Contains(ListItem.Icon,image://video) | String.IsEqual(ListItem.DBTYPE,episode)</visible>
+                    </control>
+                    <control type="image">
+                        <left>8</left>
+                        <top>7</top>
+                        <width>28</width>
+                        <height>28</height>
+                        <texture colordiffuse="black">equaliser.gif</texture>
                         <visible>ListItem.IsPlaying</visible>
                         <visible>Player.Playing</visible>
                         <visible>String.Contains(ListItem.Icon,image://video) | String.IsEqual(ListItem.DBTYPE,episode)</visible>
@@ -1598,7 +1671,17 @@
                         <top>5</top>
                         <width>35</width>
                         <height>35</height>
-                        <texture colordiffuse="$VAR[MainColorOne]">overlay_play.png</texture>
+                        <texture colordiffuse="$VAR[MainColorOne]">white.png</texture>
+                        <visible>ListItem.IsPlaying</visible>
+                        <visible>Player.Playing</visible>
+                        <visible>String.Contains(ListItem.Icon,image://video) | String.IsEqual(ListItem.DBTYPE,episode)</visible>
+                    </control>
+                    <control type="image">
+                        <left>8</left>
+                        <top>7</top>
+                        <width>28</width>
+                        <height>28</height>
+                        <texture colordiffuse="black">equaliser.gif</texture>
                         <visible>ListItem.IsPlaying</visible>
                         <visible>Player.Playing</visible>
                         <visible>String.Contains(ListItem.Icon,image://video) | String.IsEqual(ListItem.DBTYPE,episode)</visible>
@@ -1682,7 +1765,16 @@
                         <top>5</top>
                         <width>35</width>
                         <height>35</height>
-                        <texture colordiffuse="$VAR[MainColorOne]">overlay_play.png</texture>
+                        <texture colordiffuse="$VAR[MainColorOne]">white.png</texture>
+                        <visible>ListItem.IsPlaying</visible>
+                        <visible>Player.Playing</visible>
+                    </control>
+                    <control type="image">
+                        <left>18</left>
+                        <top>7</top>
+                        <width>28</width>
+                        <height>28</height>
+                        <texture colordiffuse="black">equaliser.gif</texture>
                         <visible>ListItem.IsPlaying</visible>
                         <visible>Player.Playing</visible>
                     </control>
@@ -1761,7 +1853,16 @@
                         <top>5</top>
                         <width>35</width>
                         <height>35</height>
-                        <texture colordiffuse="$VAR[MainColorOne]">overlay_play.png</texture>
+                        <texture colordiffuse="$VAR[MainColorOne]">white.png</texture>
+                        <visible>ListItem.IsPlaying</visible>
+                        <visible>Player.Playing</visible>
+                    </control>
+                    <control type="image">
+                        <left>18</left>
+                        <top>7</top>
+                        <width>28</width>
+                        <height>28</height>
+                        <texture colordiffuse="black">equaliser.gif</texture>
                         <visible>ListItem.IsPlaying</visible>
                         <visible>Player.Playing</visible>
                     </control>
@@ -1883,7 +1984,16 @@
                         <top>3</top>
                         <width>35</width>
                         <height>35</height>
-                        <texture colordiffuse="$VAR[MainColorOne]">overlay_play.png</texture>
+                        <texture colordiffuse="$VAR[MainColorOne]">white.png</texture>
+                        <visible>ListItem.IsPlaying</visible>
+                        <visible>Player.Playing</visible>
+                    </control>
+                    <control type="image">
+                        <left>6</left>
+                        <top>5</top>
+                        <width>28</width>
+                        <height>28</height>
+                        <texture colordiffuse="black">equaliser.gif</texture>
                         <visible>ListItem.IsPlaying</visible>
                         <visible>Player.Playing</visible>
                     </control>
@@ -1954,7 +2064,16 @@
                         <top>3</top>
                         <width>35</width>
                         <height>35</height>
-                        <texture colordiffuse="$VAR[MainColorOne]">overlay_play.png</texture>
+                        <texture colordiffuse="$VAR[MainColorOne]">white.png</texture>
+                        <visible>ListItem.IsPlaying</visible>
+                        <visible>Player.Playing</visible>
+                    </control>
+                    <control type="image">
+                        <left>6</left>
+                        <top>5</top>
+                        <width>28</width>
+                        <height>28</height>
+                        <texture colordiffuse="black">equaliser.gif</texture>
                         <visible>ListItem.IsPlaying</visible>
                         <visible>Player.Playing</visible>
                     </control>
@@ -2013,7 +2132,16 @@
                         <top>3</top>
                         <width>35</width>
                         <height>35</height>
-                        <texture colordiffuse="$VAR[MainColorOne]">overlay_play.png</texture>
+                        <texture colordiffuse="$VAR[MainColorOne]">white.png</texture>
+                        <visible>ListItem.IsPlaying</visible>
+                        <visible>Player.Playing</visible>
+                    </control>
+                    <control type="image">
+                        <left>6</left>
+                        <top>5</top>
+                        <width>28</width>
+                        <height>28</height>
+                        <texture colordiffuse="black">equaliser.gif</texture>
                         <visible>ListItem.IsPlaying</visible>
                         <visible>Player.Playing</visible>
                     </control>
@@ -2072,7 +2200,16 @@
                         <top>3</top>
                         <width>35</width>
                         <height>35</height>
-                        <texture colordiffuse="$VAR[MainColorOne]">overlay_play.png</texture>
+                        <texture colordiffuse="$VAR[MainColorOne]">white.png</texture>
+                        <visible>ListItem.IsPlaying</visible>
+                        <visible>Player.Playing</visible>
+                    </control>
+                    <control type="image">
+                        <left>6</left>
+                        <top>5</top>
+                        <width>28</width>
+                        <height>28</height>
+                        <texture colordiffuse="black">equaliser.gif</texture>
                         <visible>ListItem.IsPlaying</visible>
                         <visible>Player.Playing</visible>
                     </control>
@@ -2265,7 +2402,16 @@
                         <top>11</top>
                         <width>40</width>
                         <height>40</height>
-                        <texture colordiffuse="$VAR[MainColorOne]">overlay_play.png</texture>
+                        <texture colordiffuse="$VAR[MainColorOne]">white.png</texture>
+                        <visible>ListItem.IsPlaying</visible>
+                        <visible>Player.Playing</visible>
+                    </control>
+                    <control type="image">
+                        <left>1723</left>
+                        <top>13</top>
+                        <width>34</width>
+                        <height>34</height>
+                        <texture colordiffuse="black">equaliser.gif</texture>
                         <visible>ListItem.IsPlaying</visible>
                         <visible>Player.Playing</visible>
                     </control>
@@ -2297,7 +2443,19 @@
                         <texture background="true" fallback="DefaultGenre.png" colordiffuse="$VAR[MainColorOne]">$VAR[MovieGenreIcon]</texture>
                         <aspectratio>keep</aspectratio>
                         <visible>Container.Content(genres)</visible>
+                        <visible>!Control.HasFocus(51)</visible>
                     </control>
+                    <control type="image">
+                        <left>15</left>
+                        <top>6</top>
+                        <width>60</width>
+                        <height>48</height>
+                        <texture background="true" fallback="DefaultGenre.png" colordiffuse="$VAR[DiffuseIfNoPosterThumbAlt]">$VAR[MovieGenreIcon]</texture>
+                        <aspectratio>keep</aspectratio>
+                        <visible>Container.Content(genres)</visible>
+                        <visible>Control.HasFocus(51)</visible>
+                    </control>
+
                     <control type="image">
                         <left>15</left>
                         <top>6</top>
@@ -2307,6 +2465,7 @@
                         <aspectratio>keep</aspectratio>
                         <visible>Container.Content(studios)</visible>
                     </control>
+
                     <control type="image">
                         <left>15</left>
                         <top>6</top>
@@ -2316,7 +2475,20 @@
                         <aspectratio>keep</aspectratio>
                         <visible>String.IsEqual(ListItem.Label,..) | !Container.Content(Episodes) | !Skin.HasSetting(HideEpisodeThumb)</visible>
                         <visible>!Container.Content(genres) + !Container.Content(studios)</visible>
+                        <visible>!Control.HasFocus(51)</visible>
                     </control>
+                    <control type="image">
+                        <left>15</left>
+                        <top>6</top>
+                        <width>60</width>
+                        <height>48</height>
+                        <texture background="true" fallback="DefaultVideoCover.png" colordiffuse="$VAR[DiffuseIfNoPosterThumbAlt]">$VAR[PosterThumb]</texture>
+                        <aspectratio>keep</aspectratio>
+                        <visible>String.IsEqual(ListItem.Label,..) | !Container.Content(Episodes) | !Skin.HasSetting(HideEpisodeThumb)</visible>
+                        <visible>!Container.Content(genres) + !Container.Content(studios)</visible>
+                        <visible>Control.HasFocus(51)</visible>
+                    </control>
+
                     <control type="image">
                         <left>15</left>
                         <top>6</top>
@@ -2492,7 +2664,16 @@
                         <top>11</top>
                         <width>40</width>
                         <height>40</height>
-                        <texture colordiffuse="$VAR[MainColorOne]">overlay_play.png</texture>
+                        <texture colordiffuse="$VAR[MainColorOne]">white.png</texture>
+                        <visible>ListItem.IsPlaying</visible>
+                        <visible>Player.Playing</visible>
+                    </control>
+                    <control type="image">
+                        <left>1723</left>
+                        <top>13</top>
+                        <width>34</width>
+                        <height>34</height>
+                        <texture colordiffuse="black">equaliser.gif</texture>
                         <visible>ListItem.IsPlaying</visible>
                         <visible>Player.Playing</visible>
                     </control>

@@ -17,7 +17,7 @@
             <fanart>fanart.jpg</fanart>
         </assets>
     </extension>
-</addon><addon id="skin.xonfluence.neo" version="0.6" name="Xonfluence Neo" provider-name="Helly, bsoriano, jdig4240, classikd">
+</addon><addon id="skin.xonfluence.neo" version="0.7" name="Xonfluence Neo" provider-name="Helly, bsoriano, jdig4240, classikd">
   <requires>
   <import addon="xbmc.gui" version="5.17.0" />
   <import addon="script.favourites" version="8.1.2" />
