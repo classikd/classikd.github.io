@@ -810,10 +810,27 @@
         <value condition="String.IsEmpty(Skin.String(TopLeftHomeInfo))">$LOCALIZE[31083]</value>
         <value condition="String.IsEqual(Skin.String(TopLeftHomeInfo),Logo)">$LOCALIZE[31083]</value>
         <value condition="String.IsEqual(Skin.String(TopLeftHomeInfo),Blank)">$LOCALIZE[19022]</value>
-        <value condition="String.IsEqual(Skin.String(TopLeftHomeInfo),ProfileName)">$LOCALIZE[31963]$LOCALIZE[31082]</value>
-        <value condition="String.IsEqual(Skin.String(TopLeftHomeInfo),ProfileAvatar)">$LOCALIZE[31964]$LOCALIZE[31082]</value>
+        <value condition="String.IsEqual(Skin.String(TopLeftHomeInfo),ClockDate)">$LOCALIZE[31081]</value>
+        <value condition="String.IsEqual(Skin.String(TopLeftHomeInfo),Clock)">$LOCALIZE[31792]</value>
+        <value condition="String.IsEqual(Skin.String(TopLeftHomeInfo),Date)">$LOCALIZE[552]</value>
+        <value condition="String.IsEqual(Skin.String(TopLeftHomeInfo),ProfileName)">$LOCALIZE[31963]</value>
+        <value condition="String.IsEqual(Skin.String(TopLeftHomeInfo),ProfileAvatar)">$LOCALIZE[31964]</value>
+        <value condition="String.IsEqual(Skin.String(TopLeftHomeInfo),ProfileAvatarName)">$LOCALIZE[31964] + $LOCALIZE[31963]</value>
         <value condition="String.IsEqual(Skin.String(TopLeftHomeInfo),Weather) + !String.IsEmpty(Weather.Plugin)">$LOCALIZE[24027]</value>
         <value condition="String.IsEqual(Skin.String(TopLeftHomeInfo),Weather) + String.IsEmpty(Weather.Plugin)">[COLOR=white]$LOCALIZE[24027][/COLOR]</value>
+    </variable>
+    <variable name="TopRightInfoType">
+        <value condition="String.IsEmpty(Skin.String(TopRightHomeInfo))">$LOCALIZE[31081]</value>
+        <value condition="String.IsEqual(Skin.String(TopRightHomeInfo),Logo)">$LOCALIZE[31083]</value>
+        <value condition="String.IsEqual(Skin.String(TopRightHomeInfo),Blank)">$LOCALIZE[19022]</value>
+        <value condition="String.IsEqual(Skin.String(TopRightHomeInfo),ClockDate)">$LOCALIZE[31081]</value>
+        <value condition="String.IsEqual(Skin.String(TopRightHomeInfo),Clock)">$LOCALIZE[31792]</value>
+        <value condition="String.IsEqual(Skin.String(TopRightHomeInfo),Date)">$LOCALIZE[552]</value>
+        <value condition="String.IsEqual(Skin.String(TopRightHomeInfo),ProfileName)">$LOCALIZE[31963]</value>
+        <value condition="String.IsEqual(Skin.String(TopRightHomeInfo),ProfileAvatar)">$LOCALIZE[31964]</value>
+        <value condition="String.IsEqual(Skin.String(TopRightHomeInfo),ProfileAvatarName)">$LOCALIZE[31964] + $LOCALIZE[31963]</value>
+        <value condition="String.IsEqual(Skin.String(TopRightHomeInfo),Weather) + !String.IsEmpty(Weather.Plugin)">$LOCALIZE[24027]</value>
+        <value condition="String.IsEqual(Skin.String(TopRightHomeInfo),Weather) + String.IsEmpty(Weather.Plugin)">[COLOR=white]$LOCALIZE[24027][/COLOR]</value>
     </variable>
     <variable name="InfoBarStats" type="text">
         <value condition="String.IsEqual(Container(9000).ListItem.Property(HiLiteItem),VideoNode) + Integer.IsGreater(Window(home).Property(PlaylistTVShowCount),0)">[B][COLOR=$VAR[MainColorOne]]$LOCALIZE[31424]$LOCALIZE[31156] [/COLOR][/B]$INFO[Window(home).Property(PlaylistTVShowCount)]     [B][COLOR=$VAR[MainColorOne]]$LOCALIZE[20360]$LOCALIZE[31156] [/COLOR][/B]$INFO[Window(home).Property(PlaylistEpisodes)]     [B][COLOR=$VAR[MainColorOne]]$LOCALIZE[16101]$LOCALIZE[31156] [/COLOR][/B]$INFO[Window(home).Property(PlaylistEpisodesUnWatched)]</value>
@@ -3468,7 +3485,7 @@
         <value condition="String.IsEqual(Window(home).Property(SpecialFeatures.Visible),true) + Container.Content(Movies)">special_features.png</value>
         <value condition="String.IsEqual(Window(home).Property(SpecialFeatures.Visible),true) + Container.Content(TVShows)">special_features.png</value>
         <value condition="String.IsEqual(Window(home).Property(SpecialFeatures.Visible),true) + Container.Content(MusicVideos)">special_features.png</value>
-        <value condition="ListItem.IsStereoscopic">flagging/lists/3D.png</value>
+        <value condition="ListItem.IsStereoscopic">flagging/video/3D.png</value>
     </variable>
     <variable name="VideoNodeStats" type="text">
         <value condition="!Window.IsVisible(1195) + Container(9000).HasFocus(1)">plugin://service.library.data.provider?type=playliststats&amp;id=$INFO[Skin.String(HomeItem.1.Path)]</value>
@@ -3854,4 +3871,10 @@
 									     [Container(9000).HasFocus(14) + Skin.String(HomeItem.14.PlaylistType,music)] | 
 									     [Container(9000).HasFocus(15) + Skin.String(HomeItem.15.PlaylistType,music)]</expression>
 	
+    <variable name="EpisodeLabel">
+        <value condition="Integer.IsEqual(ListItem.Episode,1)">|    $INFO[ListItem.Episode] $LOCALIZE[20452] </value>
+        <value condition="Integer.IsGreater(ListItem.Episode,1)">|    $INFO[ListItem.Episode] $LOCALIZE[20453] </value>
+        <value>|    0 $LOCALIZE[20452] </value>
+    </variable>
+
 </includes>
