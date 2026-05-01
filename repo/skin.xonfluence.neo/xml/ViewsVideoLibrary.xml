@@ -116,6 +116,7 @@
                         <info>ListItem.PercentPlayed</info>
                         <visible>ListItem.IsResumable</visible>
                         <visible>!Skin.HasSetting(HideProgressBars)</visible>
+                        <visible>!ListItem.IsPlaying</visible>
                         <texturebg border="0">white.png</texturebg>
                         <midtexture border="0" colordiffuse="$VAR[MainColorOne]">white-darker.png</midtexture>
                     </control> 
@@ -329,6 +330,7 @@
                         <info>ListItem.PercentPlayed</info>
                         <visible>ListItem.IsResumable</visible>
                         <visible>!Skin.HasSetting(HideProgressBars)</visible>
+                        <visible>!ListItem.IsPlaying</visible>
                         <texturebg border="0">white.png</texturebg>
                         <midtexture border="0" colordiffuse="$VAR[MainColorOne]">white.png</midtexture>
                         <animation type="focus">
@@ -1055,6 +1057,7 @@
                 <info>ListItem.PercentPlayed</info>
                 <visible>ListItem.IsResumable</visible>
                 <visible>!Skin.HasSetting(HideProgressBars)</visible>
+                <visible>!ListItem.IsPlaying</visible>
                 <texturebg border="0">white.png</texturebg>
                 <midtexture border="0" colordiffuse="$VAR[MainColorOne]">white-darker.png</midtexture>
             </control> 
@@ -1239,6 +1242,7 @@
                 <info>ListItem.PercentPlayed</info>
                 <visible>ListItem.IsResumable</visible>
                 <visible>!Skin.HasSetting(HideProgressBars)</visible>
+                <visible>!ListItem.IsPlaying</visible>
                 <texturebg border="0">white.png</texturebg>
                 <midtexture border="0" colordiffuse="$VAR[MainColorOne]">white.png</midtexture>
                 <animation type="focus">
@@ -1552,7 +1556,6 @@
                 <width>220</width>
                 <height>335</height>
                 <aspectratio>scale</aspectratio>
-                <fadetime>200</fadetime>
                 <texture background="true">$VAR[PosterThumbPoster]</texture>
                 <bordertexture border="5" colordiffuse="$VAR[MainColorOne]">blank.png</bordertexture>
                 <include>TextureBorderViews</include>
@@ -1615,6 +1618,7 @@
                 <info>ListItem.PercentPlayed</info>
                 <visible>ListItem.IsResumable</visible>
                 <visible>!Skin.HasSetting(HideProgressBars)</visible>
+                <visible>!ListItem.IsPlaying</visible>
                 <texturebg border="0">white.png</texturebg>
                 <midtexture border="0" colordiffuse="$VAR[MainColorOne]">white-darker.png</midtexture>
             </control> 
@@ -1627,7 +1631,6 @@
                 <width>220</width>
                 <height>335</height>
                 <aspectratio>scale</aspectratio>
-                <fadetime>200</fadetime>
                 <texture background="true">$VAR[PosterThumbPoster]</texture>
                 <bordertexture border="5" colordiffuse="$VAR[MainColorOne]">blank.png</bordertexture>
                 <include>TextureBorderViews</include>
@@ -1639,7 +1642,6 @@
                 <width>220</width>
                 <height>335</height>
                 <aspectratio>scale</aspectratio>
-                <fadetime>200</fadetime>
                 <texture background="true">$VAR[PosterThumbPoster]</texture>
                 <bordertexture border="5" colordiffuse="$VAR[MainColorOne]">folder-focus.png</bordertexture>
                 <include>TextureBorderViews</include>
@@ -1773,6 +1775,7 @@
                 <info>ListItem.PercentPlayed</info>
                 <visible>ListItem.IsResumable</visible>
                 <visible>!Skin.HasSetting(HideProgressBars)</visible>
+                <visible>!ListItem.IsPlaying</visible>
                 <texturebg border="0">white.png</texturebg>
                 <midtexture border="0" colordiffuse="$VAR[MainColorOne]">white.png</midtexture>
             </control> 
@@ -3463,6 +3466,7 @@
                         <info>ListItem.PercentPlayed</info>
                         <visible>ListItem.IsResumable</visible>
                         <visible>!Skin.HasSetting(HideProgressBars)</visible>
+                        <visible>!ListItem.IsPlaying</visible>
                         <texturebg border="0">white.png</texturebg>
                         <midtexture border="0" colordiffuse="$VAR[MainColorOne]">white-darker.png</midtexture>
                     </control> 
@@ -3585,6 +3589,7 @@
                         <info>ListItem.PercentPlayed</info>
                         <visible>ListItem.IsResumable</visible>
                         <visible>!Skin.HasSetting(HideProgressBars)</visible>
+                        <visible>!ListItem.IsPlaying</visible>
                         <texturebg border="0">white.png</texturebg>
                         <midtexture border="0" colordiffuse="$VAR[MainColorOne]">white.png</midtexture>
                     </control> 
@@ -4378,6 +4383,7 @@
                         <info>ListItem.PercentPlayed</info>
                         <visible>ListItem.IsResumable</visible>
                         <visible>!Skin.HasSetting(HideProgressBars)</visible>
+                        <visible>!ListItem.IsPlaying</visible>
                         <texturebg border="0">white.png</texturebg>
                         <midtexture border="0" colordiffuse="$VAR[MainColorOne]">white-darker.png</midtexture>
                     </control> 
@@ -4453,6 +4459,7 @@
                             <info>ListItem.PercentPlayed</info>
                             <visible>ListItem.IsResumable</visible>
                             <visible>!Skin.HasSetting(HideProgressBars)</visible>
+                            <visible>!ListItem.IsPlaying</visible>
                             <texturebg border="0">white.png</texturebg>
                             <midtexture border="0" colordiffuse="$VAR[MainColorOne]">white-darker.png</midtexture>
                         </control> 
