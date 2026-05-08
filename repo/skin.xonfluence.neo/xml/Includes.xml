@@ -13,6 +13,8 @@
     <include file="IncludesOnScreenDisplay.xml" />
     <include file="ViewsVideoLibrary.xml" />
     <include file="ViewsLowlist.xml" />
+    <include file="ViewsCoverflow.xml" />
+    <include file="ViewsCoverflowKeep.xml" />
     <include file="ViewsMusicLibrary.xml" />
     <include file="ViewsFileMode.xml" />
     <include file="ViewsPictures.xml" />
@@ -492,6 +494,62 @@
         <value condition="!String.IsEqual(ListItem.Icon,DefaultFolder.png)">$INFO[ListItem.Icon]</value>
         <value>white-darker.png</value>
     </variable>
+
+	<variable name="Icon(-5)Poster">
+        <value condition="!String.IsEmpty(ListItem(-5).Art(poster))">$INFO[ListItem(-5).Art(poster)]</value>
+        <value condition="!String.IsEqual(ListItem(-5).Icon,DefaultFolder.png)">$INFO[ListItem(-5).Icon]</value>
+        <value>white-darker.png</value>
+	</variable>
+	<variable name="Icon(-4)Poster">
+        <value condition="!String.IsEmpty(ListItem(-4).Art(poster))">$INFO[ListItem(-4).Art(poster)]</value>
+        <value condition="!String.IsEqual(ListItem(-4).Icon,DefaultFolder.png)">$INFO[ListItem(-4).Icon]</value>
+        <value>white-darker.png</value>
+	</variable>
+	<variable name="Icon(-3)Poster">
+        <value condition="!String.IsEmpty(ListItem(-3).Art(poster))">$INFO[ListItem(-3).Art(poster)]</value>
+        <value condition="!String.IsEqual(ListItem(-3).Icon,DefaultFolder.png)">$INFO[ListItem(-3).Icon]</value>
+        <value>white-darker.png</value>
+	</variable>
+	<variable name="Icon(-2)Poster">
+        <value condition="!String.IsEmpty(ListItem(-2).Art(poster))">$INFO[ListItem(-2).Art(poster)]</value>
+        <value condition="!String.IsEqual(ListItem(-2).Icon,DefaultFolder.png)">$INFO[ListItem(-2).Icon]</value>
+        <value>white-darker.png</value>
+	</variable>
+	<variable name="Icon(-1)Poster">
+        <value condition="!String.IsEmpty(ListItem(-1).Art(poster))">$INFO[ListItem(-1).Art(poster)]</value>
+        <value condition="!String.IsEqual(ListItem(-1).Icon,DefaultFolder.png)">$INFO[ListItem(-1).Icon]</value>
+        <value>white-darker.png</value>
+	</variable>
+	<variable name="Icon(0)Poster">
+        <value condition="!String.IsEmpty(ListItem(0).Art(poster))">$INFO[ListItem(0).Art(poster)]</value>
+        <value condition="!String.IsEqual(ListItem(0).Icon,DefaultFolder.png)">$INFO[ListItem(0).Icon]</value>
+        <value>white-darker.png</value>
+	</variable>
+	<variable name="Icon(1)Poster">
+        <value condition="!String.IsEmpty(ListItem(1).Art(poster))">$INFO[ListItem(1).Art(poster)]</value>
+        <value condition="!String.IsEqual(ListItem(1).Icon,DefaultFolder.png)">$INFO[ListItem(1).Icon]</value>
+        <value>white-darker.png</value>
+	</variable>
+	<variable name="Icon(2)Poster">
+        <value condition="!String.IsEmpty(ListItem(2).Art(poster))">$INFO[ListItem(2).Art(poster)]</value>
+        <value condition="!String.IsEqual(ListItem(2).Icon,DefaultFolder.png)">$INFO[ListItem(2).Icon]</value>
+        <value>white-darker.png</value>
+	</variable>
+	<variable name="Icon(3)Poster">
+        <value condition="!String.IsEmpty(ListItem(3).Art(poster))">$INFO[ListItem(3).Art(poster)]</value>
+        <value condition="!String.IsEqual(ListItem(3).Icon,DefaultFolder.png)">$INFO[ListItem(3).Icon]</value>
+        <value>white-darker.png</value>
+	</variable>
+	<variable name="Icon(4)Poster">
+        <value condition="!String.IsEmpty(ListItem(4).Art(poster))">$INFO[ListItem(4).Art(poster)]</value>
+        <value condition="!String.IsEqual(ListItem(4).Icon,DefaultFolder.png)">$INFO[ListItem(4).Icon]</value>
+        <value>white-darker.png</value>
+	</variable>
+	<variable name="Icon(5)Poster">
+        <value condition="!String.IsEmpty(ListItem(5).Art(poster))">$INFO[ListItem(5).Art(poster)]</value>
+        <value condition="!String.IsEqual(ListItem(5).Icon,DefaultFolder.png)">$INFO[ListItem(5).Icon]</value>
+        <value>white-darker.png</value>
+	</variable>
 
 
     <!-- We can't simply target images that begin with "Default" and end with ".png" 
@@ -1289,7 +1347,15 @@
         <aligny>center</aligny>
         <font>font12_title</font>
         <pulseonselect>false</pulseonselect>
+        <focusedcolor>black</focusedcolor>
+        <shadowcolor>00FF0000</shadowcolor>
+        <include>ButtonInfoDialogBackground</include>
     </include>
+
+    <include name="ButtonInfoDialogBackground">
+        <texturenofocus colordiffuse="20FFFFFF">white50.png</texturenofocus>
+    </include>
+
     <include name="SideBladeLeft">
         <animation effect="slide" start="0,0" end="375,0" time="300" tween="quadratic" easing="out" condition="[[Window.IsActive(script-globalsearch.xml) + ControlGroup(9999).HasFocus] | !String.IsEmpty(Window.Property(SideBladeOpen)) | ControlGroup(9000).HasFocus | ControlGroup(8999).HasFocus] + ![Window.IsActive(PVRGuideInfo) | Window.IsActive(PVRRadioRDSInfo)]">Conditional</animation>
         <animation effect="slide" start="0,0" end="-450,0" time="300" tween="quadratic" easing="out" condition="!String.IsEmpty(Window.Property(SideBladeOpen)) | ControlGroup(9000).HasFocus">WindowClose</animation>
@@ -2263,6 +2329,19 @@
             <textureradiooffnofocus>GoFullscreen.png</textureradiooffnofocus>
             <visible>Player.HasMedia</visible>
         </control>
+
+        <control type="button" id="609">
+            <description>PiP toggle</description>
+            <textwidth>352</textwidth>
+            <include>ButtonCommonValues</include>
+            <label>$LOCALIZE[31783]: $VAR[PiPValue]</label>
+            <onclick condition="String.IsEmpty(Skin.String(PiP))">Skin.SetString(PiP,Small)</onclick>
+            <onclick condition="Skin.String(PiP,Small)">Skin.SetString(PiP,Medium)</onclick>
+            <onclick condition="Skin.String(PiP,Medium)">Skin.SetString(PiP,Large)</onclick>
+            <onclick condition="Skin.String(PiP,Large)">Skin.Reset(PiP)</onclick>
+            <visible>Player.HasMedia</visible>
+        </control>
+
         <control type="button" id="612">
             <description>Go to playlist</description>
             <include>ButtonCommonValues</include>
@@ -2284,7 +2363,7 @@
                 <top>0</top>
                 <width>105</width>
                 <height>98</height>
-                <texture border="20,20,20,2">InfoMessagePanel.png</texture>
+                <texture border="20,20,20,2">black-back.png</texture>
             </control>
             <control type="label">
                 <left>8</left>
@@ -2387,8 +2466,9 @@
                     <depth>DepthHeader</depth>
                     <include>BlockClockSmall</include>
                     <visible>String.IsEqual(Skin.String(TopLeftHomeInfo),ClockDate)</visible>
+                    <visible>!Skin.HasSetting(HideSystemTime)</visible>
                 </control>
-                <include condition="String.IsEqual(Skin.String(TopLeftHomeInfo),ClockDate)">DateLeftPosition</include>
+                <include condition="!Skin.HasSetting(HideSystemTime) + String.IsEqual(Skin.String(TopLeftHomeInfo),ClockDate)">DateLeftPosition</include>
             
                 <!-- clock -->
                 <control type="grouplist">
@@ -2402,6 +2482,7 @@
                     <depth>DepthHeader</depth>
                     <include>BlockClock</include>
                     <visible>String.IsEqual(Skin.String(TopLeftHomeInfo),Clock)</visible>
+                    <visible>!Skin.HasSetting(HideSystemTime)</visible>
                 </control>
 
                 <!-- date -->
@@ -2578,8 +2659,9 @@
             <align>right</align>
             <itemgap>20</itemgap>
             <include condition="String.IsEmpty(Skin.String(TopRightHomeInfo)) | String.IsEqual(Skin.String(TopRightHomeInfo),ClockDate)">BlockClockSmall</include>
+            <visible>!Skin.HasSetting(HideSystemTime)</visible>
         </control>
-        <include condition="String.IsEmpty(Skin.String(TopRightHomeInfo)) | String.IsEqual(Skin.String(TopRightHomeInfo),ClockDate)">Date</include>
+        <include condition="!Skin.HasSetting(HideSystemTime) + [String.IsEmpty(Skin.String(TopRightHomeInfo)) | String.IsEqual(Skin.String(TopRightHomeInfo),ClockDate)]">Date</include>
     
         <!-- Clock -->
         <control type="grouplist">
@@ -2591,6 +2673,7 @@
             <align>right</align>
             <itemgap>20</itemgap>
             <include condition="String.IsEqual(Skin.String(TopRightHomeInfo),Clock)">BlockClock</include>
+            <visible>!Skin.HasSetting(HideSystemTime)</visible>
         </control>
 
         <!-- Date -->
@@ -4912,6 +4995,67 @@
             <texture>LeftRating/rating5.png</texture>
             <aspectratio>keep</aspectratio>
             <visible>Integer.IsEqual(ListItem.Rating,10)</visible>
+        </control>
+    </include>
+
+    <include name="InfoLine">
+        <control type="grouplist">
+            <description>Video infos</description>
+            <left>0</left>
+            <top>0</top>
+            <width>1500</width>
+            <align>left</align>
+            <itemgap>3</itemgap>
+            <orientation>horizontal</orientation>
+
+            <control type="group">
+                <width>130</width>
+                <include content="ItemRating">
+                    <param name="Color" value="$VAR[MainColorOne]" />
+                </include>
+            </control>
+
+            <control type="label">
+                <width min="0" max="200">auto</width>
+                <font>font11_title</font>
+                <textcolor>white</textcolor>
+                <shadowcolor>black</shadowcolor>
+                <label>    |    $INFO[ListItem.Year]</label>
+                <visible>!String.IsEmpty(ListItem.Year)</visible>
+            </control>
+
+            <control type="label">
+                <width min="0" max="200">auto</width>
+                <font>font11_title</font>
+                <textcolor>white</textcolor>
+                <shadowcolor>black</shadowcolor>
+                <label>    |    $VAR[DurationInMinutes]</label>
+                <visible>!Container.Content(TVShows)</visible>
+            </control>
+
+            <control type="label">
+                <width min="0" max="200">auto</width>
+                <font>font11_title</font>
+                <textcolor>white</textcolor>
+                <shadowcolor>black</shadowcolor>
+                <label>    |    $VAR[EpisodeLabel]</label>
+                <visible>Container.Content(TVShows)</visible>
+            </control>
+
+            <control type="image">
+                <width>12</width>
+                <height>20</height>
+                <texture>blank.png</texture>
+            </control>
+
+            <control type="image">
+                <width>50</width>
+                <height>32</height>
+                <texture>$VAR[MediaInfoOverlayVar]</texture>
+                <aspectratio>keep</aspectratio>
+                <visible>Window.IsVisible(Videos) + [Container.Content(Movies) | Container.Content(Sets) | Container.Content(Episodes) | Container.Content(MusicVideos)]</visible>
+            </control>
+
         </control>
     </include>
 

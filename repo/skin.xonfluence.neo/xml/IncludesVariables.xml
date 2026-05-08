@@ -3340,6 +3340,7 @@
     </variable>
     <variable name="PiPValue">
         <value condition="Skin.String(PiP,Small)">$LOCALIZE[31992]</value>
+        <value condition="Skin.String(PiP,Medium)">$LOCALIZE[392]</value>
         <value condition="Skin.String(PiP,Large)">$LOCALIZE[31994]</value>
         <value>$LOCALIZE[31784]</value>
     </variable>
@@ -3838,7 +3839,16 @@
         <value condition="!String.IsEmpty(Skin.String(WeatherFanart.ext))">$INFO[Skin.String(WeatherFanart.ext)]</value>
         <value>.jpg</value>
     </variable>
-	
+
+    <include name="ScrollbarPositionTop">
+        <top>-14</top>
+    </include>
+    <include name="ScrollbarPositionBottom">
+        <top>1060</top>
+    </include>
+
+	<expression name="isEnabledParentDirectory">System.GetBool(filelists.showparentdiritems)</expression>
+	<expression name="isnotEnabledParentDirectory">!System.GetBool(filelists.showparentdiritems)</expression>
 	<expression name="IsVideoPlaylist">[Container(9000).HasFocus(1) + Skin.String(HomeItem.1.PlaylistType,video)] | 
 	                                   [Container(9000).HasFocus(2) + Skin.String(HomeItem.2.PlaylistType,video)] | 
 									   [Container(9000).HasFocus(3) + Skin.String(HomeItem.3.PlaylistType,video)] | 
@@ -3872,9 +3882,9 @@
 									     [Container(9000).HasFocus(15) + Skin.String(HomeItem.15.PlaylistType,music)]</expression>
 	
     <variable name="EpisodeLabel">
-        <value condition="Integer.IsEqual(ListItem.Episode,1)">|    $INFO[ListItem.Episode] $LOCALIZE[20452] </value>
-        <value condition="Integer.IsGreater(ListItem.Episode,1)">|    $INFO[ListItem.Episode] $LOCALIZE[20453] </value>
-        <value>|    0 $LOCALIZE[20452] </value>
+        <value condition="Integer.IsEqual(ListItem.Episode,1)">$INFO[ListItem.Episode] $LOCALIZE[20452]</value>
+        <value condition="Integer.IsGreater(ListItem.Episode,1)">$INFO[ListItem.Episode] $LOCALIZE[20453]</value>
+        <value>0 $LOCALIZE[20452]</value>
     </variable>
 
 </includes>
