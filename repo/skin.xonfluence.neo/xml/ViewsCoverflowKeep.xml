@@ -360,22 +360,33 @@
 					<animation effect="rotatey" center="1430" end="60" condition="true">Conditional</animation>
 					<visible>[Integer.IsGreater(Container(529).NumItems,1) + $EXP[isnotEnabledParentDirectory]] | [Integer.IsGreater(Container(529).NumItems,0) + $EXP[isEnabledParentDirectory]]</visible>
 				</control>
+
 				<control type="image">
 					<left>780</left>
 					<top>109</top>
 					<width>385</width>
 					<height>600</height>
 					<texture background="true">$VAR[Icon(0)Poster]</texture>
-					
 					<aspectratio scalediffuse="false">keep</aspectratio>
+					<visible>!String.IsEqual(ListItem.Label,..)</visible>
 				</control>
+				<control type="image">
+					<left>780</left>
+					<top>109</top>
+					<width>385</width>
+					<height>600</height>
+					<texture background="true" fallback="DefaultFolderBack.png">$VAR[Icon(0)Poster]</texture>
+					<aspectratio scalediffuse="false">keep</aspectratio>
+					<visible>String.IsEqual(ListItem.Label,..)</visible>
+				</control>
+
                 <!-- icons over image -->
                 <control type="group">
                     <left>777</left>
                     <top>149</top>
                     <control type="image">
                         <left>3</left>
-                        <top>-40</top>
+                        <top>50</top>
                         <width>35</width>
                         <height>35</height>
                         <texture colordiffuse="$VAR[MainColorOne]">$INFO[ListItem.Overlay]</texture>
@@ -385,7 +396,7 @@
                     </control>
                     <control type="image">
                         <left>3</left>
-                        <top>-40</top>
+                        <top>50</top>
                         <width>35</width>
                         <height>35</height>
                         <texture colordiffuse="$VAR[MainColorOne]">$INFO[ListItem.Overlay]</texture>
@@ -397,7 +408,7 @@
 
                     <control type="image">
                         <left>3</left>
-                        <top>-40</top>
+                        <top>50</top>
                         <width>35</width>
                         <height>35</height>
                         <texture colordiffuse="$VAR[MainColorOne]">white.png</texture>
@@ -407,7 +418,7 @@
                     </control>
                     <control type="image">
                         <left>6</left>
-                        <top>-37</top>
+                        <top>52</top>
                         <width>28</width>
                         <height>28</height>
                         <texture colordiffuse="black">equaliser.gif</texture>
@@ -417,7 +428,7 @@
                     </control>
                     <control type="image">
                         <left>3</left>
-                        <top>-40</top>
+                        <top>50</top>
                         <width>35</width>
                         <height>35</height>
                         <texture colordiffuse="$VAR[MainColorOne]">overlay_pause.png</texture>
@@ -446,8 +457,8 @@
 
 			<control type="scrollbar" id="60">
                 <left>0</left>
-                <include condition="!Skin.HasSetting(EnableFloorReturnButtons)">ScrollbarPositionBottom</include>
-                <include condition="Skin.HasSetting(EnableFloorReturnButtons)">ScrollbarPositionTop</include>
+                <include condition="!Skin.String(EnableFloorAdditionalNav,Style1)">ScrollbarPositionBottom</include>
+                <include condition="Skin.String(EnableFloorAdditionalNav,Style1)">ScrollbarPositionTop</include>
                 <width>1926</width>
                 <height>28</height>
 				<orientation>horizontal</orientation>

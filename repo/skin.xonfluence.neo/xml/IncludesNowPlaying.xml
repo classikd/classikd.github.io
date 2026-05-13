@@ -69,6 +69,18 @@
                 <aspectratio>keep</aspectratio>
                 <texture colordiffuse="white">equaliser.gif</texture>
                 <visible>!String.IsEmpty(MusicPlayer.Album)</visible>
+                <visible>Player.Playing</visible>
+            </control>
+            <control type="image">
+                <description>Player Icon</description>
+                <left>200</left>
+                <top>482</top>
+                <width>28</width>
+                <height>36</height>
+                <aspectratio>keep</aspectratio>
+                <texture colordiffuse="white">osd_modern/osdpause.png</texture>
+                <visible>!String.IsEmpty(MusicPlayer.Album)</visible>
+                <visible>!Player.Playing</visible>
             </control>
             <control type="label">
                 <description>Time Label</description>
@@ -110,6 +122,18 @@
                 <aspectratio>keep</aspectratio>
                 <texture colordiffuse="white">equaliser.gif</texture>
                 <visible>String.IsEmpty(MusicPlayer.Album)</visible>
+                <visible>Player.Playing</visible>
+            </control>
+            <control type="image">
+                <description>Player Icon</description>
+                <left>200</left>
+                <top>468</top>
+                <width>32</width>
+                <height>39</height>
+                <aspectratio>keep</aspectratio>
+                <texture colordiffuse="white">osd_modern/osdpause.png</texture>
+                <visible>String.IsEmpty(MusicPlayer.Album)</visible>
+                <visible>!Player.Playing</visible>
             </control>
             <control type="label">
                 <description>Time Label</description>
@@ -332,7 +356,19 @@
                     <height>32</height>
                     <aspectratio>keep</aspectratio>
                     <texture colordiffuse="white">equaliser.gif</texture>
+                    <visible>Player.Playing</visible>
                 </control>
+                <control type="image">
+                    <description>Player Icon</description>
+                    <left>230</left>
+                    <top>468</top>
+                    <width>32</width>
+                    <height>39</height>
+                    <aspectratio>keep</aspectratio>
+                    <texture colordiffuse="white">osd_modern/osdpause.png</texture>
+                    <visible>!Player.Playing</visible>
+                </control>
+
                 <control type="label">
                     <description>Time Label</description>
                     <left>270</left>
@@ -472,6 +508,17 @@
                     <height>28</height>
                     <aspectratio>keep</aspectratio>
                     <texture colordiffuse="white">equaliser.gif</texture>
+                    <visible>Player.Playing</visible>
+                </control>
+                <control type="image">
+                    <description>Player Icon</description>
+                    <left>230</left>
+                    <top>482</top>
+                    <width>28</width>
+                    <height>34</height>
+                    <aspectratio>keep</aspectratio>
+                    <texture colordiffuse="white">osd_modern/osdpause.png</texture>
+                    <visible>!Player.Playing</visible>
                 </control>
                 <control type="label">
                     <description>Time Label</description>
@@ -535,6 +582,17 @@
                     <height>28</height>
                     <aspectratio>keep</aspectratio>
                     <texture colordiffuse="white">equaliser.gif</texture>
+                    <visible>Player.Playing</visible>
+                </control>
+                <control type="image">
+                    <description>Player Icon</description>
+                    <left>230</left>
+                    <top>482</top>
+                    <width>28</width>
+                    <height>34</height>
+                    <aspectratio>keep</aspectratio>
+                    <texture colordiffuse="white">osd_modern/osdpause.png</texture>
+                    <visible>!Player.Playing</visible>
                 </control>
                 <control type="label">
                     <description>Time Label</description>
@@ -724,7 +782,7 @@
                             <param name="Texture" value="OSDNextTrack" />
                         </include>
                         <onleft>605</onleft>
-                        <onright>607</onright>
+                        <onright>608</onright>
                         <onup condition="!Skin.HasSetting(LowerMainMenuBar)">9003</onup>
                         <onup condition="Skin.HasSetting(LowerMainMenuBar)">9002</onup>
                         <ondown>9000</ondown>
@@ -738,8 +796,8 @@
                             <param name="Size" value="45" />
                             <param name="Texture" value="OSDVolDown" />
                         </include>
-                        <onleft>607</onleft>
-                        <onright>609</onright>
+                        <onleft>606</onleft>
+                        <onright>607</onright>
                         <onup condition="!Skin.HasSetting(LowerMainMenuBar)">9003</onup>
                         <onup condition="Skin.HasSetting(LowerMainMenuBar)">9002</onup>
                         <ondown>9000</ondown>
@@ -756,7 +814,7 @@
                             <param name="Texture" value="OSDVolUp" />
                         </include>
                         <onleft>608</onleft>
-                        <onright>602</onright>
+                        <onright>609</onright>
                         <onup condition="!Skin.HasSetting(LowerMainMenuBar)">9003</onup>
                         <onup condition="Skin.HasSetting(LowerMainMenuBar)">9002</onup>
                         <ondown>9000</ondown>
@@ -775,8 +833,8 @@
                             <param name="Size" value="45" />
                             <param name="Texture" value="OSDChannelDown" />
                         </include>
-                        <onleft>606</onleft>
-                        <onright>608</onright>
+                        <onleft>610</onleft>
+                        <onright>602</onright>
                         <onup condition="!Skin.HasSetting(LowerMainMenuBar)">9003</onup>
                         <onup condition="Skin.HasSetting(LowerMainMenuBar)">9002</onup>
                         <ondown>9000</ondown>

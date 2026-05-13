@@ -38,28 +38,8 @@
                         <height>500</height>
                         <aspectratio>scale</aspectratio>
                         <texture background="true">$VAR[PosterThumbPoster]</texture>
-                        <visible>!String.IsEqual(ListItem.Label,..)</visible>
                     </control>
 
-                     <!-- back -->
-                    <control type="image">
-                        <left>3</left>
-                        <top>60</top>
-                        <width>321</width>
-                        <height>500</height>
-                        <aspectratio>scale</aspectratio>
-                        <texture background="true">white-darker.png</texture>
-                        <visible>String.IsEqual(ListItem.Label,..)</visible>
-                    </control>
-                    <control type="image">
-                        <left>3</left>
-                        <top>60</top>
-                        <width>321</width>
-                        <height>500</height>
-                        <aspectratio>keep</aspectratio>
-                        <texture background="true">DefaultFolderBack.png</texture>
-                        <visible>String.IsEqual(ListItem.Label,..)</visible>
-                    </control>
 
                     <control type="image">
                         <left>3</left>
@@ -133,31 +113,6 @@
                         <texture background="true">$VAR[PosterThumbPoster]</texture>
                         <animation reversible="false" effect="zoom" start="3,60,321,500" end="-22,0,380,585" time="150">focus</animation>
                         <animation reversible="false" effect="zoom" end="3,60,321,500" start="-22,0,380,585" time="150">unfocus</animation>
-                        <visible>!String.IsEqual(ListItem.Label,..)</visible>
-                    </control>
-
-                    <!-- back -->
-                    <control type="image">
-                        <left>3</left>
-                        <top>60</top>
-                        <width>321</width>
-                        <height>500</height>
-                        <aspectratio>scale</aspectratio>
-                        <texture background="true">white-darker.png</texture>
-                        <animation reversible="false" effect="zoom" start="3,60,321,500" end="-22,0,380,585" time="150">focus</animation>
-                        <animation reversible="false" effect="zoom" end="3,60,321,500" start="-22,0,380,585" time="150">unfocus</animation>
-                        <visible>String.IsEqual(ListItem.Label,..)</visible>
-                    </control>
-                    <control type="image">
-                        <left>3</left>
-                        <top>60</top>
-                        <width>321</width>
-                        <height>500</height>
-                        <aspectratio>keep</aspectratio>
-                        <texture background="true">DefaultFolderBack.png</texture>
-                        <animation reversible="false" effect="zoom" start="3,60,321,500" end="-22,0,380,585" time="150">focus</animation>
-                        <animation reversible="false" effect="zoom" end="3,60,321,500" start="-22,0,380,585" time="150">unfocus</animation>
-                        <visible>String.IsEqual(ListItem.Label,..)</visible>
                     </control>
                     
                     <control type="image">
@@ -348,8 +303,8 @@
         </control>
         <control type="scrollbar" id="60">
             <left>0</left>
-            <include condition="!Skin.HasSetting(EnableFloorReturnButtons)">ScrollbarPositionBottom</include>
-            <include condition="Skin.HasSetting(EnableFloorReturnButtons)">ScrollbarPositionTop</include>
+            <include condition="!Skin.String(EnableFloorAdditionalNav,Style1)">ScrollbarPositionBottom</include>
+            <include condition="Skin.String(EnableFloorAdditionalNav,Style1)">ScrollbarPositionTop</include>
             <width>1926</width>
             <height>28</height>
             <texturesliderbackground border="14,0,14,0">ScrollBarH.png</texturesliderbackground>
@@ -513,8 +468,8 @@
         </control>
         <control type="scrollbar" id="60">
             <left>0</left>
-            <include condition="!Skin.HasSetting(EnableFloorReturnButtons)">ScrollbarPositionBottom</include>
-            <include condition="Skin.HasSetting(EnableFloorReturnButtons)">ScrollbarPositionTop</include>
+            <include condition="!Skin.String(EnableFloorAdditionalNav,Style1)">ScrollbarPositionBottom</include>
+            <include condition="Skin.String(EnableFloorAdditionalNav,Style1)">ScrollbarPositionTop</include>
             <width>1926</width>
             <height>28</height>
             <texturesliderbackground border="14,0,14,0">ScrollBarH.png</texturesliderbackground>
@@ -564,8 +519,8 @@
         <control type="scrollbar" id="60">
             <depth>DepthContent</depth>
             <left>0</left>
-            <include condition="!Skin.HasSetting(EnableFloorReturnButtons)">ScrollbarPositionBottom</include>
-            <include condition="Skin.HasSetting(EnableFloorReturnButtons)">ScrollbarPositionTop</include>
+            <include condition="!Skin.String(EnableFloorAdditionalNav,Style1)">ScrollbarPositionBottom</include>
+            <include condition="Skin.String(EnableFloorAdditionalNav,Style1)">ScrollbarPositionTop</include>
             <width>1926</width>
             <height>28</height>
             <texturesliderbackground border="14,0,14,0">ScrollBarH.png</texturesliderbackground>
@@ -1214,8 +1169,8 @@
         </control>
         <control type="scrollbar" id="60">
             <left>0</left>
-            <include condition="!Skin.HasSetting(EnableFloorReturnButtons)">ScrollbarPositionBottom</include>
-            <include condition="Skin.HasSetting(EnableFloorReturnButtons)">ScrollbarPositionTop</include>
+            <include condition="!Skin.String(EnableFloorAdditionalNav,Style1)">ScrollbarPositionBottom</include>
+            <include condition="Skin.String(EnableFloorAdditionalNav,Style1)">ScrollbarPositionTop</include>
             <width>1926</width>
             <height>28</height>
             <texturesliderbackground border="14,0,14,0">ScrollBarH.png</texturesliderbackground>
@@ -1265,8 +1220,8 @@
         <control type="scrollbar" id="60">
             <depth>DepthContent</depth>
             <left>0</left>
-            <include condition="!Skin.HasSetting(EnableFloorReturnButtons)">ScrollbarPositionBottom</include>
-            <include condition="Skin.HasSetting(EnableFloorReturnButtons)">ScrollbarPositionTop</include>
+            <include condition="!Skin.String(EnableFloorAdditionalNav,Style1)">ScrollbarPositionBottom</include>
+            <include condition="Skin.String(EnableFloorAdditionalNav,Style1)">ScrollbarPositionTop</include>
             <width>1926</width>
             <height>28</height>
             <texturesliderbackground border="14,0,14,0">ScrollBarH.png</texturesliderbackground>
@@ -1458,6 +1413,7 @@
         </itemlayout>
         <focusedlayout height="465" width="240">
             
+            <!-- no focus -->
             <control type="image">
                 <left>10</left>
                 <top>20</top>
@@ -1469,6 +1425,8 @@
                 <include>TextureBorderViews</include>
                 <visible>!Control.HasFocus(527)</visible>
             </control>
+
+            <!-- focus -->
             <control type="image">
                 <left>10</left>
                 <top>20</top>
@@ -3805,13 +3763,13 @@
                 <left>70</left>
                 <top>100</top>
                 <width>1876</width>
-                <height>945</height>
+                <height>980</height>
                 <onleft>2</onleft>
-                <onright>732</onright>
+                <onright>60</onright>
                 <onup>732</onup>
                 <ondown>732</ondown>
                 <viewtype label="31030">panel</viewtype>
-                <pagecontrol></pagecontrol>
+                <pagecontrol>60</pagecontrol>
                 <scrolltime>200</scrolltime>
                 <preloaditems>200</preloaditems>
                 <visible>Container.Content(Movies) | Container.Content(TVShows) | Container.Content(Sets) | Container.Content(MusicVideos)</visible>
@@ -3902,6 +3860,7 @@
                             <include>VisibleFadeEffect</include>
                             <texture background="true">$VAR[PosterThumbPoster]</texture>
                         </control>
+
                         <control type="image">
                             <left>93</left>
                             <top>0</top>
@@ -3948,6 +3907,21 @@
                         </control> 
                     </control>
                 </focusedlayout>
+            </control>
+            <control type="scrollbar" id="60">
+                <right>-10</right>
+                <top>-6</top>
+                <width>28</width>
+                <height>1095</height>
+                <texturesliderbackground border="0,14,0,14">ScrollBarV.png</texturesliderbackground>
+                <texturesliderbar border="0,14,0,14">ScrollBarV_bar.png</texturesliderbar>
+                <texturesliderbarfocus border="0,14,0,14" colordiffuse="$VAR[MainColorOne]">ScrollBarV_bar_focus.png</texturesliderbarfocus>
+                <textureslidernib colordiffuse="$VAR[MainColorOne]">ScrollBarNib.png</textureslidernib>
+                <textureslidernibfocus colordiffuse="$VAR[MainColorOne]">ScrollBarNib.png</textureslidernibfocus>
+                <onleft>50</onleft>
+                <onright>800</onright>
+                <showonepage>true</showonepage>
+                <orientation>vertical</orientation>
             </control>
         </control>
     </include>
