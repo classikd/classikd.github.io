@@ -2251,7 +2251,7 @@
                     <visible>String.IsEqual(Skin.String(TopLeftHomeInfo),ProfileAvatarName)</visible>
                 </control>
                 <!-- clock date -->
-                <control type="grouplist">
+                <control type="grouplist" id="1">
                     <left>60</left>
                     <top>25</top>
                     <width>1725</width>
@@ -2267,7 +2267,7 @@
                 <include condition="!Skin.HasSetting(HideSystemTime) + String.IsEqual(Skin.String(TopLeftHomeInfo),ClockDate)">DateLeftPosition</include>
             
                 <!-- clock -->
-                <control type="grouplist">
+                <control type="grouplist" id="1">
                     <left>65</left>
                     <top>35</top>
                     <width>1725</width>
@@ -2308,10 +2308,10 @@
                 <include>Window_OpenClose_Animation</include>
      		    <control type="multiimage" id="1">
                     <description>Weather image</description>
-                    <left>0</left>
-                    <top>-7</top>
-                    <width>90</width>
-                    <height>90</height>
+                    <left>6</left>
+                    <top>-2</top>
+                    <width>75</width>
+                    <height>75</height>
 				    <aspectratio aligny="center">keep</aspectratio>
                     <timeperimage>70</timeperimage>
                     <fadetime>1</fadetime>
@@ -2446,7 +2446,7 @@
     <include name="TopRightInfoHome">
         
         <!-- Clock date (default) -->
-        <control type="grouplist">
+        <control type="grouplist" id="1">
             <left>120</left>
             <top>25</top>
             <width>1725</width>
@@ -2460,7 +2460,7 @@
         <include condition="!Skin.HasSetting(HideSystemTime) + [String.IsEmpty(Skin.String(TopRightHomeInfo)) | String.IsEqual(Skin.String(TopRightHomeInfo),ClockDate)]">Date</include>
     
         <!-- Clock -->
-        <control type="grouplist">
+        <control type="grouplist" id="1">
             <left>120</left>
             <top>35</top>
             <width>1725</width>
@@ -2565,10 +2565,10 @@
             <include>Window_OpenClose_Animation</include>
             <control type="multiimage" id="1">
                 <description>Weather image</description>
-                <left>1720</left>
-                <top>-7</top>
-                <width>90</width>
-                <height>90</height>
+                <left>1722</left>
+                <top>-2</top>
+                <width>75</width>
+                <height>75</height>
                 <aspectratio aligny="center">keep</aspectratio>
                 <timeperimage>70</timeperimage>
                 <fadetime>1</fadetime>
@@ -2599,7 +2599,7 @@
                 <aligny>center</aligny>
                 <itemgap>5</itemgap>
 
-                <control type="label">
+                <control type="label" id="100">
                     <width>auto</width>
                     <height>33</height>
                     <font>font10</font>
@@ -2610,7 +2610,7 @@
                     <shadowcolor>black</shadowcolor>
                 </control>
 
-                <control type="label">
+                <control type="label" id="100">
                     <width>auto</width>
                     <height>45</height>
                     <align>right</align>
@@ -2621,7 +2621,7 @@
                     <label>[B]$INFO[Window(Weather).Property(Current.Temperature)][/B]</label>
                 </control>
 
-                <control type="label">
+                <control type="label" id="100">
                     <width>auto</width>
                     <height>33</height>
                     <font>font10</font>
@@ -3563,6 +3563,7 @@
                     <orientation>horizontal</orientation>
                     <align>left</align>
                     <itemgap>15</itemgap>
+                    <usecontrolcoords>true</usecontrolcoords>
                     <visible>!Skin.HasSetting(AllScreenTopLeftWidget) + !Skin.HasSetting(HideTopLeftWindows)</visible>
                     <control type="label">
                         <include>WindowTitleCommons</include>
@@ -3578,19 +3579,24 @@
                         <label>> [COLOR=$VAR[MainColorOne]]$INFO[Control.GetLabel(2)][/COLOR]</label>
                         <visible>$PARAM[ShowLabel2]</visible>
                     </control>
-                    <control type="label">
-                        <height>48</height>
+
+                    <control type="button">
+                        <top>8</top>
+                        <width min="15" max="250">auto</width>
+                        <height>30</height>
+                        <align>center</align>
+                        <description>Page Count Label</description>
+                        <texturefocus colordiffuse="$VAR[MainColorOne]">white85.png</texturefocus>
+                        <texturenofocus colordiffuse="$VAR[MainColorOne]">white85.png</texturenofocus>
+                        <label>$INFO[Container.NumItems,, $LOCALIZE[31794]]</label>
+                        <font>font10</font>
+                        <textcolor>black</textcolor>
                         <aligny>center</aligny>
+                        <include>Window_OpenClose_Animation</include>
                         <visible>!Skin.HasSetting(HidePageCountInfo)</visible>
                         <visible>!String.IsEmpty(Container.NumItems)</visible>
-                        <description>Page Count Label</description>
-                        <font>font11</font>
-                        <textcolor>white</textcolor>
-                        <shadowcolor>black</shadowcolor>
-                        <scroll>false</scroll>
-                        <label>($INFO[Container.NumItems,, $LOCALIZE[31025]])</label>
-                        <include>Window_OpenClose_Animation</include>
                     </control>
+
                 </control>
                 <include>TopRightInfo</include>
                 <include condition="Skin.HasSetting(AllScreenTopLeftWidget) + !Skin.HasSetting(HideTopLeftWindows)">TopLeftInfo</include>

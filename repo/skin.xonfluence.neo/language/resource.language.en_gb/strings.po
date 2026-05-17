@@ -559,7 +559,7 @@ msgid "Home page \"Pictures\" submenu"
 msgstr ""
 
 msgctxt "#31137"
-msgid "Low main menu bar"
+msgid "Low position"
 msgstr ""
 
 msgctxt "#31138"
@@ -991,7 +991,7 @@ msgid "Wrap around menu"
 msgstr ""
 
 msgctxt "#31274"
-msgid "Return to start menu scroll"
+msgid "Return to start scroll"
 msgstr ""
 
 msgctxt "#31275"
@@ -1424,7 +1424,7 @@ msgid "Single global background"
 msgstr ""
 
 msgctxt "#31404"
-msgid "Default focused menu item"
+msgid "Default focused item"
 msgstr ""
 
 msgctxt "#31411"
@@ -2090,7 +2090,7 @@ msgid "Recent Concerts (includes watched)"
 msgstr ""
 
 msgctxt "#31717"
-msgid "Main menu in all caps"
+msgid "Text in all caps"
 msgstr ""
 
 msgctxt "#31718"
@@ -2378,7 +2378,7 @@ msgid "Hide progress bars"
 msgstr ""
 
 msgctxt "#31789"
-msgid "TV channels"
+msgid "PVR channels"
 msgstr ""
 
 msgctxt "#31790"
@@ -2395,6 +2395,14 @@ msgstr ""
 
 msgctxt "#31793"
 msgid "Coverflow"
+msgstr ""
+
+msgctxt "#31794"
+msgid "items"
+msgstr ""
+
+msgctxt "#31795"
+msgid "Tiles"
 msgstr ""
 
 msgctxt "#31901"
@@ -2442,7 +2450,7 @@ msgid "Fanart script"
 msgstr ""
 
 msgctxt "#31923"
-msgid "Disable PVR in menu"
+msgid "Disable PVR item"
 msgstr ""
 
 msgctxt "#31924"
@@ -2674,7 +2682,7 @@ msgid "Kodi intro movie path"
 msgstr ""
 
 msgctxt "#31982"
-msgid "Custom widgets limit amount"
+msgid "Widget limit amount"
 msgstr ""
 
 msgctxt "#31983"
