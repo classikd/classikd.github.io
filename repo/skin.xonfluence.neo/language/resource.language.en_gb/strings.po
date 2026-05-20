@@ -2078,7 +2078,7 @@ msgid "Auto scrolling for plot & review"
 msgstr ""
 
 msgctxt "#31714"
-msgid "Recent Movies (includes watched)"
+msgid "Recent movies (includes watched)"
 msgstr ""
 
 msgctxt "#31715"
@@ -2403,6 +2403,18 @@ msgstr ""
 
 msgctxt "#31795"
 msgid "Tiles"
+msgstr ""
+
+msgctxt "#31796"
+msgid "Poster & details"
+msgstr ""
+
+msgctxt "#31797"
+msgid "Recent TV shows (includes watched)"
+msgstr ""
+
+msgctxt "#31798"
+msgid "Random TV shows"
 msgstr ""
 
 msgctxt "#31901"

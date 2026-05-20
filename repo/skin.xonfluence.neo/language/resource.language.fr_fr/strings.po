@@ -2141,7 +2141,7 @@ msgid "Auto scrolling for plot & review"
 msgstr "Défilement automatique pour le synopsys et les critiques"
 
 msgctxt "#31714"
-msgid "Recent Movies (includes watched)"
+msgid "Recent movies (includes watched)"
 msgstr "Films récents (visionnés inclus)"
 
 msgctxt "#31715"
@@ -2467,6 +2467,18 @@ msgstr "éléments"
 msgctxt "#31795"
 msgid "Tiles"
 msgstr "Mosaïques"
+
+msgctxt "#31796"
+msgid "Poster & details"
+msgstr "Affiche et détails"
+
+msgctxt "#31797"
+msgid "Recent TV shows (includes watched)"
+msgstr "Séries TV récentes (visionnées incluses)"
+
+msgctxt "#31798"
+msgid "Random TV shows"
+msgstr "Séries TV aléatoires"
 
 msgctxt "#31901"
 msgid "36-hour forecast"

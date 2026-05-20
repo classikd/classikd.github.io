@@ -336,6 +336,81 @@
                 </control>
 			</control>	
             
+			<!-- Recent TV show (including watched) -->
+			<control type="group">
+			    <visible>Library.HasContent(TVShows) + String.IsEqual(Container(9000).ListItem.Property(WidgetSet),RecentTVShowsWatched)</visible>
+				<!-- Small widget -->
+				<control type="group">
+                    <left>15</left>
+                    <top>90</top>
+                    <visible>String.IsEqual(Container(9000).ListItem.Property(WidgetLayout),Small) | $EXP[showSmallWidget]</visible>
+					<include>VisibleFadeEffect</include>
+                    <include content="VideoSmallWidgetLayout">
+                        <param name="Control">801200</param>
+                        <param name="Format">Container(9000).ListItem.Property(WidgetFormat)</param>
+                        <param name="Content">TvShowsRecentWithWatched</param>
+                    </include>
+                    <include content="VideoSmallWidgetButtons">
+                        <param name="Control">801200</param>
+                        <param name="Format">Container(9000).ListItem.Property(WidgetFormat)</param>
+                    </include>
+                </control>
+				<!-- Large widget -->
+				<control type="group">
+                    <left>0</left>
+                    <top>81</top>
+                    <visible>String.IsEqual(Container(9000).ListItem.Property(WidgetLayout),Large) + ![$EXP[showSmallWidget]]</visible>
+					<include>VisibleFadeEffect</include>
+                    <include content="VideoLargeWidgetLayout">
+                        <param name="Control">801300</param>
+                        <param name="Format">Container(9000).ListItem.Property(WidgetFormat)</param>
+                        <param name="Content">TvShowsRecentWithWatched</param>
+                    </include>
+                    <include content="VideoLargeWidgetButtons">
+                        <param name="Control">801300</param>
+                        <param name="Format">Container(9000).ListItem.Property(WidgetFormat)</param>
+                    </include>
+                </control>
+			</control>
+            
+            
+			<!-- Random TV show -->
+			<control type="group">
+			    <visible>Library.HasContent(TVShows) + String.IsEqual(Container(9000).ListItem.Property(WidgetSet),RandomTVShows)</visible>
+				<!-- Small widget -->
+				<control type="group">
+                    <left>15</left>
+                    <top>90</top>
+                    <visible>String.IsEqual(Container(9000).ListItem.Property(WidgetLayout),Small) | $EXP[showSmallWidget]</visible>
+					<include>VisibleFadeEffect</include>
+                    <include content="VideoSmallWidgetLayout">
+                        <param name="Control">801300</param>
+                        <param name="Format">Container(9000).ListItem.Property(WidgetFormat)</param>
+                        <param name="Content">TvShowsRandom</param>
+                    </include>
+                    <include content="VideoSmallWidgetButtons">
+                        <param name="Control">801300</param>
+                        <param name="Format">Container(9000).ListItem.Property(WidgetFormat)</param>
+                    </include>
+                </control>
+				<!-- Large widget -->
+				<control type="group">
+                    <left>0</left>
+                    <top>81</top>
+                    <visible>String.IsEqual(Container(9000).ListItem.Property(WidgetLayout),Large) + ![$EXP[showSmallWidget]]</visible>
+					<include>VisibleFadeEffect</include>
+                    <include content="VideoLargeWidgetLayout">
+                        <param name="Control">801400</param>
+                        <param name="Format">Container(9000).ListItem.Property(WidgetFormat)</param>
+                        <param name="Content">TvShowsRandom</param>
+                    </include>
+                    <include content="VideoLargeWidgetButtons">
+                        <param name="Control">801400</param>
+                        <param name="Format">Container(9000).ListItem.Property(WidgetFormat)</param>
+                    </include>
+                </control>
+			</control>
+            
 			<!-- Recent Episodes (including watched) -->
 			<control type="group">
 			    <visible>Library.HasContent(TVShows) + String.IsEqual(Container(9000).ListItem.Property(WidgetSet),RecentEpisodesWatched)</visible>
@@ -1847,23 +1922,14 @@
         <param name="Control" default="8000" />
         <param name="Content" default="" />
         <definition>
-            <control type="image">
-                <left>-30</left>
-                <top>25</top>
-                <width>1980</width>
-                <height>420</height>
-                <texture border="5">RecentAddedBack.png</texture>
-                <include>HomeTransparentEffect</include>
-                <visible>Integer.IsGreater(Container($PARAM[Control]).NumItems,0)</visible>
-            </control>
             <control type="list" id="$PARAM[Control]">
                 <animation effect="slide" start="0,0" end="736,0" time="0" condition="String.IsEqual(Container($PARAM[Control]).NumItems,1)">Conditional</animation>
                 <animation effect="slide" start="0,0" end="552,0" time="0" condition="String.IsEqual(Container($PARAM[Control]).NumItems,2)">Conditional</animation>
                 <animation effect="slide" start="0,0" end="368,0" time="0" condition="String.IsEqual(Container($PARAM[Control]).NumItems,3)">Conditional</animation>
                 <animation effect="slide" start="0,0" end="184,0" time="0" condition="String.IsEqual(Container($PARAM[Control]).NumItems,4)">Conditional</animation>
-                <left>40</left>
+                <left>65</left>
                 <top>25</top>
-                <width>1840</width>
+                <width>1790</width>
                 <height>428</height>
                 <onleft>$PARAM[Control]</onleft>
                 <onright>$PARAM[Control]</onright>
@@ -1874,11 +1940,19 @@
                 <viewtype label="535">list</viewtype>
                 <scrolltime tween="cubic" easing="out">500</scrolltime>
                 <orientation>Horizontal</orientation>
-                <itemlayout height="428" width="368">
+                <itemlayout height="428" width="358">
+                    <control type="image">
+                        <left>0</left>
+                        <top>0</top>
+                        <width>348</width>
+                        <height>410</height>
+                        <texture border="15">RecentAddedBack.png</texture>
+                        <include>HomeTransparentEffect</include>
+                    </control>
                     <control type="multiimage">
-                        <left>15</left>
-                        <top>60</top>
-                        <width>338</width>
+                        <left>10</left>
+                        <top>50</top>
+                        <width>330</width>
                         <height>300</height>
 						<timeperimage>70</timeperimage>
 				        <fadetime>1</fadetime>
@@ -1889,7 +1963,7 @@
                         <include>TextureBorderWidgets</include>
                     </control>
                     <control type="label">
-                        <left>65</left>
+                        <left>55</left>
                         <top>32</top>
                         <width>240</width>
                         <height>30</height>
@@ -1903,7 +1977,7 @@
                     <control type="label">
                         <left>15</left>
                         <top>332</top>
-                        <width>338</width>
+                        <width>330</width>
                         <height>30</height>
                         <font>font10</font>
                         <textcolor>white</textcolor>
@@ -1915,7 +1989,7 @@
                     <control type="label">
                         <left>15</left>
                         <top>360</top>
-                        <width>338</width>
+                        <width>330</width>
                         <height>30</height>
                         <font>font12</font>
                         <textcolor>white</textcolor>
@@ -1925,11 +1999,28 @@
                         <label>$INFO[ListItem.Label2]</label>
                     </control>
                 </itemlayout>
-                <focusedlayout height="428" width="368">
+                <focusedlayout height="428" width="358">
+                    <control type="image">
+                        <left>0</left>
+                        <top>0</top>
+                        <width>348</width>
+                        <height>410</height>
+                        <texture border="15">RecentAddedBack.png</texture>
+                        <include>HomeTransparentEffect</include>
+                        <visible>!Control.HasFocus($PARAM[Control])</visible>
+                    </control>
+                    <control type="image">
+                        <left>0</left>
+                        <top>0</top>
+                        <width>348</width>
+                        <height>410</height>
+                        <texture border="15" colordiffuse="$VAR[MainColorOne]">white.png</texture>
+                        <visible>Control.HasFocus($PARAM[Control])</visible>
+                    </control>
                     <control type="multiimage">
-                        <left>15</left>
-                        <top>60</top>
-                        <width>338</width>
+                        <left>10</left>
+                        <top>50</top>
+                        <width>330</width>
                         <height>300</height>
 						<timeperimage>70</timeperimage>
 				        <fadetime>1</fadetime>
@@ -1941,9 +2032,9 @@
                         <visible>Control.HasFocus($PARAM[Control])</visible>
                     </control>
 					<control type="multiimage">
-                        <left>15</left>
-                        <top>60</top>
-                        <width>338</width>
+                        <left>10</left>
+                        <top>50</top>
+                        <width>330</width>
                         <height>300</height>
 						<timeperimage>70</timeperimage>
 				        <fadetime>1</fadetime>
@@ -1954,8 +2045,9 @@
                         <include>TextureBorderWidgets</include>
                         <visible>!Control.HasFocus($PARAM[Control])</visible>
                     </control>
+
                     <control type="label">
-                        <left>65</left>
+                        <left>55</left>
                         <top>32</top>
                         <width>240</width>
                         <height>30</height>
@@ -1965,11 +2057,26 @@
                         <align>center</align>
                         <aligny>center</aligny>
                         <label>[B]$INFO[ListItem.Label][/B]</label>
+                        <visible>!Control.HasFocus($PARAM[Control])</visible>
                     </control>
+                    <control type="label">
+                        <left>55</left>
+                        <top>32</top>
+                        <width>240</width>
+                        <height>30</height>
+                        <font>font12</font>
+                        <textcolor>black</textcolor>
+                        <selectedcolor>selected</selectedcolor>
+                        <align>center</align>
+                        <aligny>center</aligny>
+                        <label>[B]$INFO[ListItem.Label][/B]</label>
+                        <visible>Control.HasFocus($PARAM[Control])</visible>
+                    </control>
+
                     <control type="label">
                         <left>15</left>
                         <top>332</top>
-                        <width>338</width>
+                        <width>330</width>
                         <height>30</height>
                         <font>font10</font>
                         <textcolor>white</textcolor>
@@ -1977,11 +2084,26 @@
                         <align>center</align>
                         <aligny>top</aligny>
                         <label>$INFO[ListItem.Property(Temperatures)]</label>
+                        <visible>!Control.HasFocus($PARAM[Control])</visible>
                     </control>
                     <control type="label">
                         <left>15</left>
+                        <top>332</top>
+                        <width>330</width>
+                        <height>30</height>
+                        <font>font10</font>
+                        <textcolor>black</textcolor>
+                        <selectedcolor>selected</selectedcolor>
+                        <align>center</align>
+                        <aligny>top</aligny>
+                        <label>$INFO[ListItem.Property(Temperatures)]</label>
+                        <visible>Control.HasFocus($PARAM[Control])</visible>
+                    </control>
+
+                    <control type="label">
+                        <left>15</left>
                         <top>360</top>
-                        <width>338</width>
+                        <width>330</width>
                         <height>30</height>
                         <font>font12</font>
                         <textcolor>white</textcolor>
@@ -1994,10 +2116,10 @@
                     <control type="label">
                         <left>15</left>
                         <top>360</top>
-                        <width>338</width>
+                        <width>330</width>
                         <height>30</height>
                         <font>font12</font>
-                        <textcolor>$VAR[MainColorOne]</textcolor>
+                        <textcolor>black</textcolor>
                         <selectedcolor>selected</selectedcolor>
                         <align>center</align>
                         <aligny>center</aligny>
@@ -2184,7 +2306,7 @@
                 <animation effect="slide" start="0,0" end="450,0" time="0" condition="String.IsEqual(Container($PARAM[Control]).NumItems,3)">Conditional</animation>
 				<animation effect="slide" start="0,0" end="300,0" time="0" condition="String.IsEqual(Container($PARAM[Control]).NumItems,4)">Conditional</animation>
 				<animation effect="slide" start="0,0" end="150,0" time="0" condition="String.IsEqual(Container($PARAM[Control]).NumItems,5)">Conditional</animation>
-                <left>50</left>
+                <left>65</left>
                 <top>18</top>
                 <width>1792</width>
                 <height>330</height>
@@ -2226,7 +2348,7 @@
                         <width>224</width>
                         <height>240</height>
                         <aspectratio>scale</aspectratio>
-                        <texture background="true">$INFO[ListItem.Art(thumb)]</texture>
+                        <texture background="true" fallback="DefaultAlbumCover.png">$INFO[ListItem.Art(thumb)]</texture>
                         <visible>!String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
                     </control>
 
@@ -2307,18 +2429,7 @@
                         <width>224</width>
                         <height>240</height>
                         <aspectratio>scale</aspectratio>
-                        <texture background="true">$INFO[ListItem.Art(thumb)]</texture>
-                        <visible>Control.HasFocus($PARAM[Control])</visible>
-                        <visible>!String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
-                    </control>
-                    <control type="image">
-                        <left>10</left>
-                        <top>10</top>
-                        <width>224</width>
-                        <height>240</height>
-                        <aspectratio>scale</aspectratio>
-                        <texture background="true">$INFO[ListItem.Art(thumb)]</texture>
-                        <visible>!Control.HasFocus($PARAM[Control])</visible>
+                        <texture background="true" fallback="DefaultAlbumCover.png">$INFO[ListItem.Art(thumb)]</texture>
                         <visible>!String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
                     </control>
 
@@ -2383,23 +2494,14 @@
         <param name="Control" default="8000" />
         <param name="Content" default="" />
         <definition>
-            <control type="image">
-                <left>-30</left>
-                <top>25</top>
-                <width>1980</width>
-                <height>420</height>
-                <texture border="5">RecentAddedBack.png</texture>
-                <include>HomeTransparentEffect</include>
-                <visible>Integer.IsGreater(Container($PARAM[Control]).NumItems,0)</visible>
-            </control>
             <control type="list" id="$PARAM[Control]">
                 <animation effect="slide" start="0,0" end="720,0" time="0" condition="String.IsEqual(Container($PARAM[Control]).NumItems,1)">Conditional</animation>
                 <animation effect="slide" start="0,0" end="540,0" time="0" condition="String.IsEqual(Container($PARAM[Control]).NumItems,2)">Conditional</animation>
                 <animation effect="slide" start="0,0" end="360,0" time="0" condition="String.IsEqual(Container($PARAM[Control]).NumItems,3)">Conditional</animation>
 				<animation effect="slide" start="0,0" end="180,0" time="0" condition="String.IsEqual(Container($PARAM[Control]).NumItems,4)">Conditional</animation>
-                <left>50</left>
-                <top>30</top>
-                <width>1805</width>
+                <left>65</left>
+                <top>25</top>
+                <width>1790</width>
                 <height>428</height>
                 <onleft>$PARAM[Control]</onleft>
                 <onright>$PARAM[Control]</onright>
@@ -2410,11 +2512,19 @@
                 <viewtype label="535">list</viewtype>
                 <scrolltime tween="cubic" easing="out">500</scrolltime>
                 <orientation>Horizontal</orientation>
-                <itemlayout height="428" width="360">
+                <itemlayout height="428" width="358">
                     <control type="image">
-                        <left>12</left>
+                        <left>0</left>
+                        <top>0</top>
+                        <width>348</width>
+                        <height>410</height>
+                        <texture border="15">RecentAddedBack.png</texture>
+                        <include>HomeTransparentEffect</include>
+                    </control>
+                    <control type="image">
+                        <left>9</left>
                         <top>10</top>
-                        <width>350</width>
+                        <width>332</width>
                         <height>390</height>
                         <texture background="true">more_items.png</texture>
                         <aspectratio>keep</aspectratio>
@@ -2423,37 +2533,55 @@
                         <visible>String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
                     </control>
                     <control type="image">
-                        <left>12</left>
+                        <left>9</left>
                         <top>10</top>
-                        <width>350</width>
-                        <height>390</height>
+                        <width>332</width>
+                        <height>350</height>
                         <aspectratio>scale</aspectratio>
-                        <texture background="true">$INFO[ListItem.Art(thumb)]</texture>
+                        <texture background="true" fallback="DefaultAlbumCover.png">$INFO[ListItem.Art(thumb)]</texture>
                         <bordertexture border="5">blank.png</bordertexture>
                         <bordersize>5</bordersize>
                         <visible>!String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
+                    </control>
+
+                    <control type="label">
+                        <left>15</left>
+                        <top>366</top>
+                        <width>324</width>
+                        <height>30</height>
+                        <font>font10_title</font>
+                        <textcolor>white</textcolor>
+                        <selectedcolor>selected</selectedcolor>
+                        <align>center</align>
+                        <aligny>center</aligny>
+                        <label>$INFO[ListItem.Label]</label>
                     </control>
     
                 </itemlayout>
-                <focusedlayout height="428" width="360">
+                <focusedlayout height="428" width="358">
+                    <control type="image">
+                        <left>0</left>
+                        <top>0</top>
+                        <width>348</width>
+                        <height>410</height>
+                        <texture border="15">RecentAddedBack.png</texture>
+                        <include>HomeTransparentEffect</include>
+                        <visible>!Control.HasFocus($PARAM[Control])</visible>
+                    </control>
+                    <control type="image">
+                        <left>0</left>
+                        <top>0</top>
+                        <width>348</width>
+                        <height>410</height>
+                        <texture border="15" colordiffuse="$VAR[MainColorOne]">white.png</texture>
+                        <visible>Control.HasFocus($PARAM[Control])</visible>
+                    </control>
 
                     <!-- more -->
                     <control type="image">
-                        <left>12</left>
+                        <left>9</left>
                         <top>10</top>
-                        <width>350</width>
-                        <height>390</height>
-                        <texture background="true" colordiffuse="$VAR[MainColorOne]">more_items.png</texture>
-                        <aspectratio>keep</aspectratio>
-                        <bordertexture border="5">blank.png</bordertexture>
-                        <include>TextureBorderWidgets</include>
-                        <visible>String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
-                        <visible>Control.HasFocus($PARAM[Control])</visible>
-                    </control>
-                    <control type="image">
-                        <left>12</left>
-                        <top>10</top>
-                        <width>350</width>
+                        <width>332</width>
                         <height>390</height>
                         <texture background="true">more_items.png</texture>
                         <aspectratio>keep</aspectratio>
@@ -2462,33 +2590,57 @@
                         <visible>String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
                         <visible>!Control.HasFocus($PARAM[Control])</visible>
                     </control>
-
-
                     <control type="image">
-                        <left>12</left>
+                        <left>9</left>
                         <top>10</top>
-                        <width>350</width>
+                        <width>332</width>
                         <height>390</height>
-                        <aspectratio>scale</aspectratio>
-                        <texture background="true">$INFO[ListItem.Art(thumb)]</texture>
-                        <bordertexture border="5" colordiffuse="$VAR[MainColorOne]">folder-focus.png</bordertexture>
-                        <bordersize>5</bordersize>
+                        <texture background="true" colordiffuse="black">more_items.png</texture>
+                        <aspectratio>keep</aspectratio>
+                        <bordertexture border="5">blank.png</bordertexture>
+                        <include>TextureBorderWidgets</include>
+                        <visible>String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
                         <visible>Control.HasFocus($PARAM[Control])</visible>
-                        <visible>!String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
                     </control>
+
                     <control type="image">
-                        <left>12</left>
+                        <left>9</left>
                         <top>10</top>
-                        <width>350</width>
-                        <height>390</height>
+                        <width>332</width>
+                        <height>350</height>
                         <aspectratio>scale</aspectratio>
-                        <texture background="true">$INFO[ListItem.Art(thumb)]</texture>
+                        <texture background="true" fallback="DefaultAlbumCover.png">$INFO[ListItem.Art(thumb)]</texture>
                         <bordertexture border="5">blank.png</bordertexture>
                         <bordersize>5</bordersize>
-                        <visible>!Control.HasFocus($PARAM[Control])</visible>
                         <visible>!String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
                     </control>
 
+                    <control type="label">
+                        <left>15</left>
+                        <top>366</top>
+                        <width>324</width>
+                        <height>30</height>
+                        <font>font10_title</font>
+                        <textcolor>white</textcolor>
+                        <selectedcolor>white</selectedcolor>
+                        <align>center</align>
+                        <aligny>center</aligny>
+                        <label>$INFO[ListItem.Label]</label>
+                        <visible>!Control.HasFocus($PARAM[Control])</visible>
+                    </control>
+                    <control type="label">
+                        <left>15</left>
+                        <top>366</top>
+                        <width>324</width>
+                        <height>30</height>
+                        <font>font10_title</font>
+                        <textcolor>black</textcolor>
+                        <selectedcolor>black</selectedcolor>
+                        <align>center</align>
+                        <aligny>center</aligny>
+                        <label>$INFO[ListItem.Label]</label>
+                        <visible>Control.HasFocus($PARAM[Control])</visible>
+                    </control>
 
                 </focusedlayout>
                 <include>$PARAM[Content]</include>
@@ -2504,7 +2656,8 @@
 		<param name="embuaryinfonextaired">false</param>
         <definition>
             <control type="group">
-                <visible>String.IsEqual($PARAM[Format],Thumb) + $PARAM[Visible]</visible>
+                <visible>$PARAM[Visible]</visible>
+                <visible>String.IsEqual($PARAM[Format],Thumb)</visible>
                 <include content="ThumbSmallWidgetLayout">
                     <param name="Control">$PARAM[Control]1</param>
                     <param name="Content">$PARAM[Content]</param>
@@ -2512,9 +2665,19 @@
                 </include>
             </control>
 			<control type="group">
-                <visible>String.IsEqual($PARAM[Format],Poster) + $PARAM[Visible]</visible>
+                <visible>$PARAM[Visible]</visible>
+                <visible>String.IsEqual($PARAM[Format],Poster)</visible>
                 <include content="PosterSmallWidgetLayout">
                     <param name="Control">$PARAM[Control]</param>
+                    <param name="Content">$PARAM[Content]</param>
+					<param name="embuaryinfonextaired">$PARAM[embuaryinfonextaired]</param>
+                </include>
+            </control>
+			<control type="group">
+                <visible>$PARAM[Visible]</visible>
+                <visible>String.IsEqual($PARAM[Format],PosterDetailed)</visible>
+                <include content="PosterSmallWidgetLayout">
+                    <param name="Control">$PARAM[Control]2</param>
                     <param name="Content">$PARAM[Content]</param>
 					<param name="embuaryinfonextaired">$PARAM[embuaryinfonextaired]</param>
                 </include>
@@ -2529,7 +2692,8 @@
 		<param name="embuaryinfonextaired">false</param>
         <definition>
             <control type="group">
-                <visible>String.IsEqual($PARAM[Format],Thumb) + $PARAM[Visible]</visible>
+                <visible>$PARAM[Visible]</visible>
+                <visible>String.IsEqual($PARAM[Format],Thumb)</visible>
                 <include content="ThumbLargeWidgetLayout">
                     <param name="Control">$PARAM[Control]1</param>
                     <param name="Content">$PARAM[Content]</param>
@@ -2537,9 +2701,19 @@
                 </include>
             </control>
 			<control type="group">
-                <visible>String.IsEqual($PARAM[Format],Poster) + $PARAM[Visible]</visible>
+                <visible>$PARAM[Visible]</visible>
+                <visible>String.IsEqual($PARAM[Format],Poster)</visible>
                 <include content="PosterLargeWidgetLayout">
                     <param name="Control">$PARAM[Control]</param>
+                    <param name="Content">$PARAM[Content]</param>
+					<param name="embuaryinfonextaired">$PARAM[embuaryinfonextaired]</param>
+                </include>
+            </control>
+			<control type="group">
+                <visible>$PARAM[Visible]</visible>
+                <visible>String.IsEqual($PARAM[Format],PosterDetailed)</visible>
+                <include content="PosterLargeDetailedWidgetLayout">
+                    <param name="Control">$PARAM[Control]2</param>
                     <param name="Content">$PARAM[Content]</param>
 					<param name="embuaryinfonextaired">$PARAM[embuaryinfonextaired]</param>
                 </include>
@@ -2583,18 +2757,6 @@
                         <include>HomeTransparentEffect</include>
                     </control>
 
-                    <control type="image">
-                        <left>15</left>
-                        <top>10</top>
-                        <width>178</width>
-                        <height>310</height>
-                        <texture background="true">more_items.png</texture>
-                        <aspectratio>keep</aspectratio>
-                        <bordertexture border="5">blank.png</bordertexture>
-                        <include>TextureBorderWidgets</include>
-                        <visible>String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
-                    </control>
-
                     <!-- Image -->
                     <control type="image">
                         <left>15</left>
@@ -2605,7 +2767,6 @@
                         <aspectratio>scale</aspectratio>
                         <bordertexture border="5">blank.png</bordertexture>
                         <include>TextureBorderWidgets</include>
-                        <visible>!String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
                         <visible>!String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
                     </control>
                     <!-- Image TV Channel -->
@@ -2618,8 +2779,15 @@
                         <aspectratio>keep</aspectratio>
                         <bordertexture border="5">blank.png</bordertexture>
                         <include>TextureBorderWidgets</include>
-                        <visible>!String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
                         <visible>String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
+                    </control>
+                    <control type="image">
+                        <left>155</left>
+                        <top>15</top>
+                        <width>30</width>
+                        <height>30</height>
+                        <texture>PVR-IsRecording.png</texture>
+                        <visible>ListItem.IsRecording</visible>
                     </control>
 
                     <control type="image">
@@ -2706,31 +2874,6 @@
                         <visible>Control.HasFocus($PARAM[Control])</visible>
                     </control>
 
-                    <!-- more -->
-                    <control type="image">
-                        <left>15</left>
-                        <top>10</top>
-                        <width>190</width>
-                        <height>310</height>
-                        <texture background="true" colordiffuse="FF000000">more_items.png</texture>
-                        <aspectratio>keep</aspectratio>
-                        <bordertexture border="5">blank.png</bordertexture>
-                        <include>TextureBorderWidgets</include>
-                        <visible>String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
-                        <visible>Control.HasFocus($PARAM[Control])</visible>
-                    </control>
-                    <control type="image">
-                        <left>15</left>
-                        <top>10</top>
-                        <width>190</width>
-                        <height>310</height>
-                        <texture background="true">more_items.png</texture>
-                        <aspectratio>keep</aspectratio>
-                        <bordertexture border="5">blank.png</bordertexture>
-                        <include>TextureBorderWidgets</include>
-                        <visible>String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
-                        <visible>!Control.HasFocus($PARAM[Control])</visible>
-                    </control>
 
                     <!-- image -->
                     <control type="image">
@@ -2741,7 +2884,6 @@
                         <texture background="true">$VAR[VideoThumbImage]</texture>
                         <aspectratio>scale</aspectratio>
                         <include>TextureBorderWidgets</include>
-                        <visible>!String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
                         <visible>!String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
                     </control>
                     <!-- image Tv channel -->
@@ -2753,8 +2895,15 @@
                         <texture background="true">$VAR[VideoThumbImage]</texture>
                         <aspectratio>keep</aspectratio>
                         <include>TextureBorderWidgets</include>
-                        <visible>!String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
                         <visible>String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
+                    </control>
+                    <control type="image">
+                        <left>155</left>
+                        <top>15</top>
+                        <width>30</width>
+                        <height>30</height>
+                        <texture>PVR-IsRecording.png</texture>
+                        <visible>ListItem.IsRecording</visible>
                     </control>
 
                     <control type="image">
@@ -2846,23 +2995,15 @@
         <param name="Content" default="" />
 		<param name="embuaryinfonextaired">false</param>
         <definition>
-            <control type="image">
-				<left>-30</left>
-                <top>25</top>
-                <width>1980</width>
-                <height>420</height>
-                <texture border="5">RecentAddedBack.png</texture>
-                <include>HomeTransparentEffect</include>
-            </control>
             <control type="list" id="$PARAM[Control]">
                 <animation effect="slide" start="0,0" end="730,0" time="0" condition="String.IsEqual(Container($PARAM[Control]).NumItems,1)">Conditional</animation>
                 <animation effect="slide" start="0,0" end="584,0" time="0" condition="String.IsEqual(Container($PARAM[Control]).NumItems,2)">Conditional</animation>
                 <animation effect="slide" start="0,0" end="438,0" time="0" condition="String.IsEqual(Container($PARAM[Control]).NumItems,3)">Conditional</animation>
                 <animation effect="slide" start="0,0" end="292,0" time="0" condition="String.IsEqual(Container($PARAM[Control]).NumItems,4)">Conditional</animation>
 				<animation effect="slide" start="0,0" end="146,0" time="0" condition="String.IsEqual(Container($PARAM[Control]).NumItems,5)">Conditional</animation>
-                <left>60</left>
+                <left>65</left>
                 <top>25</top>
-                <width>1800</width>
+                <width>1792</width>
                 <height>428</height>
                 <onleft>$PARAM[Control]</onleft>
                 <onright>$PARAM[Control]</onright>
@@ -2874,52 +3015,53 @@
                 <scrolltime tween="cubic" easing="out">500</scrolltime>
                 <orientation>Horizontal</orientation>
        
-                <itemlayout height="428" width="257">
+                <itemlayout height="428" width="256">
 
-                    <!-- more -->
                     <control type="image">
                         <left>0</left>
-                        <top>16</top>
+                        <top>0</top>
                         <width>245</width>
-                        <height>390</height>
-                        <texture background="true">more_items.png</texture>
-                        <aspectratio>keep</aspectratio>
-                        <bordertexture border="5">blank.png</bordertexture>
-                        <include>TextureBorderWidgets</include>
-                        <visible>String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
-                        <visible>Control.HasFocus($PARAM[Control])</visible>
+                        <height>410</height>
+                        <texture border="15">RecentAddedBack.png</texture>
+                        <include>HomeTransparentEffect</include>
                     </control>
 
                     <!-- image -->
                     <control type="image">
-                        <left>0</left>
-                        <top>16</top>
-                        <width>245</width>
+                        <left>7</left>
+                        <top>10</top>
+                        <width>233</width>
                         <height>390</height>
                         <aspectratio>scale</aspectratio>
                         <texture background="true">$VAR[VideoThumbImage]</texture>
                         <bordertexture border="5">blank.png</bordertexture>
                         <include>TextureBorderWidgets</include>
-                        <visible>!String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
                         <visible>!String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
                     </control>
                     <!-- image tv channel -->
                     <control type="image">
-                        <left>30</left>
-                        <top>16</top>
+                        <left>35</left>
+                        <top>10</top>
                         <width>180</width>
                         <height>390</height>
                         <aspectratio>keep</aspectratio>
                         <texture background="true">$VAR[VideoThumbImage]</texture>
                         <bordertexture border="5">blank.png</bordertexture>
                         <include>TextureBorderWidgets</include>
-                        <visible>!String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
                         <visible>String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
+                    </control>
+                    <control type="image">
+                        <left>200</left>
+                        <top>15</top>
+                        <width>30</width>
+                        <height>30</height>
+                        <texture>PVR-IsRecording.png</texture>
+                        <visible>ListItem.IsRecording</visible>
                     </control>
 
                     <control type="image">
-                        <left>3</left>
-                        <top>20</top>
+                        <left>10</left>
+                        <top>15</top>
                         <width>35</width>
                         <height>35</height>
                         <aspectratio>keep</aspectratio>
@@ -2928,8 +3070,8 @@
                         <visible>!String.Contains(ListItem.Overlay,OverlayUnWatched.png)</visible>
                     </control>
                     <control type="image">
-                        <left>3</left>
-                        <top>20</top>
+                        <left>10</left>
+                        <top>15</top>
                         <width>35</width>
                         <height>35</height>
                         <aspectratio>keep</aspectratio>
@@ -2940,26 +3082,8 @@
                     </control>
 
                     <control type="image">
-                        <left>5</left>
-                        <top>20</top>
-                        <width>35</width>
-                        <height>35</height>
-                        <texture colordiffuse="$VAR[MainColorOne]">white.png</texture>
-                        <visible>ListItem.IsPlaying</visible>
-                        <visible>Player.Playing</visible>
-                    </control>
-                    <control type="image">
-                        <left>8</left>
-                        <top>22</top>
-                        <width>28</width>
-                        <height>28</height>
-                        <texture colordiffuse="black">equaliser.gif</texture>
-                        <visible>ListItem.IsPlaying</visible>
-                        <visible>Player.Playing</visible>
-                    </control>
-                    <control type="image">
-                        <left>5</left>
-                        <top>20</top>
+                        <left>10</left>
+                        <top>15</top>
                         <width>35</width>
                         <height>35</height>
                         <texture colordiffuse="$VAR[MainColorOne]">overlay_pause.png</texture>
@@ -2969,9 +3093,9 @@
 
                     
                     <control type="progress">
-                        <left>5</left>
-                        <top>398</top>
-                        <width>235</width>
+                        <left>12</left>
+                        <top>393</top>
+                        <width>223</width>
                         <height>3</height>
                         <info>ListItem.PercentPlayed</info>
                         <visible>ListItem.IsResumable</visible>
@@ -2982,104 +3106,62 @@
                     </control> 
 
                 </itemlayout>
-                <focusedlayout height="428" width="257">
+                <focusedlayout height="428" width="256">
 
-
-                    <!-- more -->
                     <control type="image">
                         <left>0</left>
-                        <top>16</top>
+                        <top>0</top>
                         <width>245</width>
-                        <height>390</height>
-                        <texture background="true" colordiffuse="$VAR[MainColorOne]">more_items.png</texture>
-                        <aspectratio>keep</aspectratio>
-                        <bordertexture border="5">blank.png</bordertexture>
-                        <include>TextureBorderWidgets</include>
-                        <visible>String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
-                        <visible>Control.HasFocus($PARAM[Control])</visible>
-                    </control>
-                    <control type="image">
-                        <left>0</left>
-                        <top>16</top>
-                        <width>245</width>
-                        <height>390</height>
-                        <texture background="true">more_items.png</texture>
-                        <aspectratio>keep</aspectratio>
-                        <bordertexture border="5">blank.png</bordertexture>
-                        <include>TextureBorderWidgets</include>
-                        <visible>String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
+                        <height>410</height>
+                        <texture border="15">RecentAddedBack.png</texture>
+                        <include>HomeTransparentEffect</include>
                         <visible>!Control.HasFocus($PARAM[Control])</visible>
                     </control>
+                    <control type="image">
+                        <left>0</left>
+                        <top>0</top>
+                        <width>245</width>
+                        <height>410</height>
+                        <texture border="15" colordiffuse="$VAR[MainColorOne]">white.png</texture>
+                        <visible>Control.HasFocus($PARAM[Control])</visible>
+                    </control>
+
 
                     <!-- image -->
                     <control type="image">
-                        <left>0</left>
-                        <top>16</top>
-                        <width>245</width>
-                        <height>390</height>
-                        <aspectratio>scale</aspectratio>
-                        <texture background="true">$VAR[VideoThumbImage]</texture>
-                        <bordertexture border="5" colordiffuse="$VAR[MainColorOne]">folder-focus.png</bordertexture>
-                        <include>TextureBorderWidgets</include>
-                        <visible>!String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
-                        <visible>Control.HasFocus($PARAM[Control])</visible>
-                        <visible>!String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
-                    </control>
-                    <control type="image">
-                        <left>0</left>
-                        <top>16</top>
-                        <width>245</width>
+                        <left>7</left>
+                        <top>10</top>
+                        <width>233</width>
                         <height>390</height>
                         <aspectratio>scale</aspectratio>
                         <texture background="true">$VAR[VideoThumbImage]</texture>
                         <include>TextureBorderWidgets</include>
-                        <visible>!String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
-                        <visible>!Control.HasFocus($PARAM[Control])</visible>
                         <visible>!String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
                     </control>
 
                     <!-- image tv channel -->
                     <control type="image">
-                        <left>0</left>
-                        <top>16</top>
-                        <width>245</width>
-                        <height>390</height>
-                        <aspectratio>scale</aspectratio>
-                        <texture background="true">blank.png</texture>
-                        <bordertexture border="5" colordiffuse="$VAR[MainColorOne]">folder-focus.png</bordertexture>
-                        <include>TextureBorderWidgets</include>
-                        <visible>!String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
-                        <visible>Control.HasFocus($PARAM[Control])</visible>
-                        <visible>String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
-                    </control>
-                    <control type="image">
-                        <left>30</left>
-                        <top>16</top>
+                        <left>35</left>
+                        <top>10</top>
                         <width>180</width>
                         <height>390</height>
                         <aspectratio>keep</aspectratio>
                         <texture background="true">$VAR[VideoThumbImage]</texture>
                         <include>TextureBorderWidgets</include>
-                        <visible>!String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
-                        <visible>Control.HasFocus($PARAM[Control])</visible>
                         <visible>String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
                     </control>
                     <control type="image">
-                        <left>30</left>
-                        <top>16</top>
-                        <width>180</width>
-                        <height>390</height>
-                        <aspectratio>keep</aspectratio>
-                        <texture background="true">$VAR[VideoThumbImage]</texture>
-                        <include>TextureBorderWidgets</include>
-                        <visible>!String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
-                        <visible>!Control.HasFocus($PARAM[Control])</visible>
-                        <visible>String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
+                        <left>200</left>
+                        <top>15</top>
+                        <width>30</width>
+                        <height>30</height>
+                        <texture>PVR-IsRecording.png</texture>
+                        <visible>ListItem.IsRecording</visible>
                     </control>
 
                     <control type="image">
-                        <left>3</left>
-                        <top>20</top>
+                        <left>10</left>
+                        <top>15</top>
                         <width>35</width>
                         <height>35</height>
                         <aspectratio>keep</aspectratio>
@@ -3088,8 +3170,8 @@
                         <visible>!String.Contains(ListItem.Overlay,OverlayUnWatched.png)</visible>
                     </control>
                     <control type="image">
-                        <left>3</left>
-                        <top>20</top>
+                        <left>10</left>
+                        <top>15</top>
                         <width>35</width>
                         <height>35</height>
                         <aspectratio>keep</aspectratio>
@@ -3100,26 +3182,8 @@
                     </control>
 
                     <control type="image">
-                        <left>5</left>
-                        <top>20</top>
-                        <width>35</width>
-                        <height>35</height>
-                        <texture colordiffuse="$VAR[MainColorOne]">white.png</texture>
-                        <visible>ListItem.IsPlaying</visible>
-                        <visible>Player.Playing</visible>
-                    </control>
-                    <control type="image">
-                        <left>8</left>
-                        <top>22</top>
-                        <width>28</width>
-                        <height>28</height>
-                        <texture colordiffuse="black">equaliser.gif</texture>
-                        <visible>ListItem.IsPlaying</visible>
-                        <visible>Player.Playing</visible>
-                    </control>
-                    <control type="image">
-                        <left>5</left>
-                        <top>20</top>
+                        <left>10</left>
+                        <top>15</top>
                         <width>35</width>
                         <height>35</height>
                         <texture colordiffuse="$VAR[MainColorOne]">overlay_pause.png</texture>
@@ -3128,9 +3192,9 @@
                     </control>
 
                     <control type="progress">
-                        <left>5</left>
-                        <top>398</top>
-                        <width>235</width>
+                        <left>12</left>
+                        <top>393</top>
+                        <width>223</width>
                         <height>3</height>
                         <info>ListItem.PercentPlayed</info>
                         <visible>ListItem.IsResumable</visible>
@@ -3141,9 +3205,9 @@
                         <visible>Control.HasFocus($PARAM[Control])</visible>
                     </control> 
                     <control type="progress">
-                        <left>5</left>
-                        <top>398</top>
-                        <width>235</width>
+                        <left>12</left>
+                        <top>393</top>
+                        <width>223</width>
                         <height>3</height>
                         <info>ListItem.PercentPlayed</info>
                         <visible>ListItem.IsResumable</visible>
@@ -3152,6 +3216,382 @@
                         <texturebg border="0">white.png</texturebg>
                         <midtexture border="0" colordiffuse="$VAR[MainColorOne]">white-darker.png</midtexture>
                         <visible>!Control.HasFocus($PARAM[Control])</visible>
+                    </control> 
+
+                </focusedlayout>
+				
+                <include>$PARAM[Content]</include>
+            </control>
+        </definition>
+    </include>
+    <include name="PosterLargeDetailedWidgetLayout">
+        <param name="Control" default="8000" />
+        <param name="Content" default="" />
+		<param name="embuaryinfonextaired">false</param>
+        <definition>
+            <control type="list" id="$PARAM[Control]">
+                <animation effect="slide" start="0,0" end="730,0" time="0" condition="String.IsEqual(Container($PARAM[Control]).NumItems,1)">Conditional</animation>
+                <animation effect="slide" start="0,0" end="584,0" time="0" condition="String.IsEqual(Container($PARAM[Control]).NumItems,2)">Conditional</animation>
+                <animation effect="slide" start="0,0" end="438,0" time="0" condition="String.IsEqual(Container($PARAM[Control]).NumItems,3)">Conditional</animation>
+                <animation effect="slide" start="0,0" end="292,0" time="0" condition="String.IsEqual(Container($PARAM[Control]).NumItems,4)">Conditional</animation>
+				<animation effect="slide" start="0,0" end="146,0" time="0" condition="String.IsEqual(Container($PARAM[Control]).NumItems,5)">Conditional</animation>
+                <left>65</left>
+                <top>25</top>
+                <width>1792</width>
+                <height>428</height>
+                <onleft>$PARAM[Control]</onleft>
+                <onright>$PARAM[Control]</onright>
+                <onup>21</onup>
+                <ondown condition="Skin.HasSetting(LowerMainMenuBar)">9002</ondown>
+                <ondown condition="!Skin.HasSetting(LowerMainMenuBar) + !Skin.HasSetting(DisableGlobalSearch) + !Skin.HasSetting(FloorGlobalSearch)">610</ondown>
+                <ondown condition="!Skin.HasSetting(LowerMainMenuBar) + [Skin.HasSetting(DisableGlobalSearch) | Skin.HasSetting(FloorGlobalSearch)]">603</ondown>
+				<viewtype label="535">list</viewtype>
+                <scrolltime tween="cubic" easing="out">500</scrolltime>
+                <orientation>Horizontal</orientation>
+       
+                <itemlayout height="428" width="224">
+
+                    <control type="image">
+                        <left>0</left>
+                        <top>0</top>
+                        <width>214</width>
+                        <height>410</height>
+                        <texture border="15">RecentAddedBack.png</texture>
+                        <include>HomeTransparentEffect</include>
+                    </control>
+
+                    <!-- image -->
+                    <control type="image">
+                        <left>7</left>
+                        <top>10</top>
+                        <width>200</width>
+                        <height>315</height>
+                        <aspectratio>scale</aspectratio>
+                        <texture background="true">$VAR[VideoThumbImage]</texture>
+                        <bordertexture border="5">blank.png</bordertexture>
+                        <include>TextureBorderWidgets</include>
+                        <visible>!String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
+                    </control>
+                    <!-- image tv channel -->
+                    <control type="image">
+                        <left>35</left>
+                        <top>10</top>
+                        <width>150</width>
+                        <height>315</height>
+                        <aspectratio>keep</aspectratio>
+                        <texture background="true">$VAR[VideoThumbImage]</texture>
+                        <bordertexture border="5">blank.png</bordertexture>
+                        <include>TextureBorderWidgets</include>
+                        <visible>String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
+                    </control>
+                    <control type="image">
+                        <left>168</left>
+                        <top>15</top>
+                        <width>30</width>
+                        <height>30</height>
+                        <texture>PVR-IsRecording.png</texture>
+                        <visible>ListItem.IsRecording</visible>
+                    </control>
+
+                    <control type="image">
+                        <left>10</left>
+                        <top>15</top>
+                        <width>35</width>
+                        <height>35</height>
+                        <aspectratio>keep</aspectratio>
+                        <texture colordiffuse="$VAR[MainColorOne]">$INFO[ListItem.Overlay]</texture>
+                        <visible>!ListItem.IsResumable</visible>
+                        <visible>!String.Contains(ListItem.Overlay,OverlayUnWatched.png)</visible>
+                    </control>
+                    <control type="image">
+                        <left>10</left>
+                        <top>15</top>
+                        <width>35</width>
+                        <height>35</height>
+                        <aspectratio>keep</aspectratio>
+                        <texture colordiffuse="$VAR[MainColorOne]">$INFO[ListItem.Overlay]</texture>
+                        <visible>!ListItem.IsResumable</visible>
+                        <visible>String.Contains(ListItem.Overlay,OverlayUnWatched.png)</visible>
+                        <visible>Skin.HasSetting(ShowUnwatchedIcon) + String.Contains(ListItem.Overlay,OverlayUnWatched.png)</visible>
+                    </control>
+
+                    <control type="image">
+                        <left>10</left>
+                        <top>15</top>
+                        <width>35</width>
+                        <height>35</height>
+                        <texture colordiffuse="$VAR[MainColorOne]">overlay_pause.png</texture>
+                        <visible>ListItem.IsPlaying</visible>
+                        <visible>!Player.Playing</visible>
+                    </control>
+
+    
+                    <!-- infos -->
+                    <control type="image">
+                        <left>0</left>
+                        <top>316</top>
+                        <width>214</width>
+                        <height>94</height>
+                        <texture border="0,2,0,2" colordiffuse="30000000">white.png</texture>
+                        <visible>String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
+                    </control>
+
+                    <control type="label">
+                        <left>12</left>
+                        <top>336</top>
+                        <width>190</width>
+                        <height>30</height>
+                        <font>font11_title</font>
+                        <textcolor>white</textcolor>
+                        <align>center</align>
+                        <aligny>center</aligny>
+                        <label>$INFO[ListItem.Label]</label>
+                    </control>
+                    <control type="group">
+                        <left>-10</left>
+                        <top>368</top>
+                        <include content="ItemRating">
+                            <param name="Size" value="25" />
+                            <param name="Color" value="$VAR[MainColorOne]" />
+                        </include>
+                        <visible>!String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
+                    </control>
+                    <control type="label">
+                        <left>157</left>
+                        <top>368</top>
+                        <font>font9</font>
+                        <textcolor>white</textcolor>
+                        <label> $INFO[ListItem.Year]</label>
+                        <visible>!String.IsEmpty(ListItem.Year)</visible>
+                        <visible>!String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
+                    </control>
+
+                    <control type="label">
+                        <left>12</left>
+                        <top>360</top>
+                        <width>190</width>
+                        <height>30</height>
+                        <font>font10</font>
+                        <textcolor>white</textcolor>
+                        <align>center</align>
+                        <aligny>center</aligny>
+                        <label>$INFO[ListItem.Title]</label>
+                        <visible>String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
+                    </control>
+                    
+                    <control type="progress">
+                        <left>12</left>
+                        <top>318</top>
+                        <width>190</width>
+                        <height>3</height>
+                        <info>ListItem.PercentPlayed</info>
+                        <visible>ListItem.IsResumable</visible>
+                        <visible>!Skin.HasSetting(HideProgressBars)</visible>
+                        <visible>!ListItem.IsPlaying</visible>
+                        <texturebg border="0">white.png</texturebg>
+                        <midtexture border="0" colordiffuse="$VAR[MainColorOne]">white-darker.png</midtexture>
+                    </control> 
+
+                </itemlayout>
+                <focusedlayout height="428" width="224">
+
+                    <control type="image">
+                        <left>0</left>
+                        <top>0</top>
+                        <width>214</width>
+                        <height>410</height>
+                        <texture border="15">RecentAddedBack.png</texture>
+                        <include>HomeTransparentEffect</include>
+                        <visible>!Control.HasFocus($PARAM[Control])</visible>
+                    </control>
+                    <control type="image">
+                        <left>0</left>
+                        <top>0</top>
+                        <width>214</width>
+                        <height>410</height>
+                        <texture border="15" colordiffuse="$VAR[MainColorOne]">white.png</texture>
+                        <visible>Control.HasFocus($PARAM[Control])</visible>
+                    </control>
+
+
+                    <!-- image -->
+                    <control type="image">
+                        <left>7</left>
+                        <top>10</top>
+                        <width>200</width>
+                        <height>315</height>
+                        <aspectratio>scale</aspectratio>
+                        <texture background="true">$VAR[VideoThumbImage]</texture>
+                        <include>TextureBorderWidgets</include>
+                        <visible>!String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
+                    </control>
+
+                    <!-- image tv channel -->
+                    <control type="image">
+                        <left>35</left>
+                        <top>10</top>
+                        <width>150</width>
+                        <height>315</height>
+                        <aspectratio>keep</aspectratio>
+                        <texture background="true">$VAR[VideoThumbImage]</texture>
+                        <include>TextureBorderWidgets</include>
+                        <visible>String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
+                    </control>
+                    <control type="image">
+                        <left>168</left>
+                        <top>15</top>
+                        <width>30</width>
+                        <height>30</height>
+                        <texture>PVR-IsRecording.png</texture>
+                        <visible>ListItem.IsRecording</visible>
+                    </control>
+
+                    <control type="image">
+                        <left>10</left>
+                        <top>15</top>
+                        <width>35</width>
+                        <height>35</height>
+                        <aspectratio>keep</aspectratio>
+                        <texture colordiffuse="$VAR[MainColorOne]">$INFO[ListItem.Overlay]</texture>
+                        <visible>!ListItem.IsResumable</visible>
+                        <visible>!String.Contains(ListItem.Overlay,OverlayUnWatched.png)</visible>
+                    </control>
+                    <control type="image">
+                        <left>10</left>
+                        <top>15</top>
+                        <width>35</width>
+                        <height>35</height>
+                        <aspectratio>keep</aspectratio>
+                        <texture colordiffuse="$VAR[MainColorOne]">$INFO[ListItem.Overlay]</texture>
+                        <visible>!ListItem.IsResumable</visible>
+                        <visible>String.Contains(ListItem.Overlay,OverlayUnWatched.png)</visible>
+                        <visible>Skin.HasSetting(ShowUnwatchedIcon) + String.Contains(ListItem.Overlay,OverlayUnWatched.png)</visible>
+                    </control>
+
+                    <control type="image">
+                        <left>10</left>
+                        <top>15</top>
+                        <width>35</width>
+                        <height>35</height>
+                        <texture colordiffuse="$VAR[MainColorOne]">overlay_pause.png</texture>
+                        <visible>ListItem.IsPlaying</visible>
+                        <visible>!Player.Playing</visible>
+                    </control>
+
+                    <!-- infos -->
+                    <control type="image">
+                        <left>0</left>
+                        <top>316</top>
+                        <width>214</width>
+                        <height>94</height>
+                        <texture border="0,2,0,2" colordiffuse="20000000">white.png</texture>
+                        <visible>String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
+                    </control>
+                    <control type="label">
+                        <left>12</left>
+                        <top>336</top>
+                        <width>190</width>
+                        <height>30</height>
+                        <font>font11_title</font>
+                        <textcolor>white</textcolor>
+                        <align>center</align>
+                        <aligny>center</aligny>
+                        <label>$INFO[ListItem.Label]</label>
+                        <visible>!Control.HasFocus($PARAM[Control])</visible>
+                    </control>
+                    <control type="label">
+                        <left>12</left>
+                        <top>336</top>
+                        <width>190</width>
+                        <height>30</height>
+                        <font>font11_title</font>
+                        <textcolor>black</textcolor>
+                        <align>center</align>
+                        <aligny>center</aligny>
+                        <label>$INFO[ListItem.Label]</label>
+                        <visible>Control.HasFocus($PARAM[Control])</visible>
+                    </control>
+                    <control type="group">
+                        <left>-10</left>
+                        <top>368</top>
+                        <include content="ItemRating">
+                            <param name="Size" value="25" />
+                            <param name="Color" value="$VAR[MainColorOne]" />
+                        </include>
+                        <visible>!String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
+                        <visible>!Control.HasFocus($PARAM[Control])</visible>
+                    </control>
+                    <control type="group">
+                        <left>-10</left>
+                        <top>368</top>
+                        <include content="ItemRating">
+                            <param name="Size" value="25" />
+                            <param name="Color" value="black" />
+                        </include>
+                        <visible>!String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
+                        <visible>Control.HasFocus($PARAM[Control])</visible>
+                    </control>
+                    <control type="label">
+                        <left>157</left>
+                        <top>368</top>
+                        <font>font9</font>
+                        <textcolor>white</textcolor>
+                        <label> $INFO[ListItem.Year]</label>
+                        <visible>!String.IsEmpty(ListItem.Year)</visible>
+                        <visible>!String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
+                        <visible>!Control.HasFocus($PARAM[Control])</visible>
+                    </control>
+                    <control type="label">
+                        <left>157</left>
+                        <top>368</top>
+                        <font>font9</font>
+                        <textcolor>black</textcolor>
+                        <label> $INFO[ListItem.Year]</label>
+                        <visible>!String.IsEmpty(ListItem.Year)</visible>
+                        <visible>!String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
+                        <visible>Control.HasFocus($PARAM[Control])</visible>
+                    </control>
+
+
+                    <control type="label">
+                        <left>12</left>
+                        <top>360</top>
+                        <width>190</width>
+                        <height>30</height>
+                        <font>font10</font>
+                        <textcolor>white</textcolor>
+                        <align>center</align>
+                        <aligny>center</aligny>
+                        <label>$INFO[ListItem.Title]</label>
+                        <visible>String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
+                        <visible>!Control.HasFocus($PARAM[Control])</visible>
+                    </control>
+                    <control type="label">
+                        <left>12</left>
+                        <top>360</top>
+                        <width>190</width>
+                        <height>30</height>
+                        <font>font10</font>
+                        <textcolor>black</textcolor>
+                        <align>center</align>
+                        <aligny>center</aligny>
+                        <label>$INFO[ListItem.Title]</label>
+                        <visible>String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
+                        <visible>Control.HasFocus($PARAM[Control])</visible>
+                    </control>
+                    
+
+                    <control type="progress">
+                        <left>12</left>
+                        <top>318</top>
+                        <width>190</width>
+                        <height>3</height>
+                        <info>ListItem.PercentPlayed</info>
+                        <visible>ListItem.IsResumable</visible>
+                        <visible>!Skin.HasSetting(HideProgressBars)</visible>
+                        <visible>!ListItem.IsPlaying</visible>
+                        <texturebg border="0">white.png</texturebg>
+                        <midtexture border="0" colordiffuse="$VAR[MainColorOne]">white-darker.png</midtexture>
                     </control> 
 
                 </focusedlayout>
@@ -3196,18 +3636,6 @@
                         <include>HomeTransparentEffect</include>
                     </control>
 
-                    <control type="image">
-                        <left>15</left>
-                        <top>5</top>
-                        <width>340</width>
-                        <height>265</height>
-                        <texture background="true">more_items.png</texture>
-                        <aspectratio>keep</aspectratio>
-                        <bordertexture border="5">blank.png</bordertexture>
-                        <include>TextureBorderWidgets</include>
-                        <visible>String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
-                    </control>
-
                     <!-- image -->
 					<control type="image">
                         <left>15</left>
@@ -3218,7 +3646,6 @@
                         <texture background="true">$VAR[EpisodeThumbImage]</texture>
                         <bordertexture border="5">blank.png</bordertexture>
                         <include>TextureBorderWidgets</include>
-                        <visible>!String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
                         <visible>!String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
                     </control>
                     <control type="image">
@@ -3229,9 +3656,9 @@
                         <height>70</height>
                         <texture>$INFO[ListItem.Art(tvshow.clearlogo)]</texture>
                         <visible>!Skin.HasSetting(DisableLogoArt) + String.IsEqual(ListItem.DBType,episode)</visible>
-                        <visible>!String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
                         <visible>!String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
                     </control>
+
                     <!-- image tv channel -->
 					<control type="image">
                         <left>110</left>
@@ -3242,8 +3669,23 @@
                         <texture background="true">$VAR[EpisodeThumbImage]</texture>
                         <bordertexture border="5">blank.png</bordertexture>
                         <include>TextureBorderWidgets</include>
-                        <visible>!String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
                         <visible>String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
+                    </control>
+                    <control type="image">
+                        <left>10</left>
+                        <top>255</top>
+                        <width>350</width>
+                        <height>75</height>
+                        <texture border="0,2,0,2" colordiffuse="30000000">white.png</texture>
+                        <visible>String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
+                    </control>
+                    <control type="image">
+                        <left>310</left>
+                        <top>15</top>
+                        <width>30</width>
+                        <height>30</height>
+                        <texture>PVR-IsRecording.png</texture>
+                        <visible>ListItem.IsRecording</visible>
                     </control>
 
                     <!-- episode -->
@@ -3388,35 +3830,8 @@
                         <visible>Control.HasFocus($PARAM[Control])</visible>
                     </control>
 
-                    <!-- more -->
-                    <control type="image">
-                        <left>15</left>
-                        <top>5</top>
-                        <width>340</width>
-                        <height>265</height>
-                        <texture background="true" colordiffuse="FF000000">more_items.png</texture>
-                        <aspectratio>keep</aspectratio>
-                        <bordertexture border="5">blank.png</bordertexture>
-                        <include>TextureBorderWidgets</include>
-                        <visible>String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
-                        <visible>Control.HasFocus($PARAM[Control])</visible>
-                    </control>
-                    <control type="image">
-                        <left>15</left>
-                        <top>5</top>
-                        <width>340</width>
-                        <height>265</height>
-                        <texture background="true">more_items.png</texture>
-                        <aspectratio>keep</aspectratio>
-                        <bordertexture border="5">blank.png</bordertexture>
-                        <include>TextureBorderWidgets</include>
-                        <visible>String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
-                        <visible>!Control.HasFocus($PARAM[Control])</visible>
-                    </control>
-
                     <!-- image -->
                     <control type="group">
-                        <visible>!String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
                         <visible>!String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
                         <control type="image">
                             <left>15</left>
@@ -3436,12 +3851,11 @@
                         <height>70</height>
                         <texture>$INFO[ListItem.Art(tvshow.clearlogo)]</texture>
                         <visible>!Skin.HasSetting(DisableLogoArt) + String.IsEqual(ListItem.DBType,episode)</visible>
-                        <visible>!String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
                         <visible>!String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
                     </control>
+
                     <!-- image tv channel -->
                     <control type="group">
-                        <visible>!String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
                         <visible>String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
                         <control type="image">
                             <left>110</left>
@@ -3453,6 +3867,22 @@
                             <include>TextureBorderWidgets</include>
                         </control>
 					</control>
+                    <control type="image">
+                        <left>10</left>
+                        <top>255</top>
+                        <width>350</width>
+                        <height>75</height>
+                        <texture border="0,2,0,2" colordiffuse="20000000">white.png</texture>
+                        <visible>String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
+                    </control>
+                    <control type="image">
+                        <left>310</left>
+                        <top>15</top>
+                        <width>30</width>
+                        <height>30</height>
+                        <texture>PVR-IsRecording.png</texture>
+                        <visible>ListItem.IsRecording</visible>
+                    </control>
 
                     <!-- movie -->
 					<control type="group">
@@ -3665,23 +4095,11 @@
                         <left>15</left>
                         <top>5</top>
                         <width>340</width>
-                        <height>265</height>
-                        <texture background="true">more_items.png</texture>
-                        <aspectratio>keep</aspectratio>
-                        <bordertexture border="5">blank.png</bordertexture>
-                        <include>TextureBorderWidgets</include>
-                        <visible>String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
-                    </control>
-                    <control type="image">
-                        <left>15</left>
-                        <top>5</top>
-                        <width>340</width>
                         <height>225</height>
                         <aspectratio>scale</aspectratio>
                         <texture background="true">$VAR[EpisodeThumbImage]</texture>
                         <bordertexture border="5">blank.png</bordertexture>
                         <include>TextureBorderWidgets</include>
-                        <visible>!String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
                     </control>
                     <control type="image">
                         <aspectratio align="center" aligny="center">keep</aspectratio>
@@ -3691,7 +4109,6 @@
                         <height>70</height>
                         <texture>$INFO[ListItem.Art(tvshow.clearlogo)]</texture>
                         <visible>!Skin.HasSetting(DisableLogoArt) + String.IsEqual(ListItem.DBType,episode)</visible>
-                        <visible>!String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
                         <visible>!String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
                     </control>
 
@@ -3753,32 +4170,6 @@
                         <visible>Control.HasFocus($PARAM[Control])</visible>
                     </control>
 
-                    <!-- more -->
-                    <control type="image">
-                        <left>15</left>
-                        <top>5</top>
-                        <width>340</width>
-                        <height>265</height>
-                        <texture background="true" colordiffuse="FF000000">more_items.png</texture>
-                        <aspectratio>keep</aspectratio>
-                        <bordertexture border="5">blank.png</bordertexture>
-                        <include>TextureBorderWidgets</include>
-                        <visible>String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
-                        <visible>Control.HasFocus($PARAM[Control])</visible>
-                    </control>
-                    <control type="image">
-                        <left>15</left>
-                        <top>5</top>
-                        <width>340</width>
-                        <height>265</height>
-                        <texture background="true">more_items.png</texture>
-                        <aspectratio>keep</aspectratio>
-                        <bordertexture border="5">blank.png</bordertexture>
-                        <include>TextureBorderWidgets</include>
-                        <visible>String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
-                        <visible>!Control.HasFocus($PARAM[Control])</visible>
-                    </control>
-
                     <control type="image">
                         <left>15</left>
                         <top>5</top>
@@ -3787,7 +4178,6 @@
                         <aspectratio>scale</aspectratio>
                         <texture background="true">$VAR[EpisodeThumbImage]</texture>
                         <include>TextureBorderWidgets</include>
-                        <visible>!String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
                     </control>
 
                     <control type="image">
@@ -3798,7 +4188,6 @@
                         <height>70</height>
                         <texture>$INFO[ListItem.Art(tvshow.clearlogo)]</texture>
                         <visible>!Skin.HasSetting(DisableLogoArt) + String.IsEqual(ListItem.DBType,episode)</visible>
-                        <visible>!String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
                         <visible>!String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
                     </control>
 
@@ -3894,22 +4283,13 @@
         <param name="Content" default="" />
 		<param name="embuaryinfonextaired">false</param>
         <definition>
-            <control type="image">
-                <left>-30</left>
-                <top>25</top>
-                <width>1980</width>
-                <height>420</height>
-                <texture border="5">RecentAddedBack.png</texture>
-                <include>HomeTransparentEffect</include>
-				<visible>!$PARAM[embuaryinfonextaired]</visible>
-            </control>
             <control type="list" id="$PARAM[Control]">
                 <animation effect="slide" start="0,0" end="675,0" time="0" condition="String.IsEqual(Container($PARAM[Control]).NumItems,1)">Conditional</animation>
                 <animation effect="slide" start="0,0" end="450,0" time="0" condition="String.IsEqual(Container($PARAM[Control]).NumItems,2)">Conditional</animation>
                 <animation effect="slide" start="0,0" end="225,0" time="0" condition="String.IsEqual(Container($PARAM[Control]).NumItems,3)">Conditional</animation>
-                <left>45</left>
-                <top>30</top>
-                <width>1805</width>
+                <left>65</left>
+                <top>25</top>
+                <width>1792</width>
                 <height>428</height>
                 <onleft>$PARAM[Control]</onleft>
                 <onright>$PARAM[Control]</onright>
@@ -3922,62 +4302,99 @@
                 <orientation>Horizontal</orientation>
 
                 <itemlayout height="428" width="448" condition="!$PARAM[embuaryinfonextaired]">
-                    
+
                     <control type="image">
-                        <left>20</left>
-                        <top>15</top>
-                        <width>440</width>
-                        <height>340</height>
-                        <texture background="true" colordiffuse="FFFFFFFF">more_items.png</texture>
-                        <aspectratio>keep</aspectratio>
-                        <bordertexture border="5">blank.png</bordertexture>
-                        <include>TextureBorderWidgets</include>
-                        <visible>String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
+                        <left>0</left>
+                        <top>0</top>
+                        <width>437</width>
+                        <height>410</height>
+                        <texture border="15">RecentAddedBack.png</texture>
+                        <include>HomeTransparentEffect</include>
                     </control>
 
                     <!-- image -->
                     <control type="image">
-                        <left>20</left>
-                        <top>15</top>
-                        <width>440</width>
-                        <height>300</height>
+                        <left>10</left>
+                        <top>10</top>
+                        <width>420</width>
+                        <height>270</height>
                         <aspectratio>scale</aspectratio>
                         <texture background="true">$VAR[EpisodeThumbImage]</texture>
                         <bordertexture border="5">blank.png</bordertexture>
                         <include>TextureBorderWidgets</include>
-                        <visible>!String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
                         <visible>!String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
                     </control>
                     <control type="image">
                         <left>40</left>
-                        <top>120</top>
+                        <top>105</top>
                         <width>120</width>
                         <height>80</height>
                         <aspectratio aligny="center">keep</aspectratio>
                         <texture>$INFO[ListItem.Art(tvshow.clearlogo)]</texture>
                         <visible>!Skin.HasSetting(DisableLogoArt) + String.IsEqual(ListItem.DBType,episode)</visible>
-                        <visible>!String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
                         <visible>!String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
                     </control>
+
                     <!-- image tv channel -->
                     <control type="image">
-                        <left>130</left>
-                        <top>30</top>
+                        <left>115</left>
+                        <top>20</top>
                         <width>210</width>
                         <height>300</height>
                         <aspectratio>keep</aspectratio>
                         <texture background="true">$VAR[EpisodeThumbImage]</texture>
                         <bordertexture border="5">blank.png</bordertexture>
                         <include>TextureBorderWidgets</include>
-                        <visible>!String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
                         <visible>String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
                     </control>
-
-                    <!-- serie -->
+                    <control type="image">
+                        <left>0</left>
+                        <top>316</top>
+                        <width>437</width>
+                        <height>94</height>
+                        <texture border="0,2,0,2" colordiffuse="30000000">white.png</texture>
+                        <visible>String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
+                    </control>
                     <control type="label">
                         <left>20</left>
-                        <top>325</top>
-                        <width>440</width>
+                        <top>330</top>
+                        <width>400</width>
+                        <height>38</height>
+                        <font>font12_title</font>
+                        <textcolor>white</textcolor>
+                        <selectedcolor>$VAR[MainColorOne]</selectedcolor>
+                        <align>left</align>
+                        <aligny>center</aligny>
+                        <label>$INFO[ListItem.Label]</label>
+                        <visible>String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
+                    </control>     
+                    <control type="label">
+                        <left>20</left>
+                        <top>360</top>
+                        <width>400</width>
+                        <height>30</height>
+                        <font>font11</font>
+                        <textcolor>grey</textcolor>
+                        <selectedcolor>grey</selectedcolor>
+                        <align>left</align>
+                        <aligny>center</aligny>
+                        <label>$INFO[ListItem.Title]</label>
+                        <visible>String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
+                    </control>
+                    <control type="image">
+                        <left>390</left>
+                        <top>15</top>
+                        <width>30</width>
+                        <height>30</height>
+                        <texture>PVR-IsRecording.png</texture>
+                        <visible>ListItem.IsRecording</visible>
+                    </control>
+
+                    <!-- tv show -->
+                    <control type="label">
+                        <left>20</left>
+                        <top>305</top>
+                        <width>400</width>
                         <height>30</height>
                         <font>font10</font>
                         <textcolor>grey</textcolor>
@@ -3989,8 +4406,8 @@
                     </control>
 					<control type="label">
                         <left>20</left>
-                        <top>360</top>
-                        <width>440</width>
+                        <top>340</top>
+                        <width>400</width>
                         <height>30</height>
                         <font>font13_title</font>
                         <textcolor>white</textcolor>
@@ -4001,11 +4418,11 @@
 						<visible>String.IsEqual(ListItem.DBType,episode)</visible>
                     </control>
 
-                    <!-- movie -->
+                    <!-- not tv show/tv channel -->
                     <control type="label">
-                        <left>20</left>
-                        <top>325</top>
-                        <width>440</width>
+                        <left>70</left>
+                        <top>302</top>
+                        <width>400</width>
                         <height>30</height>
                         <font>font10</font>
                         <textcolor>grey</textcolor>
@@ -4014,11 +4431,22 @@
                         <aligny>center</aligny>
                         <label>$INFO[ListItem.Year]</label>
 						<visible>!String.IsEqual(ListItem.DBType,episode)</visible>
+                        <visible>!String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
+                    </control>
+                    <control type="group">
+                        <left>120</left>
+                        <top>305</top>
+                        <include content="ItemRating">
+                            <param name="Size" value="25" />
+                            <param name="Color" value="$VAR[MainColorOne]" />
+                        </include>
+						<visible>!String.IsEqual(ListItem.DBType,episode)</visible>
+                        <visible>!String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
                     </control>
                     <control type="label">
                         <left>20</left>
-                        <top>360</top>
-                        <width>440</width>
+                        <top>340</top>
+                        <width>400</width>
                         <height>30</height>
                         <font>font13_title</font>
                         <textcolor>white</textcolor>
@@ -4027,12 +4455,13 @@
                         <aligny>center</aligny>
                         <label>$INFO[ListItem.Label]</label>
 						<visible>!String.IsEqual(ListItem.DBType,episode)</visible>
+                        <visible>!String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
                     </control>
   
 
                     <control type="image">
-                        <left>24</left>
-                        <top>20</top>
+                        <left>14</left>
+                        <top>15</top>
                         <width>35</width>
                         <height>35</height>
                         <aspectratio>keep</aspectratio>
@@ -4041,8 +4470,8 @@
                         <visible>!String.Contains(ListItem.Overlay,OverlayUnWatched.png)</visible>
                     </control>
                     <control type="image">
-                        <left>24</left>
-                        <top>20</top>
+                        <left>14</left>
+                        <top>15</top>
                         <width>35</width>
                         <height>35</height>
                         <aspectratio>keep</aspectratio>
@@ -4053,39 +4482,20 @@
                     </control>
 
                     <control type="image">
-                        <left>24</left>
-                        <top>20</top>
-                        <width>35</width>
-                        <height>35</height>
-                        <texture colordiffuse="$VAR[MainColorOne]">white.png</texture>
-                        <visible>ListItem.IsPlaying</visible>
-                        <visible>Player.Playing</visible>
-                    </control>
-                    <control type="image">
-                        <left>27</left>
-                        <top>22</top>
-                        <width>28</width>
-                        <height>28</height>
-                        <texture colordiffuse="black">equaliser.gif</texture>
-                        <visible>ListItem.IsPlaying</visible>
-                        <visible>Player.Playing</visible>
-                    </control>
-                    <control type="image">
-                        <left>24</left>
-                        <top>20</top>
+                        <left>14</left>
+                        <top>15</top>
                         <width>35</width>
                         <height>35</height>
                         <texture colordiffuse="$VAR[MainColorOne]">overlay_pause.png</texture>
                         <visible>ListItem.IsPlaying</visible>
                         <visible>!Player.Playing</visible>
                     </control>
-
-                                        
+                                    
                     <control type="progress">
-                        <left>25</left>
-                        <top>308</top>
-                        <width>430</width>
-                        <height>3</height>
+                        <left>15</left>
+                        <top>275</top>
+                        <width>410</width>
+                        <height>4</height>
                         <info>ListItem.PercentPlayed</info>
                         <visible>ListItem.IsResumable</visible>
                         <visible>!Skin.HasSetting(HideProgressBars)</visible>
@@ -4096,106 +4506,141 @@
 
                 </itemlayout>
                 <focusedlayout height="428" width="448" condition="!$PARAM[embuaryinfonextaired]">
-                    
-                    <!-- more -->
+
                     <control type="image">
-                        <left>20</left>
-                        <top>15</top>
-                        <width>440</width>
-                        <height>340</height>
-                        <texture background="true" colordiffuse="$VAR[MainColorOne]">more_items.png</texture>
-                        <aspectratio>keep</aspectratio>
-                        <bordertexture border="5">blank.png</bordertexture>
-                        <include>TextureBorderWidgets</include>
-                        <visible>String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
-                        <visible>Control.HasFocus($PARAM[Control])</visible>
-                    </control>
-                    <control type="image">
-                        <left>20</left>
-                        <top>15</top>
-                        <width>440</width>
-                        <height>340</height>
-                        <texture background="true">more_items.png</texture>
-                        <aspectratio>keep</aspectratio>
-                        <bordertexture border="5">blank.png</bordertexture>
-                        <include>TextureBorderWidgets</include>
-                        <visible>String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
+                        <left>0</left>
+                        <top>0</top>
+                        <width>437</width>
+                        <height>410</height>
+                        <texture border="15">RecentAddedBack.png</texture>
+                        <include>HomeTransparentEffect</include>
                         <visible>!Control.HasFocus($PARAM[Control])</visible>
                     </control>
-
+                    <control type="image">
+                        <left>0</left>
+                        <top>0</top>
+                        <width>437</width>
+                        <height>410</height>
+                        <texture border="15" colordiffuse="$VAR[MainColorOne]">white.png</texture>
+                        <visible>Control.HasFocus($PARAM[Control])</visible>
+                    </control>         
 
                     <!-- image -->
                     <control type="image">
-                        <left>20</left>
-                        <top>15</top>
-                        <width>440</width>
-                        <height>300</height>
-                        <aspectratio>scale</aspectratio>
-                        <texture background="true">$VAR[EpisodeThumbImage]</texture>
-                        <bordertexture border="5" colordiffuse="$VAR[MainColorOne]">folder-focus.png</bordertexture>
-                        <include>TextureBorderWidgets</include>
-                        <visible>Control.HasFocus($PARAM[Control])</visible>
-                        <visible>!String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
-                        <visible>!String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
-                    </control>
-
-                    <control type="image">
-                        <left>20</left>
-                        <top>15</top>
-                        <width>440</width>
-                        <height>300</height>
+                        <left>10</left>
+                        <top>10</top>
+                        <width>420</width>
+                        <height>270</height>
                         <aspectratio>scale</aspectratio>
                         <texture>$VAR[EpisodeThumbImage]</texture>
                         <bordertexture border="5">blank.png</bordertexture>
                         <include>TextureBorderWidgets</include>
-                        <visible>!Control.HasFocus($PARAM[Control])</visible>
-                        <visible>!String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
                         <visible>!String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
                     </control>
 
                     <control type="image">
                         <left>40</left>
-                        <top>120</top>
+                        <top>105</top>
                         <width>120</width>
                         <height>80</height>
                         <aspectratio aligny="center">keep</aspectratio>
                         <texture>$INFO[ListItem.Art(tvshow.clearlogo)]</texture>
                         <visible>!Skin.HasSetting(DisableLogoArt) + String.IsEqual(ListItem.DBType,episode)</visible>
-                        <visible>!String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
                         <visible>!String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
                     </control>
 
                     <!-- image tv channel -->
                     <control type="image">
-                        <left>20</left>
-                        <top>15</top>
-                        <width>440</width>
-                        <height>380</height>
-                        <aspectratio>scale</aspectratio>
-                        <texture background="true">blank.png</texture>
-                        <bordertexture border="5" colordiffuse="$VAR[MainColorOne]">folder-focus.png</bordertexture>
-                        <include>TextureBorderWidgets</include>
-                        <visible>!String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
-                        <visible>String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
-                        <visible>Control.HasFocus($PARAM[Control])</visible>
-                    </control>
-                    <control type="image">
-                        <left>130</left>
-                        <top>30</top>
+                        <left>115</left>
+                        <top>20</top>
                         <width>210</width>
                         <height>300</height>
                         <aspectratio>keep</aspectratio>
                         <texture background="true">$VAR[EpisodeThumbImage]</texture>
+                        <bordertexture border="5">blank.png</bordertexture>
                         <include>TextureBorderWidgets</include>
-                        <visible>!String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
+                        <visible>String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
+                    </control>
+                    <control type="image">
+                        <left>0</left>
+                        <top>316</top>
+                        <width>437</width>
+                        <height>94</height>
+                        <texture border="0,2,0,2" colordiffuse="20000000">white.png</texture>
                         <visible>String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
                     </control>
 
-                    <!-- episode -->
                     <control type="label">
                         <left>20</left>
-                        <top>325</top>
-                        <width>440</width>
+                        <top>330</top>
+                        <width>400</width>
+                        <height>38</height>
+                        <font>font12_title</font>
+                        <textcolor>white</textcolor>
+                        <selectedcolor>white</selectedcolor>
+                        <align>left</align>
+                        <aligny>center</aligny>
+                        <label>$INFO[ListItem.Label]</label>
+                        <visible>String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
+                        <visible>!Control.HasFocus($PARAM[Control])</visible>
+                    </control>  
+                    <control type="label">
+                        <left>20</left>
+                        <top>330</top>
+                        <width>400</width>
+                        <height>38</height>
+                        <font>font12_title</font>
+                        <textcolor>black</textcolor>
+                        <selectedcolor>black</selectedcolor>
+                        <align>left</align>
+                        <aligny>center</aligny>
+                        <label>$INFO[ListItem.Label]</label>
+                        <visible>String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
+                        <visible>Control.HasFocus($PARAM[Control])</visible>
+                    </control>  
+
+                    <control type="label">
+                        <left>20</left>
+                        <top>360</top>
+                        <width>400</width>
+                        <height>30</height>
+                        <font>font11</font>
+                        <textcolor>grey</textcolor>
+                        <selectedcolor>grey</selectedcolor>
+                        <align>left</align>
+                        <aligny>center</aligny>
+                        <label>$INFO[ListItem.Title]</label>
+                        <visible>String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
+                        <visible>!Control.HasFocus($PARAM[Control])</visible>
+                    </control>
+                    <control type="label">
+                        <left>20</left>
+                        <top>360</top>
+                        <width>400</width>
+                        <height>30</height>
+                        <font>font11</font>
+                        <textcolor>black</textcolor>
+                        <selectedcolor>black</selectedcolor>
+                        <align>left</align>
+                        <aligny>center</aligny>
+                        <label>$INFO[ListItem.Title]</label>
+                        <visible>String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
+                        <visible>Control.HasFocus($PARAM[Control])</visible>
+                    </control>
+                    <control type="image">
+                        <left>390</left>
+                        <top>15</top>
+                        <width>30</width>
+                        <height>30</height>
+                        <texture>PVR-IsRecording.png</texture>
+                        <visible>ListItem.IsRecording</visible>
+                    </control>
+
+                    <!-- tv show -->
+                    <control type="label">
+                        <left>20</left>
+                        <top>305</top>
+                        <width>400</width>
                         <height>30</height>
                         <font>font10</font>
                         <textcolor>grey</textcolor>
@@ -4205,14 +4650,29 @@
                         <aligny>center</aligny>
                         <label>$INFO[ListItem.TVShowTitle] - $INFO[ListItem.Season,s]$INFO[ListItem.Episode,e]</label>
 						<visible>String.IsEqual(ListItem.DBType,episode)</visible>
+                        <visible>!Control.HasFocus($PARAM[Control])</visible>
+                    </control>
+                    <control type="label">
+                        <left>20</left>
+                        <top>305</top>
+                        <width>400</width>
+                        <height>30</height>
+                        <font>font10</font>
+                        <textcolor>black</textcolor>
+                        <selectedcolor>black</selectedcolor>
+                        <align>center</align>
+                        <aligny>center</aligny>
+                        <label>$INFO[ListItem.TVShowTitle] - $INFO[ListItem.Season,s]$INFO[ListItem.Episode,e]</label>
+						<visible>String.IsEqual(ListItem.DBType,episode)</visible>
+                        <visible>Control.HasFocus($PARAM[Control])</visible>
                     </control>
                     
                     <control type="group">
 					    <visible>String.IsEqual(ListItem.DBType,episode)</visible>
                         <control type="label">
                             <left>20</left>
-                            <top>360</top>
-                            <width>440</width>
+                            <top>340</top>
+                            <width>400</width>
                             <height>30</height>
                             <font>font13_title</font>
                             <textcolor>white</textcolor>
@@ -4224,12 +4684,12 @@
                         </control>
                         <control type="label">
                             <left>20</left>
-                            <top>360</top>
-                            <width>440</width>
+                            <top>340</top>
+                            <width>400</width>
                             <height>30</height>
                             <font>font13_title</font>
-                            <textcolor>$VAR[MainColorOne]</textcolor>
-                            <selectedcolor>$VAR[MainColorOne]</selectedcolor>
+                            <textcolor>black</textcolor>
+                            <selectedcolor>black</selectedcolor>
                             <align>center</align>
                             <aligny>center</aligny>
                             <label>$INFO[ListItem.Title]</label>
@@ -4237,11 +4697,11 @@
                         </control>
 					</control>			
 
-                    <!-- movie -->
+                    <!-- not tv show/tv channel -->
                     <control type="label">
-                        <left>20</left>
-                        <top>325</top>
-                        <width>440</width>
+                        <left>70</left>
+                        <top>302</top>
+                        <width>400</width>
                         <height>30</height>
                         <font>font10</font>
                         <textcolor>grey</textcolor>
@@ -4250,14 +4710,53 @@
                         <aligny>center</aligny>
                         <label>$INFO[ListItem.Year]</label>
 						<visible>!String.IsEqual(ListItem.DBType,episode)</visible>
+                        <visible>!Control.HasFocus($PARAM[Control])</visible>
+                    </control>
+                    <control type="label">
+                        <left>70</left>
+                        <top>302</top>
+                        <width>400</width>
+                        <height>30</height>
+                        <font>font10</font>
+                        <textcolor>black</textcolor>
+                        <selectedcolor>black</selectedcolor>
+                        <align>center</align>
+                        <aligny>center</aligny>
+                        <label>$INFO[ListItem.Year]</label>
+						<visible>!String.IsEqual(ListItem.DBType,episode)</visible>
+                        <visible>Control.HasFocus($PARAM[Control])</visible>
+                    </control>
+
+                    <control type="group">
+                        <left>120</left>
+                        <top>305</top>
+                        <include content="ItemRating">
+                            <param name="Size" value="25" />
+                            <param name="Color" value="$VAR[MainColorOne]" />
+                        </include>
+						<visible>!String.IsEqual(ListItem.DBType,episode)</visible>
+                        <visible>!String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
+                        <visible>!Control.HasFocus($PARAM[Control])</visible>
+                    </control>
+                    <control type="group">
+                        <left>120</left>
+                        <top>305</top>
+                        <include content="ItemRating">
+                            <param name="Size" value="25" />
+                            <param name="Color" value="black" />
+                        </include>
+						<visible>!String.IsEqual(ListItem.DBType,episode)</visible>
+                        <visible>!String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
+                        <visible>Control.HasFocus($PARAM[Control])</visible>
                     </control>
 
 					<control type="group">
 					    <visible>!String.IsEqual(ListItem.DBType,episode)</visible>
+                        <visible>!String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
                         <control type="label">
                             <left>20</left>
-                            <top>360</top>
-                            <width>440</width>
+                            <top>340</top>
+                            <width>400</width>
                             <height>30</height>
                             <font>font13_title</font>
                             <textcolor>white</textcolor>
@@ -4269,12 +4768,12 @@
                         </control>
                         <control type="label">
                             <left>20</left>
-                            <top>360</top>
-                            <width>440</width>
+                            <top>340</top>
+                            <width>400</width>
                             <height>30</height>
                             <font>font13_title</font>
-                            <textcolor>$VAR[MainColorOne]</textcolor>
-                            <selectedcolor>$VAR[MainColorOne]</selectedcolor>
+                            <textcolor>black</textcolor>
+                            <selectedcolor>black</selectedcolor>
                             <align>center</align>
                             <aligny>center</aligny>
                             <label>$INFO[ListItem.Label]</label>
@@ -4284,8 +4783,8 @@
 		
 
                     <control type="image">
-                        <left>24</left>
-                        <top>20</top>
+                        <left>14</left>
+                        <top>15</top>
                         <width>35</width>
                         <height>35</height>
                         <aspectratio>keep</aspectratio>
@@ -4294,8 +4793,8 @@
                         <visible>!String.Contains(ListItem.Overlay,OverlayUnWatched.png)</visible>
                     </control>
                     <control type="image">
-                        <left>24</left>
-                        <top>20</top>
+                        <left>14</left>
+                        <top>15</top>
                         <width>35</width>
                         <height>35</height>
                         <aspectratio>keep</aspectratio>
@@ -4306,26 +4805,8 @@
                     </control>
 
                     <control type="image">
-                        <left>24</left>
-                        <top>20</top>
-                        <width>35</width>
-                        <height>35</height>
-                        <texture colordiffuse="$VAR[MainColorOne]">white.png</texture>
-                        <visible>ListItem.IsPlaying</visible>
-                        <visible>Player.Playing</visible>
-                    </control>
-                    <control type="image">
-                        <left>27</left>
-                        <top>22</top>
-                        <width>28</width>
-                        <height>28</height>
-                        <texture colordiffuse="black">equaliser.gif</texture>
-                        <visible>ListItem.IsPlaying</visible>
-                        <visible>Player.Playing</visible>
-                    </control>
-                    <control type="image">
-                        <left>24</left>
-                        <top>20</top>
+                        <left>14</left>
+                        <top>15</top>
                         <width>35</width>
                         <height>35</height>
                         <texture colordiffuse="$VAR[MainColorOne]">overlay_pause.png</texture>
@@ -4334,10 +4815,10 @@
                     </control>
 
                     <control type="progress">
-                        <left>25</left>
-                        <top>308</top>
-                        <width>430</width>
-                        <height>3</height>
+                        <left>15</left>
+                        <top>275</top>
+                        <width>410</width>
+                        <height>4</height>
                         <info>ListItem.PercentPlayed</info>
                         <visible>ListItem.IsResumable</visible>
                         <visible>!Skin.HasSetting(HideProgressBars)</visible>
@@ -4350,26 +4831,22 @@
 
 				<itemlayout height="428" width="448" condition="$PARAM[embuaryinfonextaired]">
                     <control type="image">
-                        <left>20</left>
-                        <top>15</top>
-                        <width>440</width>
-                        <height>270</height>
-                        <texture background="true" colordiffuse="FFFFFFFF">more_items.png</texture>
-                        <aspectratio>keep</aspectratio>
-                        <bordertexture border="5">blank.png</bordertexture>
-                        <include>TextureBorderWidgets</include>
-                        <visible>String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
+                        <left>0</left>
+                        <top>0</top>
+                        <width>437</width>
+                        <height>410</height>
+                        <texture border="15">RecentAddedBack.png</texture>
+                        <include>HomeTransparentEffect</include>
                     </control>
                     <control type="image">
-                        <left>20</left>
-                        <top>15</top>
-                        <width>440</width>
+                        <left>10</left>
+                        <top>10</top>
+                        <width>420</width>
                         <height>270</height>
                         <aspectratio>scale</aspectratio>
                         <texture background="true">$VAR[EpisodeThumbImage]</texture>
                         <bordertexture border="5">blank.png</bordertexture>
                         <include>TextureBorderWidgets</include>
-                        <visible>!String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
                     </control>
                     <control type="image">
                         <left>40</left>
@@ -4379,13 +4856,12 @@
                         <aspectratio aligny="center">keep</aspectratio>
                         <texture>$INFO[ListItem.Art(tvshow.clearlogo)]</texture>
                         <visible>!Skin.HasSetting(DisableLogoArt) + String.IsEqual(ListItem.DBType,episode)</visible>
-                        <visible>!String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
                         <visible>!String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
                     </control>
                     <control type="label">
                         <left>20</left>
-                        <top>300</top>
-                        <width>440</width>
+                        <top>295</top>
+                        <width>400</width>
                         <height>30</height>
                         <font>font11</font>
                         <textcolor>white</textcolor>
@@ -4396,8 +4872,8 @@
                     </control>
 					<control type="label">
                         <left>20</left>
-                        <top>330</top>
-                        <width>440</width>
+                        <top>325</top>
+                        <width>400</width>
                         <height>30</height>
                         <font>font10</font>
                         <textcolor>grey</textcolor>
@@ -4409,8 +4885,8 @@
                     </control>
 					<control type="label">
                         <left>20</left>
-                        <top>360</top>
-                        <width>440</width>
+                        <top>355</top>
+                        <width>400</width>
                         <height>30</height>
                         <font>font12_title</font>
                         <textcolor>white</textcolor>
@@ -4421,56 +4897,34 @@
                     </control>
                 </itemlayout>
                 <focusedlayout height="428" width="448" condition="$PARAM[embuaryinfonextaired]">
-                    
-                    <!-- more -->
+
                     <control type="image">
-                        <left>20</left>
-                        <top>15</top>
-                        <width>440</width>
-                        <height>270</height>
-                        <texture background="true" colordiffuse="$VAR[MainColorOne]">more_items.png</texture>
-                        <aspectratio>keep</aspectratio>
-                        <bordertexture border="5">blank.png</bordertexture>
-                        <include>TextureBorderWidgets</include>
-                        <visible>String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
-                        <visible>Control.HasFocus($PARAM[Control])</visible>
-                    </control>
-                    <control type="image">
-                        <left>20</left>
-                        <top>15</top>
-                        <width>440</width>
-                        <height>270</height>
-                        <texture background="true">more_items.png</texture>
-                        <aspectratio>keep</aspectratio>
-                        <bordertexture border="5">blank.png</bordertexture>
-                        <include>TextureBorderWidgets</include>
-                        <visible>String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
+                        <left>0</left>
+                        <top>0</top>
+                        <width>437</width>
+                        <height>410</height>
+                        <texture border="15">RecentAddedBack.png</texture>
+                        <include>HomeTransparentEffect</include>
                         <visible>!Control.HasFocus($PARAM[Control])</visible>
                     </control>
-                    
                     <control type="image">
-                        <left>20</left>
-                        <top>15</top>
-                        <width>440</width>
-                        <height>270</height>
-                        <aspectratio>scale</aspectratio>
-                        <texture background="true">$VAR[EpisodeThumbImage]</texture>
-                        <bordertexture border="5" colordiffuse="$VAR[MainColorOne]">folder-focus.png</bordertexture>
-                        <include>TextureBorderWidgets</include>
+                        <left>0</left>
+                        <top>0</top>
+                        <width>437</width>
+                        <height>410</height>
+                        <texture border="15" colordiffuse="$VAR[MainColorOne]">white.png</texture>
                         <visible>Control.HasFocus($PARAM[Control])</visible>
-                        <visible>!String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
                     </control>
+                      
                     <control type="image">
-                        <left>20</left>
-                        <top>15</top>
-                        <width>440</width>
+                        <left>10</left>
+                        <top>10</top>
+                        <width>420</width>
                         <height>270</height>
                         <aspectratio>scale</aspectratio>
                         <texture>$VAR[EpisodeThumbImage]</texture>
                         <bordertexture border="5">blank.png</bordertexture>
                         <include>TextureBorderWidgets</include>
-                        <visible>!Control.HasFocus($PARAM[Control])</visible>
-                        <visible>!String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
                     </control>
 
                     <control type="image">
@@ -4481,14 +4935,13 @@
                         <aspectratio aligny="center">keep</aspectratio>
                         <texture>$INFO[ListItem.Art(tvshow.clearlogo)]</texture>
                         <visible>!Skin.HasSetting(DisableLogoArt) + String.IsEqual(ListItem.DBType,episode)</visible>
-                        <visible>!String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
                         <visible>!String.StartsWith(ListItem.FilenameAndPath,pvr://channels/tv/)</visible>
                     </control>
 
                     <control type="label">
                         <left>20</left>
-                        <top>300</top>
-                        <width>440</width>
+                        <top>295</top>
+                        <width>400</width>
                         <height>30</height>
                         <font>font11</font>
                         <textcolor>white</textcolor>
@@ -4496,11 +4949,26 @@
                         <align>center</align>
                         <aligny>center</aligny>
                         <label>$INFO[ListItem.Premiered]</label>
+                        <visible>!Control.HasFocus($PARAM[Control])</visible>
                     </control>
+                    <control type="label">
+                        <left>20</left>
+                        <top>295</top>
+                        <width>400</width>
+                        <height>30</height>
+                        <font>font11</font>
+                        <textcolor>black</textcolor>
+                        <selectedcolor>black</selectedcolor>
+                        <align>center</align>
+                        <aligny>center</aligny>
+                        <label>$INFO[ListItem.Premiered]</label>
+                        <visible>Control.HasFocus($PARAM[Control])</visible>
+                    </control>
+
 					<control type="label">
                         <left>20</left>
-                        <top>330</top>
-                        <width>440</width>
+                        <top>325</top>
+                        <width>400</width>
                         <height>30</height>
                         <font>font10</font>
                         <textcolor>grey</textcolor>
@@ -4509,12 +4977,28 @@
                         <aligny>center</aligny>
                         <label>$INFO[ListItem.TVShowTitle] - $INFO[ListItem.Season,s]$INFO[ListItem.Episode,e]</label>
                         <visible>!String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
+                        <visible>!Control.HasFocus($PARAM[Control])</visible>
                     </control>
+					<control type="label">
+                        <left>20</left>
+                        <top>325</top>
+                        <width>400</width>
+                        <height>30</height>
+                        <font>font10</font>
+                        <textcolor>black</textcolor>
+                        <selectedcolor>black</selectedcolor>
+                        <align>center</align>
+                        <aligny>center</aligny>
+                        <label>$INFO[ListItem.TVShowTitle] - $INFO[ListItem.Season,s]$INFO[ListItem.Episode,e]</label>
+                        <visible>!String.Contains(ListItem.Icon,DefaultFolder.png)</visible>
+                        <visible>Control.HasFocus($PARAM[Control])</visible>
+                    </control>
+
                     <control type="group">
 					    <left>20</left>
-                        <top>360</top>
+                        <top>355</top>
                         <control type="label">
-                            <width>440</width>
+                            <width>400</width>
                             <height>30</height>
                             <font>font12_title</font>
                             <textcolor>white</textcolor>
@@ -4525,11 +5009,11 @@
                             <visible>!Control.HasFocus($PARAM[Control])</visible>
                         </control>
                         <control type="label">
-                            <width>440</width>
+                            <width>400</width>
                             <height>30</height>
                             <font>font12_title</font>
-                            <textcolor>$VAR[MainColorOne]</textcolor>
-                            <selectedcolor>$VAR[MainColorOne]</selectedcolor>
+                            <textcolor>black</textcolor>
+                            <selectedcolor>black</selectedcolor>
                             <align>center</align>
                             <aligny>center</aligny>
                             <label>$INFO[ListItem.Title]</label>
@@ -4553,6 +5037,14 @@
                 <visible>String.IsEqual($PARAM[Format],Poster)</visible>
                 <include content="SmallWidgetPosterButtons">
                     <param name="Control">$PARAM[Control]</param>
+					<param name="embuaryinfonextaired">$PARAM[embuaryinfonextaired]</param>
+					<param name="visibility">$PARAM[Visibility]</param>
+                </include>
+            </control>
+            <control type="group">
+                <visible>String.IsEqual($PARAM[Format],PosterDetailed)</visible>
+                <include content="SmallWidgetPosterButtons">
+                    <param name="Control">$PARAM[Control]2</param>
 					<param name="embuaryinfonextaired">$PARAM[embuaryinfonextaired]</param>
 					<param name="visibility">$PARAM[Visibility]</param>
                 </include>
@@ -4582,6 +5074,13 @@
                 <visible>String.IsEqual($PARAM[Format],Poster)</visible>
                 <include content="LargeWidgetPosterButtons">
                     <param name="Control">$PARAM[Control]</param>
+					<param name="visibility">$PARAM[Visibility]</param>
+                </include>
+            </control>
+			<control type="group">
+                <visible>String.IsEqual($PARAM[Format],PosterDetailed)</visible>
+                <include content="LargeWidgetPosterButtons">
+                    <param name="Control">$PARAM[Control]2</param>
 					<param name="visibility">$PARAM[Visibility]</param>
                 </include>
             </control>
@@ -4753,7 +5252,7 @@
             <control type="group">
 				<visible>$PARAM[visibility]</visible>
 			    <control type="button">
-                    <left>-5</left>
+                    <left>10</left>
                     <top>155</top>
                     <width>40</width>
                     <height>50</height>
@@ -4765,7 +5264,7 @@
                     <include>VisibleFadeEffect</include>
                 </control>
                 <control type="button">
-                    <left>1850</left>
+                    <left>1865</left>
                     <top>155</top>
                     <width>40</width>
                     <height>50</height>
@@ -4813,10 +5312,20 @@
         </definition>
     </include>
 	
-	<!-- Content includes -->
+	<!-- PVR QUERIES -->
     <include name="AllChannelsContent">
         <content limit="15">pvr://channels/tv/*</content>
     </include>
+
+    <!-- TV SHOWS QUERIES -->
+    <include name="TvShowsRecentWithWatched">
+		<content target="videos" sortorder="descending" sortby="dateadded" limit="10">videodb://tvshows/titles/</content>
+	</include>	
+    <include name="TvShowsRandom">
+		<content target="videos" sortby="random" sortorder="ascending" limit="10">videodb://tvshows/titles/</content>
+	</include>	
+
+    <!-- MOVIE QUERIES -->
     <include name="RecentVideoContent">
 		<content target="videos"  sortorder="descending" sortby="dateadded" limit="10">videodb://movies/titles/?xsp=%7B%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22playcount%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%220%22%7D%5D%7D%2C%22type%22%3A%22movies%22%7D</content>
     </include>
@@ -4834,6 +5343,8 @@
         <!-- This is just 10 unwatched movies, random -->
 		<content sortby="random" sortorder="" limit="10" target="videos">videodb://movies/titles/?xsp=%7B%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22playcount%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%220%22%7D%5D%7D%2C%22type%22%3A%22movies%22%7D</content>
     </include>
+
+    <!-- TV SHOW EPISODES QUERIES -->
     <include name="RecentTVShowContent">
         <!-- 10 episodes, unwatched, newest first -->
 		<content target="videos">videodb://tvshows/titles/-1/-1/-1/-1/?xsp=%7b%22limit%22%3a10%2c%22order%22%3a%7b%22direction%22%3a%22descending%22%2c%22ignorefolders%22%3a0%2c%22method%22%3a%22dateadded%22%7d%2c%22rules%22%3a%7b%22and%22%3a%5b%7b%22field%22%3a%22playcount%22%2c%22operator%22%3a%22is%22%2c%22value%22%3a%5b%220%22%5d%7d%2c%7b%22field%22%3a%22dateadded%22%2c%22operator%22%3a%22after%22%2c%22value%22%3a%5b%22%201%2f%201%2f2021%22%5d%7d%5d%7d%2c%22type%22%3a%22episodes%22%7d</content>
@@ -5100,6 +5611,8 @@
             </item>
         </content>
     </include>
+
+    <!-- MUSIC QUERIES -->
     <include name="RecentAlbumContent">
         <content target="music" sortby="dateadded" sortorder="descending" limit="10">musicdb://recentlyaddedalbums</content>
     </include>
@@ -5110,6 +5623,8 @@
         <!-- Suggested albums is the 20 most played albums -->
 		<content target="music">musicdb://albums/?xsp=%7b%22limit%22%3a20%2c%22order%22%3a%7b%22direction%22%3a%22descending%22%2c%22ignorefolders%22%3a0%2c%22method%22%3a%22playcount%22%7d%2c%22rules%22%3a%7b%22and%22%3a%5b%7b%22field%22%3a%22playcount%22%2c%22operator%22%3a%22greaterthan%22%2c%22value%22%3a%5b%220%22%5d%7d%5d%7d%2c%22type%22%3a%22albums%22%7d</content>
     </include>
+
+    <!-- MUSIC VIDEOS QUERIES -->
     <include name="RecentConcertContent">
         <content target="videos"  sortorder="descending" sortby="dateadded" limit="10">videodb://musicvideos/titles/?xsp=%7B%22rules%22%3A%7B%22and%22%3A%5B%7B%22field%22%3A%22playcount%22%2C%22operator%22%3A%22is%22%2C%22value%22%3A%220%22%7D%5D%7D%2C%22type%22%3A%22musicvideos%22%7D</content>
     </include>
@@ -5123,6 +5638,7 @@
         <!-- Suggested music videos is just 20 most played music videos -->
 		<content target="videos">videodb://musicvideos/titles/?xsp=%7b%22limit%22%3a20%2c%22order%22%3a%7b%22direction%22%3a%22descending%22%2c%22ignorefolders%22%3a0%2c%22method%22%3a%22playcount%22%7d%2c%22rules%22%3a%7b%22and%22%3a%5b%7b%22field%22%3a%22playcount%22%2c%22operator%22%3a%22greaterthan%22%2c%22value%22%3a%5b%220%22%5d%7d%5d%7d%2c%22type%22%3a%22musicvideos%22%7d</content>
     </include>
+    
     <include name="PlayListOneContent">
         <content target="videos" limit="10">$INFO[Skin.String(HomeItem.1.Playlist)]</content>
     </include>
@@ -5463,6 +5979,8 @@
         <visible>!String.IsEqual(Container(9000).ListItem.Property(WidgetSet),UPnPMovies)</visible>
         <visible>!String.IsEqual(Container(9000).ListItem.Property(WidgetSet),RecentEpisodes)</visible>
 		<visible>!String.IsEqual(Container(9000).ListItem.Property(WidgetSet),RecentEpisodesWatched)</visible>
+		<visible>!String.IsEqual(Container(9000).ListItem.Property(WidgetSet),RecentTVShowsWatched)</visible>
+		<visible>!String.IsEqual(Container(9000).ListItem.Property(WidgetSet),RandomTVShows)</visible>
         <visible>!String.IsEqual(Container(9000).ListItem.Property(WidgetSet),RandomEpisodes)</visible>
         <visible>!String.IsEqual(Container(9000).ListItem.Property(WidgetSet),SuggestedEpisodes)</visible>
         <visible>!String.IsEqual(Container(9000).ListItem.Property(WidgetSet),RandomArtists)</visible>
